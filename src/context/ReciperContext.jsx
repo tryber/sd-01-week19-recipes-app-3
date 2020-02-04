@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 const ReciperContext = createContext();
 const ReciperProvider = ({ children }) => {
-  
   const [henriqueBolivarDoug, sethenriqueBolivarDoug] = useState(false);
 
   const issoNemSeraUsado = (value) => sethenriqueBolivarDoug(value);
