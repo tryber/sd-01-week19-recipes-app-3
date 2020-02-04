@@ -15,5 +15,5 @@ const BotaoSearch = (props) => {
 export default BotaoSearch;
 
 BotaoSearch.propTypes = {
-  changeShowSearch = PropTypes.func.isRequired,
+  changeShowSearch: PropTypes.func.isRequired,
 };
