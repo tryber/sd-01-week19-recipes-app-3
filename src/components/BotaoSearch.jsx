@@ -9,7 +9,6 @@ const BotaoSearch = ({ changeShowSearch }) => (
   </div>
 );
 
-
 export default BotaoSearch;
 
 BotaoSearch.propTypes = {
