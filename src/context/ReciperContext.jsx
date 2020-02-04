@@ -1,7 +1,9 @@
 import React, { createContext, useState } from 'react';
+import PropTypes from 'prop-types';
 
 const ReciperContext = createContext();
 const ReciperProvider = ({ children }) => {
+  
   const [henriqueBolivarDoug, sethenriqueBolivarDoug] = useState(false);
 
   const issoNemSeraUsado = (value) => sethenriqueBolivarDoug(value);
@@ -18,3 +20,7 @@ const ReciperProvider = ({ children }) => {
   );
 };
 export { ReciperContext, ReciperProvider as Provider };
+
+ReciperProvider.propTypes = {
+  children: PropTypes.string.isRequired,
+};
