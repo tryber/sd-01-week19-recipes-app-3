@@ -3,8 +3,8 @@ import LinkLogin from './LinkLogin';
 import BotaoSearch from './BotaoSearch';
 import SearchBar from './SearchBar';
 
-const Header = (props) => {
-  const title = props.location.pathname;
+const Header = ({ location: { pathname } }) => {
+  const title = pathname;
   const [showSearch, setShowSearch] = useState(false);
   return (
     <div>
@@ -13,15 +13,11 @@ const Header = (props) => {
       <BotaoSearch changeShowSearch={() => setShowSearch(!showSearch)} />
       {showSearch && <SearchBar />}
     </div>
-  )
+  );
 };
 
 export default Header;
 
 BotaoSearch.propTypes = {
-  changeShowSearch: PropTypes.shape({
-    location: PropTypes.shape = ({
-      pathname: PropTypes.string.isRequired,
-    }),
-  }),
+  pathname: PropTypes.string.isRequired,
 };
