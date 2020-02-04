@@ -14,7 +14,14 @@ const Header = (props) => {
       {showSearch && <SearchBar />}
     </div>
   )
-}
-
+};
 
 export default Header;
+
+BotaoSearch.propTypes = {
+  changeShowSearch= PropTypes.shape({
+    location= PropTypes.shape = ({
+      pathname= PropTypes.string.isRequired,
+    }),
+  }),
+};

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const BotaoSearch = ({ changeShowSearch }) => (
   <div>
@@ -6,6 +7,10 @@ const BotaoSearch = ({ changeShowSearch }) => (
       Search
       </button>
   </div>
-)
+);
 
 export default BotaoSearch;
+
+BotaoSearch.propTypes = {
+  changeShowSearch = PropTypes.func.isRequired,
+};

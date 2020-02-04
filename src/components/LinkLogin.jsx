@@ -7,7 +7,6 @@ const LinkLogin = () => (
       Perfil
     </Link>
   </div>
-)
-
+);
 
 export default LinkLogin;
