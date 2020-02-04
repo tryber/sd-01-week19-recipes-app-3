@@ -19,5 +19,7 @@ const Header = ({ location }) => {
 export default Header;
 
 BotaoSearch.propTypes = {
-  location: PropTypes.object.isRequired,
+  location: PropTypes.shape({
+    pathname: PropTypes.string.isRequired,
+  }).isRequired,
 };
