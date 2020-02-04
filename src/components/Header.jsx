@@ -13,11 +13,13 @@ const Header = ({ location: { pathname } }) => {
       <BotaoSearch changeShowSearch={() => setShowSearch(!showSearch)} />
       {showSearch && <SearchBar />}
     </div>
-  );
+  )
 };
 
 export default Header;
 
 BotaoSearch.propTypes = {
-  pathname: PropTypes.string.isRequired,
+  location: PropTypes.shape = ({
+    pathname: PropTypes.string.isRequired,
+  }),
 };
