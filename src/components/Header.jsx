@@ -8,6 +8,7 @@ const Header = ({ location }) => {
   const title = location.pathname;
   const [showSearch, setShowSearch] = useState(false);
   const [search, setSearch] = useState({ typeSearch: 'i', search: '' });
+  console.log(search);
   return (
     <div>
       <LinkLogin />
