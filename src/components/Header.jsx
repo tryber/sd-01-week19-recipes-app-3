@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import LinkLogin from './LinkLogin';
 import BotaoSearch from './BotaoSearch';
 import SearchBar from './SearchBar';
