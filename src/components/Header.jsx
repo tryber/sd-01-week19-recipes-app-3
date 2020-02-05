@@ -7,12 +7,15 @@ import SearchBar from './SearchBar';
 const Header = ({ location }) => {
   const title = location.pathname;
   const [showSearch, setShowSearch] = useState(false);
+  const [search, setSearch] = useState({ typeSearch: 'i', search: '' })
+
+  console.log(search)
   return (
     <div>
       <LinkLogin />
       <h2>{title}</h2>
       <BotaoSearch changeShowSearch={() => setShowSearch(!showSearch)} />
-      {showSearch && <SearchBar />}
+      {showSearch && <SearchBar changeSearch={setSearch} search={search} />}
     </div>
   );
 };

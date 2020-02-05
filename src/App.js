@@ -7,7 +7,7 @@ function App() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path="/receitas-feitas" component={Header} />
+        <Route exact path="/" component={Header} />
       </Switch>
     </BrowserRouter>
     // <div id="meals">
