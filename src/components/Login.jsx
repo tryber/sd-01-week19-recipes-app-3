@@ -4,7 +4,7 @@ const Login = () => {
   return (
     <div>
       <h1>Login</h1>
-      <form >
+      <form onSubmit={(e) => console.log(e.target)}>
             <input
             type="email"
             placeholder="Email"
