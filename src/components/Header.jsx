@@ -13,7 +13,7 @@ const Header = ({ location }) => {
       <LinkLogin />
       <h2>{title}</h2>
       <BotaoSearch changeShowSearch={() => setShowSearch(!showSearch)} />
-      {showSearch && <SearchBar changeSearch={setSearch} search={search} />}
+      {showSearch && <SearchBar changeSearch={setSearch} />}
     </div>
   );
 };

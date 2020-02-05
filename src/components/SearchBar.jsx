@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { DebounceInput } from 'react-debounce-input';
 
 
@@ -50,7 +51,7 @@ const SearchBar = ({ changeSearch }) => {
     <div>
       <DebounceInput
         debounceTimeout={600}
-        onChange={event => setSearch(event.target.value)}
+        onChange={(event) => setSearch(event.target.value)}
         value={search}
       />
       {renderRadioButton(typeSearch, setTypeSearch)}
@@ -59,3 +60,7 @@ const SearchBar = ({ changeSearch }) => {
 };
 
 export default SearchBar;
+
+SearchBar.propTypes = {
+  changeSearch: PropTypes.func.isRequired,
+};
