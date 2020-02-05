@@ -39,12 +39,12 @@ const SearchBar = ({ changeSearch }) => {
   const [typeSearch, setTypeSearch] = useState('i');
 
   useEffect(() => {
-    changeSearch({ search, typeSearch })
-  }, [search])
+    changeSearch({ search, typeSearch });
+  }, [search]);
 
   useEffect(() => {
-    setSearch('')
-  }, [typeSearch])
+    setSearch('');
+  }, [typeSearch]);
 
   return (
     <div>
@@ -55,7 +55,7 @@ const SearchBar = ({ changeSearch }) => {
       />
       {renderRadioButton(typeSearch, setTypeSearch)}
     </div>
-  )
+  );
 };
 
 export default SearchBar;

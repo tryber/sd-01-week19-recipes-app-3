@@ -7,9 +7,7 @@ import SearchBar from './SearchBar';
 const Header = ({ location }) => {
   const title = location.pathname;
   const [showSearch, setShowSearch] = useState(false);
-  const [search, setSearch] = useState({ typeSearch: 'i', search: '' })
-
-  console.log(search)
+  const [search, setSearch] = useState({ typeSearch: 'i', search: '' });
   return (
     <div>
       <LinkLogin />
