@@ -25,16 +25,17 @@ export const UserDataProvider = ({ children }) => {
     switch (FieldType) {
       case 'email':
         FieldValue
-          .match(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/) ?
-          setIsEmailFormatted(true) : setIsEmailFormatted(false)
+          .match(/\S+@\S+\.\S+/) ?
+          setIsEmailFormatted(true) : setIsEmailFormatted(false);
         break;
-      case 'password':
+      case 'password': {
         FieldValue.length >= 6 ? setIsPasswordFormatted(true) : setIsPasswordFormatted(false);
         break;
+      }
       default:
-        return;
+        break;
     }
-  }
+  };
 
   const context = {
     data: {
@@ -49,11 +50,11 @@ export const UserDataProvider = ({ children }) => {
       fillingFields,
       checkingFormat,
     },
-  }
+  };
 
   return (
     <UserDataContext.Provider value={context}>
       {children}
     </UserDataContext.Provider>
   );
-}
+};
