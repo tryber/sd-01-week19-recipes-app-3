@@ -2,6 +2,15 @@ import React, { useContext } from 'react';
 import Form from 'react-bootstrap/Form';
 import { UserDataContext } from '../context/UserDataContext';
 
+const handleChange = (FiedlValue, setPassword, setIsPasswordFormatted) => {
+  setPassword(FiedlValue);
+  if (FiedlValue.length >= 6) {
+    setIsPasswordFormatted(true);
+  } else {
+    setIsPasswordFormatted(false);
+  }
+};
+
 const PasswordField = () => {
   const {
     methods: {
@@ -21,14 +30,7 @@ const PasswordField = () => {
         required="required"
         name="password"
         data-testid="password-input"
-        onChange={(e) => {
-          setPassword(e.target.value);
-          if (e.target.value.length >= 6) {
-            setIsPasswordFormatted(true);
-          } else {
-            setIsPasswordFormatted(false);
-          }
-        }}
+        onChange={(e) => handleChange(e.target.value, setPassword, setIsPasswordFormatted)}
         isValid={isPasswordFormatted}
         isInvalid={!isPasswordFormatted}
       />
