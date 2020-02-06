@@ -1,6 +1,5 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import Form from 'react-bootstrap/Form';
-import { UserDataContext } from '../context/UserDataContext';
 
 const handleChange = (FiedlValue, setEmail, setIsEmailFormatted) => {
   setEmail(FiedlValue);
@@ -11,17 +10,7 @@ const handleChange = (FiedlValue, setEmail, setIsEmailFormatted) => {
   }
 };
 
-const EmailField = () => {
-  const {
-    methods: {
-      setEmail,
-      setIsEmailFormatted,
-    },
-    checkData: {
-      isEmailFormatted,
-    },
-  } = useContext(UserDataContext);
-
+const EmailField = ({ setEmail, setEmailValid, emailValid }) => {
   return (
     <Form.Group controlId="formBasicEmail">
       <Form.Control
@@ -29,9 +18,9 @@ const EmailField = () => {
         placeholder="Email"
         required="required"
         data-testid="email-input"
-        onChange={(e) => handleChange(e.target.value, setEmail, setIsEmailFormatted)}
-        isValid={isEmailFormatted}
-        isInvalid={!isEmailFormatted}
+        onChange={(e) => handleChange(e.target.value, setEmail, setEmailValid)}
+        isValid={emailValid}
+        isInvalid={!emailValid}
       />
       <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
       <Form.Control.Feedback type="invalid">

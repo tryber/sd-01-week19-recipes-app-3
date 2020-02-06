@@ -1,6 +1,5 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import Form from 'react-bootstrap/Form';
-import { UserDataContext } from '../context/UserDataContext';
 
 const handleChange = (FiedlValue, setPassword, setIsPasswordFormatted) => {
   setPassword(FiedlValue);
@@ -11,17 +10,7 @@ const handleChange = (FiedlValue, setPassword, setIsPasswordFormatted) => {
   }
 };
 
-const PasswordField = () => {
-  const {
-    methods: {
-      setPassword,
-      setIsPasswordFormatted,
-    },
-    checkData: {
-      isPasswordFormatted,
-    },
-  } = useContext(UserDataContext);
-
+const PasswordField = ({ setPassword, setPasswordValid, passwordValid }) => {
   return (
     <Form.Group controlId="formBasicEmail">
       <Form.Control
@@ -30,9 +19,9 @@ const PasswordField = () => {
         required="required"
         name="password"
         data-testid="password-input"
-        onChange={(e) => handleChange(e.target.value, setPassword, setIsPasswordFormatted)}
-        isValid={isPasswordFormatted}
-        isInvalid={!isPasswordFormatted}
+        onChange={(e) => handleChange(e.target.value, setPassword, setPasswordValid)}
+        isValid={passwordValid}
+        isInvalid={!passwordValid}
       />
       <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
       <Form.Control.Feedback type="invalid">

@@ -3,15 +3,13 @@ import PropTypes from 'prop-types';
 
 const ReciperContext = createContext();
 const ReciperProvider = ({ children }) => {
-  const [henriqueBolivarDoug, sethenriqueBolivarDoug] = useState(false);
-
-  const issoNemSeraUsado = (value) => sethenriqueBolivarDoug(value);
-
+  const [ userData, setUserData ] = useState({ email: '', password:'' });
+  console.log(userData)
   const context = {
-    henriqueBolivarDoug,
-    sethenriqueBolivarDoug,
-    issoNemSeraUsado,
-  };
+    userData,
+    setUserData,
+  }
+
   return (
     <ReciperContext.Provider value={context}>
       {children}
