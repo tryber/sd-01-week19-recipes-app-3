@@ -2,6 +2,12 @@ import React, { useContext } from 'react';
 import Button from 'react-bootstrap/Button';
 import { UserDataContext } from '../context/UserDataContext';
 
+const handleClick = (email) => {
+  localStorage.setItem('user', JSON.stringify({ email }));
+  localStorage.setItem('meals-token', '1');
+  localStorage.setItem('cocktails-token', '1');
+};
+
 const SubmitButton = () => {
   const {
     checkData: {
@@ -15,19 +21,13 @@ const SubmitButton = () => {
 
   const isFieldsFormatted = isEmailFormatted && isPasswordFormatted;
 
-  const handleClick = () => {
-    localStorage.setItem('user', JSON.stringify({ email }));
-    localStorage.setItem('meals-token', '1');
-    localStorage.setItem('cocktails-token', '1');
-  };
-
   return (
     <Button
       type="submit"
       data-testid="login-submit-btn"
       disabled={!isFieldsFormatted}
       variant={!isFieldsFormatted ? 'outline-danger' : 'outline-success'}
-      onClick={handleClick}
+      onClick={handleClick(email)}
     > Entrar </Button>
   );
 };
