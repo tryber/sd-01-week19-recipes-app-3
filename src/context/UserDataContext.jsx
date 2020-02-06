@@ -9,40 +9,6 @@ export const UserDataProvider = ({ children }) => {
   const [isEmailFormatted, setIsEmailFormatted] = useState(false);
   const [isPasswordFormatted, setIsPasswordFormatted] = useState(false);
 
-  const fillingFields = (FieldType, FieldValue) => {
-    switch (FieldType) {
-      case 'email':
-        setEmail(FieldValue);
-        break;
-      case 'password':
-        setPassword(FieldValue);
-        break;
-      default:
-        break;
-    }
-  };
-
-  const checkingFormat = (FieldType, FieldValue) => {
-    switch (FieldType) {
-      case 'email':
-        if (FieldValue.match(/\S+@\S+\.\S+/)) {
-          setIsEmailFormatted(true);
-        } else {
-          setIsEmailFormatted(false);
-        }
-        break;
-      case 'password':
-        if (FieldValue.length >= 6) {
-          setIsPasswordFormatted(true);
-        } else {
-          setIsPasswordFormatted(false);
-        }
-        break;
-      default:
-        break;
-    }
-  };
-
   const context = {
     data: {
       email,
@@ -53,8 +19,10 @@ export const UserDataProvider = ({ children }) => {
       isPasswordFormatted,
     },
     methods: {
-      fillingFields,
-      checkingFormat,
+      setEmail,
+      setPassword,
+      setIsEmailFormatted,
+      setIsPasswordFormatted,
     },
   };
 

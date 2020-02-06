@@ -5,8 +5,8 @@ import { UserDataContext } from '../context/UserDataContext';
 const PasswordField = () => {
   const {
     methods: {
-      fillingFields,
-      checkingFormat,
+      setPassword,
+      setIsPasswordFormatted,
     },
     checkData: {
       isPasswordFormatted,
@@ -22,8 +22,12 @@ const PasswordField = () => {
         name="password"
         data-testid="password-input"
         onChange={(e) => {
-          checkingFormat(e.target.type, e.target.value);
-          fillingFields(e.target.type, e.target.value);
+          setPassword(e.target.value);
+          if (e.target.value.length >= 6) {
+            setIsPasswordFormatted(true);
+          } else {
+            setIsPasswordFormatted(false);
+          }
         }}
         isValid={isPasswordFormatted}
         isInvalid={!isPasswordFormatted}

@@ -5,8 +5,8 @@ import { UserDataContext } from '../context/UserDataContext';
 const EmailField = () => {
   const {
     methods: {
-      fillingFields,
-      checkingFormat,
+      setEmail,
+      setIsEmailFormatted,
     },
     checkData: {
       isEmailFormatted,
@@ -21,8 +21,12 @@ const EmailField = () => {
         required="required"
         data-testid="email-input"
         onChange={(e) => {
-          fillingFields(e.target.type, e.target.value);
-          checkingFormat(e.target.type, e.target.value);
+          setEmail(e.target.value);
+          if (e.target.value.match(/\S+@\S+\.\S+/)) {
+            setIsEmailFormatted(true);
+          } else {
+            setIsEmailFormatted(false);
+          }
         }}
         isValid={isEmailFormatted}
         isInvalid={!isEmailFormatted}
