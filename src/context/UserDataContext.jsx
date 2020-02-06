@@ -30,8 +30,11 @@ export const UserDataProvider = ({ children }) => {
           setIsEmailFormatted(true) : setIsEmailFormatted(false);
         break;
       case 'password':
-        const checkPassword = FieldValue.length >= 6;
-        checkPassword ? setIsPasswordFormatted(true) : setIsPasswordFormatted(false);
+        if (FieldValue.length >= 6) {
+          setIsPasswordFormatted(true)
+        } else {
+          setIsPasswordFormatted(false);
+        }
         break;
       default:
         break;
