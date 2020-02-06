@@ -28,6 +28,4 @@ HeaderRecipe.propTypes = {
   img: PropTypes.string.isRequired,
   category: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
-  id: PropTypes.number.isRequired,
 };
