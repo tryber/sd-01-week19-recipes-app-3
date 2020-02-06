@@ -27,7 +27,7 @@ const SubmitButton = () => {
       data-testid="login-submit-btn"
       disabled={!isFieldsFormatted}
       variant={!isFieldsFormatted ? 'outline-danger' : 'outline-success'}
-      onClick={handleClick(email)}
+      onClick={() => handleClick(email)}
     > Entrar </Button>
   );
 };
