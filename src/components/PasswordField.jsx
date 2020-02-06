@@ -34,6 +34,6 @@ const PasswordField = () => {
       </Form.Control.Feedback>
     </Form.Group>
   );
-}
+};
 
 export default PasswordField;

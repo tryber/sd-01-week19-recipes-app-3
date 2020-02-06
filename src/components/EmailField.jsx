@@ -21,8 +21,8 @@ const EmailField = () => {
         required="required"
         data-testid="email-input"
         onChange={(e) => {
-          checkingFormat(e.target.type, e.target.value);
           fillingFields(e.target.type, e.target.value);
+          checkingFormat(e.target.type, e.target.value);
         }}
         isValid={isEmailFormatted}
         isInvalid={!isEmailFormatted}
