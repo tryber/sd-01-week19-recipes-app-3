@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 
-const SubmitButton = (emailValid, passwordValid) => {
+const SubmitButton = ({ emailValid, passwordValid }) => {
   const fieldsValid = emailValid && passwordValid;
 
   return (
