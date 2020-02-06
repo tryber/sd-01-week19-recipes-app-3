@@ -3,14 +3,14 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Foods from './components/Foods';
 import Drinks from './components/Drinks';
-import CardRecipe from './components/CardRecipe';
+import Home from './components/Home';
 
 function App() {
   return (
     // <MenuInferior />
     <Router>
       <Switch>
-        <Route exact path="/" component={CardRecipe} />
+        <Route exact path="/" component={} />
         <Route exact path="/comidas" component={Foods} />
         <Route exact path="/bebidas" component={Drinks} />
       </Switch>
