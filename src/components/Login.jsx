@@ -1,50 +1,41 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
+
+import { UserDataProvider } from '../context/UserDataContext';
+import { UserDataContext } from '../context/UserDataContext';
+
+import Form from 'react-bootstrap/Form';
+
+import EmailField from './EmailField';
+import PasswordField from './PasswordField';
+
+import SubmitButton from '../components/SubmitButton';
 
 const Login = () => {
-  const [isEmailFormatted, setIsEmailFormatted] = useState(false);
-  const [isPasswordFormatted, setIsPasswordFormatted] = useState(false);
-  const isFieldsFormatted = isEmailFormatted && isPasswordFormatted;
-  const checkFormat = (type, value) => {
-    switch (type) {
-      case 'email':
-        value
-          .match(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/) ?
-          setIsEmailFormatted(true) : setIsEmailFormatted(false)
-        break;
-      case 'password':
-        value.length >= 6 ? setIsPasswordFormatted(true) : setIsPasswordFormatted(false);
-        break;
-      default:
-        return;
-    }
+
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
   }
 
+  // export const readFavoritePokemonIds = () => (
+  //   JSON.parse(localStorage.getItem('favoritePokemonIds')) || []
+  // );
+
+  // const saveFavoritePokemons = (pokemons) => (
+  //   localStorage.setItem('favoritePokemonIds', JSON.stringify(pokemons))
+  // );
+
+
+
   return (
-    <div>
+    <UserDataProvider>
       <h1>Login</h1>
-      <form onSubmit={(e) => console.log(e.target)}>
-        <input
-          type="email"
-          placeholder="Email"
-          required="required"
-          data-testid="email-input"
-          onChange={(e) => checkFormat(e.target.type, e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="Senha"
-          required="required"
-          data-testid="password-input"
-          minLength="6"
-          onChange={(e) => checkFormat(e.target.type, e.target.value)}
-        />
-        <button
-          type="submit"
-          data-testid="login-submit-btn"
-          disabled={!isFieldsFormatted}
-        > Entrar </button>
-      </form>
-    </div>
+      <Form onSubmit={handleSubmit}>
+        <EmailField />
+        <PasswordField />
+        <SubmitButton />
+      </Form>
+    </UserDataProvider>
   );
 }
 
