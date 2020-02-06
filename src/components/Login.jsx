@@ -26,7 +26,11 @@ const Login = () => {
       <h1>Login</h1>
       <Form onSubmit={(e) => handleSubmit(e)}>
         <EmailField emailValid={emailValid} setEmailValid={setEmailValid} setEmail={setEmail} />
-        <PasswordField setPassword={setPassword} setPasswordValid={setPasswordValid} passwordValid={passwordValid} />
+        <PasswordField
+          setPassword={setPassword}
+          setPasswordValid={setPasswordValid}
+          passwordValid={passwordValid}
+        />
         <SubmitButton emailValid={emailValid} passwordValid={passwordValid} />
       </Form>
     </div>

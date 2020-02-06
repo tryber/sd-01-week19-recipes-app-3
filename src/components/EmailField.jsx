@@ -1,5 +1,6 @@
 import React from 'react';
 import Form from 'react-bootstrap/Form';
+import PropTypes from 'prop-types';
 
 const handleChange = (FiedlValue, setEmail, setIsEmailFormatted) => {
   setEmail(FiedlValue);
@@ -28,6 +29,12 @@ const EmailField = ({ setEmail, setEmailValid, emailValid }) => {
       </Form.Control.Feedback>
     </Form.Group>
   );
+};
+
+EmailField.propTypes = {
+  setEmail: PropTypes.func.isRequired,
+  setEmailValid: PropTypes.func.isRequired,
+  emailValid: PropTypes.bool.isRequired,
 };
 
 export default EmailField;
