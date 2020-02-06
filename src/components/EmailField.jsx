@@ -2,6 +2,15 @@ import React, { useContext } from 'react';
 import Form from 'react-bootstrap/Form';
 import { UserDataContext } from '../context/UserDataContext';
 
+const handleChange = (FiedlValue, setEmail, setIsEmailFormatted) => {
+  setEmail(FiedlValue);
+  if (FiedlValue.match(/\S+@\S+\.\S+/)) {
+    setIsEmailFormatted(true);
+  } else {
+    setIsEmailFormatted(false);
+  }
+};
+
 const EmailField = () => {
   const {
     methods: {
@@ -13,15 +22,6 @@ const EmailField = () => {
     },
   } = useContext(UserDataContext);
 
-  const handleChange = (event) => {
-    setEmail(event.target.value);
-    if (event.target.value.match(/\S+@\S+\.\S+/)) {
-      setIsEmailFormatted(true);
-    } else {
-      setIsEmailFormatted(false);
-    }
-  }
-
   return (
     <Form.Group controlId="formBasicEmail">
       <Form.Control
@@ -29,7 +29,7 @@ const EmailField = () => {
         placeholder="Email"
         required="required"
         data-testid="email-input"
-        onChange={handleChange}
+        onChange={(e) => handleChange(e.target.value, setEmail, setIsEmailFormatted)}
         isValid={isEmailFormatted}
         isInvalid={!isEmailFormatted}
       />
