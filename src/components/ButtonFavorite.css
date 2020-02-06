@@ -16,8 +16,8 @@
 
 .icon:focus {
   color: black;
-  outline: none;
   outline-offset: -4px;
+  outline: none;
 }
 
 .icon:active {

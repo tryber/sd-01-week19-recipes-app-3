@@ -33,9 +33,9 @@
 }
 
 .HeaderRecipe > .div-button {
-  display: flex;
-  width: 35%;
-  flex-direction: row;
   align-items: flex-start;
+  display: flex;
+  flex-direction: row;
   justify-content: flex-end;
+  width: 35%;
 }
