@@ -13,6 +13,15 @@ const EmailField = () => {
     },
   } = useContext(UserDataContext);
 
+  const handleChange = (event) => {
+    setEmail(event.target.value);
+    if (event.target.value.match(/\S+@\S+\.\S+/)) {
+      setIsEmailFormatted(true);
+    } else {
+      setIsEmailFormatted(false);
+    }
+  }
+
   return (
     <Form.Group controlId="formBasicEmail">
       <Form.Control
@@ -20,14 +29,7 @@ const EmailField = () => {
         placeholder="Email"
         required="required"
         data-testid="email-input"
-        onChange={(e) => {
-          setEmail(e.target.value);
-          if (e.target.value.match(/\S+@\S+\.\S+/)) {
-            setIsEmailFormatted(true);
-          } else {
-            setIsEmailFormatted(false);
-          }
-        }}
+        onChange={handleChange}
         isValid={isEmailFormatted}
         isInvalid={!isEmailFormatted}
       />
