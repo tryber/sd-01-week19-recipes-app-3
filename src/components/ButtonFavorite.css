@@ -1,6 +1,6 @@
 .ButtonFavorite > .iconFavorite {
   background: white;
-  background-image: url("../icons/iconFavorite.svg");
+  background-image: url('../icons/iconFavorite.svg');
   background-size: cover;
   height: 26px;
   width: 26px;

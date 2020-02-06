@@ -9,18 +9,18 @@ const HeaderRecipe = ({
   category = 'Dessert',
   title = 'Chelsea Buns',
 }) => (
-    <div className="HeaderRecipe">
-      <img className="imgRecipe" src={img} alt="Foto Receita" />
-      <div className="div-text">
-        <h2 className="titleRecipe">{title}</h2>
-        <h4 className="categoryRecipe">{category}</h4>
-      </div>
-      <div className="div-button">
-        <ButtonShare />
-        <ButtonFavorite />
-      </div>
+  <div className="HeaderRecipe">
+    <img className="imgRecipe" src={img} alt="Foto Receita" />
+    <div className="div-text">
+      <h2 className="titleRecipe">{title}</h2>
+      <h4 className="categoryRecipe">{category}</h4>
     </div>
-  );
+    <div className="div-button">
+      <ButtonShare />
+      <ButtonFavorite />
+    </div>
+  </div>
+);
 
 export default HeaderRecipe;
 
