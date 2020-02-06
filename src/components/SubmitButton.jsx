@@ -1,8 +1,6 @@
 import React, { useContext } from 'react';
-
+import Button from 'react-bootstrap/Button';
 import { UserDataContext } from '../context/UserDataContext';
-
-import Button from 'react-bootstrap/Button'
 
 const SubmitButton = () => {
   const {

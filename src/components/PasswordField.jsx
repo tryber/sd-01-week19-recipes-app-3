@@ -1,8 +1,6 @@
 import React, { useContext } from 'react';
-
-import { UserDataContext } from '../context/UserDataContext';
-
 import Form from 'react-bootstrap/Form';
+import { UserDataContext } from '../context/UserDataContext';
 
 const PasswordField = () => {
   const {

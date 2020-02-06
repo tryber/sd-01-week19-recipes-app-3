@@ -50,10 +50,10 @@ export const UserDataProvider = ({ children }) => {
       checkingFormat,
     },
   }
+
   return (
     <UserDataContext.Provider value={context}>
       {children}
     </UserDataContext.Provider>
   );
 }
-
