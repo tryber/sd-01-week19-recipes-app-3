@@ -5,11 +5,11 @@ import EmailField from './EmailField';
 import PasswordField from './PasswordField';
 import SubmitButton from '../components/SubmitButton';
 
-const handleSubmit = (event) => {
-  event.preventDefault();
-};
-
 const Login = () => {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+  };
+
   return (
     <UserDataProvider>
       <h1>Login</h1>
