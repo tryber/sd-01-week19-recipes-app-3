@@ -14,7 +14,7 @@
   text-decoration: none;
 }
 
-/* .icon:focus {
+.icon:focus {
   color: black;
   outline: none;
   outline-offset: -4px;
@@ -23,4 +23,4 @@
 .icon:active {
   color: black;
   transform: scale(0.99);
-} */
+}
