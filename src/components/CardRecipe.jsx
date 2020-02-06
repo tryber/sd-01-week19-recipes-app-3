@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types'; 
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import './CardRecipe.css';
 
@@ -12,7 +12,7 @@ const CardRecipe = ({
 }) => (
   <div className="CardRecipe">
     <Link className="LinkRecipe" to={`/receitas/${type}/${id}`}>
-      <img className="imgRecipe" src={img} alt='Foto Receita' />
+      <img className="imgRecipe" src={img} alt="Foto Receita" />
       <h4 className="categoryRecipe">{category}</h4>
       <h2 className="titleRecipe">{title}</h2>
     </Link>

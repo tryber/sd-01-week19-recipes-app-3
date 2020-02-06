@@ -9,7 +9,6 @@ import Home from './components/Home';
 function App() {
   return (
     // <MenuInferior />
-    
     <Router>
       {/* <CardRecipe /> */}
       <Switch>
