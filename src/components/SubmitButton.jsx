@@ -19,17 +19,17 @@ const SubmitButton = () => {
     localStorage.setItem('user', JSON.stringify({ email }));
     localStorage.setItem('meals-token', '1');
     localStorage.setItem('cocktails-token', '1');
-  }
+  };
 
   return (
     <Button
       type="submit"
       data-testid="login-submit-btn"
       disabled={!isFieldsFormatted}
-      variant={!isFieldsFormatted ? "outline-danger" : "outline-success"}
+      variant={!isFieldsFormatted ? 'outline-danger' : 'outline-success'}
       onClick={handleClick}
     > Entrar </Button>
   );
-}
+};
 
 export default SubmitButton;

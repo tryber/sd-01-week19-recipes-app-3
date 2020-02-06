@@ -8,7 +8,7 @@ import SubmitButton from '../components/SubmitButton';
 const Login = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
-  }
+  };
 
   return (
     <UserDataProvider>
@@ -20,6 +20,6 @@ const Login = () => {
       </Form>
     </UserDataProvider>
   );
-}
+};
 
 export default Login;

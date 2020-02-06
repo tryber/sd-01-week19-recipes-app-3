@@ -1,4 +1,5 @@
 import React, { createContext, useState } from 'react';
+import PropTypes from 'prop-types';
 
 export const UserDataContext = createContext();
 
@@ -17,9 +18,9 @@ export const UserDataProvider = ({ children }) => {
         setPassword(FieldValue);
         break;
       default:
-        return;
+        break;
     }
-  }
+  };
 
   const checkingFormat = (FieldType, FieldValue) => {
     switch (FieldType) {
@@ -28,10 +29,9 @@ export const UserDataProvider = ({ children }) => {
           .match(/\S+@\S+\.\S+/) ?
           setIsEmailFormatted(true) : setIsEmailFormatted(false);
         break;
-      case 'password': {
+      case 'password':
         FieldValue.length >= 6 ? setIsPasswordFormatted(true) : setIsPasswordFormatted(false);
         break;
-      }
       default:
         break;
     }
@@ -57,4 +57,8 @@ export const UserDataProvider = ({ children }) => {
       {children}
     </UserDataContext.Provider>
   );
+};
+
+UserDataProvider.propTypes = {
+  children: PropTypes.node.isRequired,
 };

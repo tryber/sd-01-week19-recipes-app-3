@@ -28,9 +28,11 @@ const EmailField = () => {
         isInvalid={!isEmailFormatted}
       />
       <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-      <Form.Control.Feedback type="invalid">Enter a valid email address</Form.Control.Feedback>
+      <Form.Control.Feedback type="invalid">
+        Enter a valid email address
+      </Form.Control.Feedback>
     </Form.Group>
   );
-}
+};
 
 export default EmailField;

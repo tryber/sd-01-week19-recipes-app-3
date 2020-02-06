@@ -29,7 +29,9 @@ const PasswordField = () => {
         isInvalid={!isPasswordFormatted}
       />
       <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-      <Form.Control.Feedback type="invalid">Your password must contain at least 6 characters</Form.Control.Feedback>
+      <Form.Control.Feedback type="invalid">
+        Your password must contain at least 6 characters
+      </Form.Control.Feedback>
     </Form.Group>
   );
 }
