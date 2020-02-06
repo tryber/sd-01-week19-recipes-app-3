@@ -32,7 +32,7 @@ const PasswordField = ({ setPassword, setPasswordValid, passwordValid }) => {
   );
 };
 
-EmailField.propTypes = {
+PasswordField.propTypes = {
   setPassword: PropTypes.func.isRequired,
   setPasswordValid: PropTypes.func.isRequired,
   passwordValid: PropTypes.bool.isRequired,
