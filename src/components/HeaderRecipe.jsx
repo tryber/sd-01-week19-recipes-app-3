@@ -1,27 +1,30 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-import './CardRecipe.css';
+import ButtonShare from './ButtonShare';
+import ButtonFavorite from './ButtonFavorite';
+import './HeaderRecipe.css';
 
-const CardRecipe = ({
+const HeaderRecipe = ({
   img = 'https://cdn.britannica.com/41/177341-050-8688C353/Chelsea-buns.jpg',
   category = 'Dessert',
   title = 'Chelsea Buns',
-  id = 200,
-  type = 'comida',
 }) => (
-  <div className="CardRecipe">
-    <Link className="LinkRecipe" to={`/receitas/${type}/${id}`}>
+    <div className="HeaderRecipe">
       <img className="imgRecipe" src={img} alt="Foto Receita" />
-      <h2 className="titleRecipe">{title}</h2>
-      <h4 className="categoryRecipe">{category}</h4>
-    </Link>
-  </div>
-);
+      <div className="div-text">
+        <h2 className="titleRecipe">{title}</h2>
+        <h4 className="categoryRecipe">{category}</h4>
+      </div>
+      <div className="div-button">
+        <ButtonShare />
+        <ButtonFavorite />
+      </div>
+    </div>
+  );
 
-export default CardRecipe;
+export default HeaderRecipe;
 
-CardRecipe.propTypes = {
+HeaderRecipe.propTypes = {
   img: PropTypes.string.isRequired,
   category: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,

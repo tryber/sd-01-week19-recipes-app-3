@@ -1,0 +1,27 @@
+.ButtonFavorite > .iconFavorite {
+  background: white;
+  background-image: url("../icons/iconFavorite.svg");
+  background-size: cover;
+  height: 26px;
+  width: 26px;
+}
+
+.icon {
+  border: none;
+  color: black;
+  cursor: pointer;
+  text-decoration: none;
+  margin:10px;
+}
+
+.icon:focus {
+  color: black;
+  outline: none;
+  outline-offset: -4px;
+}
+
+.icon:active {
+  color: black;
+  transform: scale(0.99);
+}
+
