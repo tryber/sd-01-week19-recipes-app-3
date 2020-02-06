@@ -25,13 +25,15 @@ export const UserDataProvider = ({ children }) => {
   const checkingFormat = (FieldType, FieldValue) => {
     switch (FieldType) {
       case 'email':
-        FieldValue
-          .match(/\S+@\S+\.\S+/) ?
-          setIsEmailFormatted(true) : setIsEmailFormatted(false);
+        if (FieldValue.match(/\S+@\S+\.\S+/)) {
+          setIsEmailFormatted(true);
+        } else {
+          setIsEmailFormatted(false);
+        }
         break;
       case 'password':
         if (FieldValue.length >= 6) {
-          setIsPasswordFormatted(true)
+          setIsPasswordFormatted(true);
         } else {
           setIsPasswordFormatted(false);
         }
