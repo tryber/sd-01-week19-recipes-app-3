@@ -5,15 +5,15 @@ import EmailField from './EmailField';
 import PasswordField from './PasswordField';
 import SubmitButton from '../components/SubmitButton';
 
-const Login = () => {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-  };
+const handleSubmit = (event) => {
+  event.preventDefault();
+};
 
+const Login = () => {
   return (
     <UserDataProvider>
       <h1>Login</h1>
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={(e) => handleSubmit(e)}>
         <EmailField />
         <PasswordField />
         <SubmitButton />
