@@ -18,5 +18,5 @@ const ReciperProvider = ({ children }) => {
 export { ReciperContext, ReciperProvider as Provider };
 
 ReciperProvider.propTypes = {
-  children: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
 };

@@ -12,7 +12,7 @@ const handleChange = (FiedlValue, setPassword, setIsPasswordFormatted) => {
 };
 
 const PasswordField = ({ setPassword, setPasswordValid, passwordValid }) => (
-  <Form.Group controlId="formBasicEmail">
+  <Form.Group controlId="formBasicPassWord">
     <Form.Control
       type="password"
       placeholder="Senha"

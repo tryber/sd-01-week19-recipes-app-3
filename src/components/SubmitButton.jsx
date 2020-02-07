@@ -16,13 +16,8 @@ const SubmitButton = ({ emailValid, passwordValid }) => {
 };
 
 SubmitButton.propTypes = {
-  emailValid: PropTypes.string,
-  passwordValid: PropTypes.string,
-};
-
-SubmitButton.defaultProps = {
-  emailValid: '',
-  passwordValid: '',
+  emailValid: PropTypes.bool.isRequired,
+  passwordValid: PropTypes.bool.isRequired,
 };
 
 export default SubmitButton;
