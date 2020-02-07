@@ -7,8 +7,8 @@ import Drinks from './components/Drinks';
 
 // import CardRecipe from './components/CardRecipe';
 
-import Home from './components/Home';
-import HeaderRecipe from './components/HeaderRecipe';
+// import Home from './components/Home';
+// import HeaderRecipe from './components/HeaderRecipe';
 
 
 
