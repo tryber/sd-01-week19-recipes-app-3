@@ -1,9 +1,11 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 import PropTypes from 'prop-types';
+import { useHistory } from "react-router-dom";
 
 const SubmitButton = ({ emailValid, passwordValid }) => {
   const fieldsValid = emailValid && passwordValid;
+  const history = useHistory();
 
   return (
     <Button
@@ -11,6 +13,7 @@ const SubmitButton = ({ emailValid, passwordValid }) => {
       data-testid="login-submit-btn"
       disabled={!fieldsValid}
       variant={!fieldsValid ? 'outline-danger' : 'outline-success'}
+      onClick={() => history.push("/comidas")}
     > Entrar </Button>
   );
 };
