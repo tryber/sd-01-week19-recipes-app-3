@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Foods from './components/Foods';
 import Drinks from './components/Drinks';
 
-import Home from './components/Home';
+//import Home from './components/Home';
 // import CardRecipe from './components/CardRecipe';
 
 
