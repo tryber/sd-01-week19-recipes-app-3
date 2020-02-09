@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 
 const settingUrl = (text, searchType, setUrl) => {
-  const isTextEmpty = text !== '';
-  if (isTextEmpty) {
+  const isTextEmpty = text === '';
+  if (!isTextEmpty) {
     switch (searchType) {
       case 'ingredient':
         setUrl(`filter.php?i=${text}`);
