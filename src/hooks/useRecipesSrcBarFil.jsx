@@ -14,9 +14,9 @@ const fetch12Recipes = async (fetchingAPI, url, setRecipes, node, idRecipes) => 
             recipesID.push(resolve[node][0][idRecipes]);
           }
         }
-      )
+      );
   }
-  setRecipes({ recipes, recipesID })
+  setRecipes({ recipes, recipesID });
 }
 
 const fetchRecipes = async (fetchingAPI, url, setRecipes, node, idRecipes) => {
@@ -27,14 +27,14 @@ const fetchRecipes = async (fetchingAPI, url, setRecipes, node, idRecipes) => {
       if (resolve[node]) {
         resolve[node]
           .forEach((eachRecipe) => recipesID
-            .push(eachRecipe[idRecipes]))
+            .push(eachRecipe[idRecipes]));
       }
-    })
+    });
   for (let i = 0; i < recipesID.length; i += 1) {
-    await fetchingAPI(`lookup.php?i=${recipesID[i]}`).then((resolve) => recipes.push(resolve[node][0]))
+    await fetchingAPI(`lookup.php?i=${recipesID[i]}`).then((resolve) => recipes.push(resolve[node][0]));
   }
-  setRecipes({ recipes, recipesID })
-}
+  setRecipes({ recipes, recipesID });
+};
 
 const useRecipesSrcBarFil = (fetchingAPI, url, pathname) => {
   const [recipes, setRecipes] = useState([]);
@@ -44,13 +44,13 @@ const useRecipesSrcBarFil = (fetchingAPI, url, pathname) => {
 
   useEffect(() => {
     if (url.includes('random.php')) {
-      fetch12Recipes(fetchingAPI, url, setRecipes, node, idRecipes)
+      fetch12Recipes(fetchingAPI, url, setRecipes, node, idRecipes);
     } else {
-      fetchRecipes(fetchingAPI, url, setRecipes, node, idRecipes)
+      fetchRecipes(fetchingAPI, url, setRecipes, node, idRecipes);
     }
   }, [url]);
 
   return recipes;
-}
+};
 
 export default useRecipesSrcBarFil;
