@@ -30,9 +30,11 @@ const fetchRecipes = async (fetchingAPI, url, setRecipes, node, idRecipes) => {
             .push(eachRecipe[idRecipes]));
       }
     });
-  for (let i = 0; i < recipesID.length; i += 1) {
-    await fetchingAPI(`lookup.php?i=${recipesID[i]}`).then((resolve) => recipes.push(resolve[node][0]));
-  }
+    
+  await Promise.all(recipesID.map(async (eachRecipeID) =>
+    fetchingAPI(`lookup.php?i=${eachRecipeID}`).then((resolve) => recipes.push(resolve[node][0]))
+  ))
+  
   setRecipes({ recipes, recipesID });
 };
 
