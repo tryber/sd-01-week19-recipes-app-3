@@ -6,6 +6,7 @@ import Header from './Header';
 import { useLocation } from 'react-router-dom';
 import CardRecipe from './CardRecipe';
 import useUrlSearch from '../hooks/useUrlSearch';
+import useCategories from '../hooks/useCategories';
 import { useEffect } from 'react';
 
 const Foods = () => {
@@ -13,12 +14,18 @@ const Foods = () => {
 
   const { search: { text, typeSearch } } = useContext(ReciperContext);
 
+  const categories = useCategories(getMeals);
+
   const url = useUrlSearch(text, typeSearch);
   const { recipes } = useRecipes(getMeals, url, location.pathname.slice(1));
+
+  console.log(categories)
+  
 
   return (
     <div>
       <Header location={location} />
+  {categories && categories.map(({ strCategory }) => <p>{strCategory}</p>)}
       {recipes && recipes.map(({ strMeal, strCategory, strMealThumb, idMeal }) =>
         (<CardRecipe
           title={strMeal}
@@ -28,6 +35,7 @@ const Foods = () => {
           type='comidas'
           key={idMeal}
         />))}
+      
     </div>
   );
 }

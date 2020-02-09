@@ -19,7 +19,7 @@ const fetch12Recipes = async (fetchingAPI, url, setRecipes, node, idRecipes) => 
   setRecipes({ recipes, recipesID })
 }
 
-const fetchRecipesId = async (fetchingAPI, url, setRecipes, node, idRecipes) => {
+const fetchRecipes = async (fetchingAPI, url, setRecipes, node, idRecipes) => {
   const recipes = [];
   const recipesID = [];
   await fetchingAPI(url)
@@ -46,7 +46,7 @@ const useRecipes = (fetchingAPI, url, pathname) => {
     if (url.includes('random.php')) {
       fetch12Recipes(fetchingAPI, url, setRecipes, node, idRecipes)
     } else {
-      fetchRecipesId(fetchingAPI, url, setRecipes, node, idRecipes)
+      fetchRecipes(fetchingAPI, url, setRecipes, node, idRecipes)
     }
   }, [url]);
 
