@@ -4,9 +4,13 @@ import PropTypes from 'prop-types';
 const ReciperContext = createContext();
 const ReciperProvider = ({ children }) => {
   const [userData, setUserData] = useState({ email: '', password: '' });
+  const [search, setSearch] = useState({ typeSearch: 'ingredient', search: '' });
+
   const context = {
     userData,
     setUserData,
+    search,
+    setSearch,
   };
 
   return (

@@ -2,33 +2,32 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { DebounceInput } from 'react-debounce-input';
 
-
-const renderRadioButton = (value, changeSearch) => (
+const renderRadioButton = (typeSearch, changeSearch) => (
   <div>
     <input
       data-testid="ingredient-search-radio"
       type="radio"
-      checked={value === 'i'}
+      defaultChecked={typeSearch === 'ingredient'}
       name="typeSearch"
-      value="i"
+      value="ingredient"
       onClick={(e) => changeSearch(e.target.value)}
     />
     Ingrediente
     <input
       data-testid="name-search-radio"
       type="radio"
-      checked={value === 's'}
+      defaultChecked={typeSearch === 'name'}
       name="typeSearch"
-      value="s"
+      value="name"
       onClick={(e) => changeSearch(e.target.value)}
     />
     Nome
     <input
       data-testid="first-letter-search-radio"
       type="radio"
-      checked={value === 'f'}
+      defaultChecked={typeSearch === 'letter'}
       name="typeSearch"
-      value="f"
+      value="letter"
       onClick={(e) => changeSearch(e.target.value)}
     />
     Primeira letra
@@ -37,7 +36,7 @@ const renderRadioButton = (value, changeSearch) => (
 
 const SearchBar = ({ changeSearch }) => {
   const [search, setSearch] = useState('');
-  const [typeSearch, setTypeSearch] = useState('i');
+  const [typeSearch, setTypeSearch] = useState('ingredient');
 
   useEffect(() => {
     changeSearch({ search, typeSearch });
