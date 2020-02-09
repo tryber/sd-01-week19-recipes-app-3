@@ -2,11 +2,11 @@ import { useEffect, useState } from 'react';
 
 const settingUrl = (text, searchType, setUrl) => {
   const isTextEmpty = text !== '';
-  if (isTextEmpty !== '' && searchType === 'ingredient') {
+  if (isTextEmpty && searchType === 'ingredient') {
     setUrl(`filter.php?i=${text}`);
-  } else if (isTextEmpty !== '' && searchType === 'name') {
+  } else if (isTextEmpty && searchType === 'name') {
     setUrl(`search.php?s=${text}`);
-  } else if (isTextEmpty !== '' && searchType === 'letter') {
+  } else if (isTextEmpty && searchType === 'letter') {
     setUrl(`search.php?f=${text}`);
   } else {
     setUrl('random.php');
