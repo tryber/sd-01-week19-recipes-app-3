@@ -7,26 +7,32 @@ import { useLocation } from 'react-router-dom';
 import CardRecipe from './CardRecipe';
 import useUrlSearch from '../hooks/useUrlSearch';
 import useCategories from '../hooks/useCategories';
-import { useEffect } from 'react';
+import CategoryButton from './CategoryButton';
+import useRecipesData from '../hooks/useRecipesData';
 
 const Foods = () => {
   const location = useLocation();
 
-  const { search: { text, typeSearch } } = useContext(ReciperContext);
+  const [category, setCategory] = useState('All');
 
   const categories = useCategories(getMeals);
+
+  const { search: { text, typeSearch } } = useContext(ReciperContext);
+
 
   const url = useUrlSearch(text, typeSearch);
   const { recipes } = useRecipes(getMeals, url, location.pathname.slice(1));
 
-  console.log(categories)
+  const data = useRecipesData(recipes, category, getMeals, text, location.pathname.slice(1));
   
-
+ 
   return (
     <div>
       <Header location={location} />
-  {categories && categories.map(({ strCategory }) => <p>{strCategory}</p>)}
-      {recipes && recipes.map(({ strMeal, strCategory, strMealThumb, idMeal }) =>
+      <CategoryButton key="All" title="All" changeCategory={setCategory} />
+      {categories && categories.map(({ strCategory }) =>
+        <CategoryButton key={strCategory} title={strCategory} changeCategory={setCategory} />)}
+      {data && data.map(({ strMeal, strCategory, strMealThumb, idMeal }) =>
         (<CardRecipe
           title={strMeal}
           category={strCategory}
@@ -35,7 +41,7 @@ const Foods = () => {
           type='comidas'
           key={idMeal}
         />))}
-      
+
     </div>
   );
 }
