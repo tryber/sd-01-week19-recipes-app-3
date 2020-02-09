@@ -1,22 +1,22 @@
 import { useEffect, useState } from 'react';
 
+const settingUrl = (text, searchType, setUrl) => {
+  if (text !== '' && searchType === 'ingredient') {
+    setUrl(`filter.php?i=${text}`);
+  } else if (text !== '' && searchType === 'name') {
+    setUrl(`search.php?s=${text}`);
+  } else if (text !== '' && searchType === 'letter') {
+    setUrl(`search.php?f=${text}`);
+  } else {
+    setUrl('random.php');
+  }
+}
+
 const useUrlSearch = (text, searchType) => {
   const [url, setUrl] = useState('random.php');
 
-  const settingUrl = () => {
-    if (text !== '' && searchType === 'ingredient') {
-      setUrl(`filter.php?i=${text}`);
-    } else if (text !== '' && searchType === 'name') {
-      setUrl(`search.php?s=${text}`);
-    } else if (text !== '' && searchType === 'letter') {
-      setUrl(`search.php?f=${text}`);
-    } else {
-      setUrl('random.php');
-    }
-  }
-
   useEffect(() => {
-    settingUrl();
+    settingUrl(text, searchType, setUrl);
   }, [text, searchType])
 
   return url;

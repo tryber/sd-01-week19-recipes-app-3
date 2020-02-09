@@ -12,6 +12,7 @@ import CategoryButton from './CategoryButton';
 
 const Foods = () => {
   const location = useLocation();
+  const pathname = location.pathname.slice(1);
 
   const { search: { text, typeSearch } } = useContext(ReciperContext);
 
@@ -19,8 +20,8 @@ const Foods = () => {
 
   const categories = useCategories(getMeals);
   const url = useUrlSearch(text, typeSearch);
-  const { recipes } = useRecipesSrcBarFil(getMeals, url, location.pathname.slice(1));
-  const data = useRecipesCtgFil(recipes, category, getMeals, text, location.pathname.slice(1));
+  const { recipes } = useRecipesSrcBarFil(getMeals, url, pathname);
+  const data = useRecipesCtgFil(recipes, category, getMeals, text, pathname);
 
   return (
     <div>
@@ -34,7 +35,7 @@ const Foods = () => {
           category={strCategory}
           image={strMealThumb}
           id={idMeal}
-          type={location.pathname.slice(1)}
+          type={pathname}
           key={idMeal}
         />))}
 
