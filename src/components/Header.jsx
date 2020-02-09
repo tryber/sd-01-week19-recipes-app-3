@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import LinkLogin from './LinkLogin';
+import ProfileLink from './ProfileLink';
 import BotaoSearch from './BotaoSearch';
 import SearchBar from './SearchBar';
 
@@ -11,7 +11,7 @@ const Header = ({ location }) => {
   console.log(search);
   return (
     <div>
-      <LinkLogin />
+      <ProfileLink />
       <h2>{title}</h2>
       <BotaoSearch changeShowSearch={() => setShowSearch(!showSearch)} />
       {showSearch && <SearchBar changeSearch={setSearch} />}
