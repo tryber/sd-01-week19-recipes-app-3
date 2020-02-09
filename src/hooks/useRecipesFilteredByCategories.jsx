@@ -6,7 +6,7 @@ const gettingData = async (fetchingAPI, category, node, setData) => {
   setData(recipes)
 }
 
-const useRecipesData = (recipes, category, fetchingAPI, text, pathname) => {
+const useRecipesFilteredByCategories = (recipes, category, fetchingAPI, text, pathname) => {
   const [data, setData] = useState([]);
   const node = pathname === 'comidas' ? 'meals' : 'drinks';
 
@@ -31,4 +31,4 @@ const useRecipesData = (recipes, category, fetchingAPI, text, pathname) => {
   return data;
 }
 
-export default useRecipesData;
+export default useRecipesFilteredByCategories;
