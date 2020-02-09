@@ -40,7 +40,11 @@ const SearchBar = ({ changeSearch }) => {
 
   useEffect(() => {
     changeSearch({ text, typeSearch });
-  }, [text, typeSearch]);
+  }, [text]);
+
+  useEffect(() => {
+    setText('');
+  }, [typeSearch]);
 
   return (
     <div>

@@ -1,6 +1,6 @@
 export const getMeals = async (request) => {
   const response = await fetch(`https://www.themealdb.com/api/json/v1/1/${request}`);
-  return response;
+  return response.json();
 };
 
 export const getIngredientMealsImage = async (request) => {
