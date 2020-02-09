@@ -13,11 +13,11 @@ const fetch12Recipes = async (fetchingAPI, url, setRecipes, node, idRecipes) => 
             recipes.push(resolve[node][0]);
             recipesID.push(resolve[node][0][idRecipes]);
           }
-        }
+        },
       );
   }
   setRecipes({ recipes, recipesID });
-}
+};
 
 const fetchRecipes = async (fetchingAPI, url, setRecipes, node, idRecipes) => {
   const recipes = [];

@@ -9,7 +9,8 @@ const CardRecipe = ({
   title,
   id,
   type,
-}) => (
+}) =>
+  (
     <div className="CardRecipe" >
       <Link className="LinkRecipe" to={`/receitas/${type}/${id}`}>
         <img className="imgRecipe" src={image} alt="Foto Receita" data-testid={`${id}-card-img`} />

@@ -9,12 +9,12 @@ const gettingData = async (fetchingAPI, category, node, setData) => {
 const settingRecipes = (recipes, category, fetchingAPI, node, text, setData) => {
   if (category === 'All') {
     setData(recipes);
-  } else {
-    if (text === '') {
-      gettingData(fetchingAPI, category, node, setData);
-    } else {
-      setData(recipes.filter(({ strCategory }) => strCategory === category));
-    }
+  }
+  if (category !== 'All' && text === '') {
+    gettingData(fetchingAPI, category, node, setData);
+  }
+  if (category !== 'All' && text !== '') {
+    setData(recipes.filter(({ strCategory }) => strCategory === category));
   }
 };
 
