@@ -1,16 +1,14 @@
 import React, { useState, useContext } from 'react';
 import { useLocation } from 'react-router-dom';
-
 import { getMeals } from '../service/FetchingAPI';
 import { ReciperContext } from '../context/ReciperContext';
-import useRecipesFilteredBySearchBar from '../hooks/useRecipesFilteredBySearchBar';
-import Header from './Header';
-
-import CardRecipe from './CardRecipe';
 import useUrlSearch from '../hooks/useUrlSearch';
 import useCategories from '../hooks/useCategories';
-import CategoryButton from './CategoryButton';
+import useRecipesFilteredBySearchBar from '../hooks/useRecipesFilteredBySearchBar';
 import useRecipesFilteredByCategories from '../hooks/useRecipesFilteredByCategories';
+import Header from './Header';
+import CardRecipe from './CardRecipe';
+import CategoryButton from './CategoryButton';
 
 const Foods = () => {
   const location = useLocation();
