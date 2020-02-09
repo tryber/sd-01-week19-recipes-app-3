@@ -6,27 +6,27 @@ const gettingData = async (fetchingAPI, category, node, setData) => {
   setData(recipes)
 }
 
+const settingRecipes = (recipes, category, fetchingAPI, node, text, setData) => {
+  if (recipes) {
+    if (category === 'All') {
+      setData(recipes);
+    } else {
+      if (text === '') {
+        gettingData(fetchingAPI, category, node, setData);
+      } else {
+        setData(recipes.filter(({ strCategory }) => strCategory === category));
+      }
+    }
+  }
+}
+
 const useRecipesCtgFil = (recipes, category, fetchingAPI, text, pathname) => {
   const [data, setData] = useState([]);
   const node = pathname === 'comidas' ? 'meals' : 'drinks';
 
-  const settingRecipes = () => {
-    if (recipes) {
-      if (category === 'All') {
-        setData(recipes);
-      } else {
-        if (text === '') {
-          gettingData(fetchingAPI, category, node, setData);
-        } else {
-          setData(recipes.filter(({ strCategory }) => strCategory === category))
-        }
-      }
-    }
-  }
-
   useEffect(() => {
-    settingRecipes();
-  }, [category, recipes])
+    settingRecipes(recipes, category, fetchingAPI, node, text, setData);
+  }, [category, recipes]);
 
   return data;
 }
