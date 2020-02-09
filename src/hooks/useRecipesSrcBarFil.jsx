@@ -36,7 +36,7 @@ const fetchRecipes = async (fetchingAPI, url, setRecipes, node, idRecipes) => {
   setRecipes({ recipes, recipesID })
 }
 
-const useRecipesFilteredBySearchBar = (fetchingAPI, url, pathname) => {
+const useRecipesSrcBarFil = (fetchingAPI, url, pathname) => {
   const [recipes, setRecipes] = useState([]);
 
   const node = pathname === 'comidas' ? 'meals' : 'drinks';
@@ -53,4 +53,4 @@ const useRecipesFilteredBySearchBar = (fetchingAPI, url, pathname) => {
   return recipes;
 }
 
-export default useRecipesFilteredBySearchBar;
+export default useRecipesSrcBarFil;

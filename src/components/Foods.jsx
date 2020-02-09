@@ -4,8 +4,8 @@ import { getMeals } from '../service/FetchingAPI';
 import { ReciperContext } from '../context/ReciperContext';
 import useUrlSearch from '../hooks/useUrlSearch';
 import useCategories from '../hooks/useCategories';
-import useRecipesFilteredBySearchBar from '../hooks/useRecipesFilteredBySearchBar';
-import useRecipesFilteredByCategories from '../hooks/useRecipesFilteredByCategories';
+import useRecipesSrcBarFil from '../hooks/useRecipesSrcBarFil';
+import useRecipesCtgFil from '../hooks/useRecipesCtgFil';
 import Header from './Header';
 import CardRecipe from './CardRecipe';
 import CategoryButton from './CategoryButton';
@@ -19,8 +19,8 @@ const Foods = () => {
 
   const categories = useCategories(getMeals);
   const url = useUrlSearch(text, typeSearch);
-  const { recipes } = useRecipesFilteredBySearchBar(getMeals, url, location.pathname.slice(1));
-  const data = useRecipesFilteredByCategories(recipes, category, getMeals, text, location.pathname.slice(1));
+  const { recipes } = useRecipesSrcBarFil(getMeals, url, location.pathname.slice(1));
+  const data = useRecipesCtgFil(recipes, category, getMeals, text, location.pathname.slice(1));
 
   return (
     <div>
@@ -40,6 +40,6 @@ const Foods = () => {
 
     </div>
   );
-}
+};
 
 export default Foods;
