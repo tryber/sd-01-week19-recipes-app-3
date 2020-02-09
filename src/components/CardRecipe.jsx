@@ -11,7 +11,7 @@ const CardRecipe = ({
   type,
 }) => {
   return (
-    <div className="CardRecipe">
+    <div className="CardRecipe" >
       <Link className="LinkRecipe" to={`/receitas/${type}/${id}`}>
         <img className="imgRecipe" src={image} alt="Foto Receita" data-testid={`${id}-card-img`} />
         <h4 className="categoryRecipe" data-testid={`${id}-card-category`}>{category}</h4>
@@ -24,9 +24,9 @@ const CardRecipe = ({
 export default CardRecipe;
 
 CardRecipe.propTypes = {
-  img: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
   category: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
-  id: PropTypes.number.isRequired,
+  id: PropTypes.string.isRequired,
 };

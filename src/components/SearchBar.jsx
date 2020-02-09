@@ -35,23 +35,19 @@ const renderRadioButton = (typeSearch, changeSearch) => (
 );
 
 const SearchBar = ({ changeSearch }) => {
-  const [search, setSearch] = useState('');
+  const [text, setText] = useState('');
   const [typeSearch, setTypeSearch] = useState('ingredient');
 
   useEffect(() => {
-    changeSearch({ search, typeSearch });
-  }, [search]);
-
-  useEffect(() => {
-    setSearch('');
-  }, [typeSearch]);
+    changeSearch({ text, typeSearch });
+  }, [text, typeSearch]);
 
   return (
     <div>
       <DebounceInput
         debounceTimeout={600}
-        onChange={(event) => setSearch(event.target.value)}
-        value={search}
+        onChange={(event) => setText(event.target.value)}
+        value={text}
       />
       {renderRadioButton(typeSearch, setTypeSearch)}
     </div>
