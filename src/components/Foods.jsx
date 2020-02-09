@@ -1,9 +1,11 @@
 import React, { useState, useContext } from 'react';
+import { useLocation } from 'react-router-dom';
+
 import { getMeals } from '../service/FetchingAPI';
 import { ReciperContext } from '../context/ReciperContext';
 import useRecipes from '../hooks/useRecipes';
 import Header from './Header';
-import { useLocation } from 'react-router-dom';
+
 import CardRecipe from './CardRecipe';
 import useUrlSearch from '../hooks/useUrlSearch';
 import useCategories from '../hooks/useCategories';
@@ -24,8 +26,8 @@ const Foods = () => {
   const { recipes } = useRecipes(getMeals, url, location.pathname.slice(1));
 
   const data = useRecipesData(recipes, category, getMeals, text, location.pathname.slice(1));
-  
- 
+
+
   return (
     <div>
       <Header location={location} />
