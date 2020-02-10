@@ -9,6 +9,7 @@ import useRecipesCtgFil from '../hooks/useRecipesCtgFil';
 import Header from './Header';
 import CardRecipe from './CardRecipe';
 import CategoryButton from './CategoryButton';
+import LowerMenu from './LowerMenu';
 
 const Foods = () => {
   const location = useLocation();
@@ -22,7 +23,7 @@ const Foods = () => {
   const url = useUrlSearch(text, typeSearch);
   const { recipes } = useRecipesSrcBarFil(getMeals, url, pathname);
   const data = useRecipesCtgFil(recipes, category, getMeals, text, pathname);
-console.log(data)
+
   return (
     <div>
       <Header location={location} />
@@ -38,7 +39,7 @@ console.log(data)
           type={pathname}
           key={idMeal}
         />))}
-
+      <LowerMenu />
     </div>
   );
 };
