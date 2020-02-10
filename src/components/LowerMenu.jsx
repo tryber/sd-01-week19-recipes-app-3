@@ -18,7 +18,7 @@ const LowerMenu = () => (
       />
     </Link>
     <Link to="/bebidas">
-      <img className="img-babida" src={Bebida} alt="Copo de bebida"  height="42"/>
+      <img className="img-babida" src={Bebida} alt="Copo de bebida" height="42" />
     </Link>
   </div>
 );

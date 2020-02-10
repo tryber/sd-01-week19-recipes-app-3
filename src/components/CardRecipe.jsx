@@ -30,6 +30,6 @@ CardRecipe.propTypes = {
   id: PropTypes.string.isRequired,
 };
 
-CardRecipe.defaultProp = {
+CardRecipe.defaultProps = {
   category: null,
-}
+};
