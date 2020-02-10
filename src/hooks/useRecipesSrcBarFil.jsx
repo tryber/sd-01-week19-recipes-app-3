@@ -21,7 +21,7 @@ const fetch12Recipes = async (fetchingAPI, url, setRecipes, node, idRecipes) => 
     );
   }
 
-  await Promise.all(promisses)
+  await Promise.all(promisses);
 
   setRecipes({ recipes, recipesID });
 };
