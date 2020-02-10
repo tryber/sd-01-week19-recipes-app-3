@@ -1,5 +1,6 @@
 export const getMeals = async (request) => {
   const response = await fetch(`https://www.themealdb.com/api/json/v1/1/${request}`);
+  console.log(response)
   return response.json();
 };
 

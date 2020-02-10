@@ -37,7 +37,6 @@ const renderRadioButton = (typeSearch, changeSearch) => (
 const SearchBar = ({ changeSearch }) => {
   const [text, setText] = useState('');
   const [typeSearch, setTypeSearch] = useState('ingredient');
-
   useEffect(() => {
     changeSearch({ text, typeSearch });
   }, [text]);

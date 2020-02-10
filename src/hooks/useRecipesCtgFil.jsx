@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 
 const gettingData = async (fetchingAPI, category, node, setData) => {
-  const recipes = [];
-  await fetchingAPI(`filter.php?c=${category}`).then((response) => recipes.push(...response[node]));
+  let recipes;
+  await fetchingAPI(`filter.php?c=${category}`).then((response) => recipes = [...response[node]]);
   setData(recipes);
 };
 

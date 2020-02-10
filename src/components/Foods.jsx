@@ -1,6 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { useLocation } from 'react-router-dom';
-import { getMeals } from '../service/FetchingAPI';
+import { getMeals, getDrinks } from '../service/FetchingAPI';
 import { ReciperContext } from '../context/ReciperContext';
 import useUrlSearch from '../hooks/useUrlSearch';
 import useCategories from '../hooks/useCategories';
@@ -11,22 +10,21 @@ import CardRecipe from './CardRecipe';
 import CategoryButton from './CategoryButton';
 import LowerMenu from './LowerMenu';
 
-const Foods = () => {
-  const location = useLocation();
-  const pathname = location.pathname.slice(1);
+const Foods = ({ location: { pathname } }) => {
+  const typeRecipes = pathname.slice(1);
 
   const { search: { text, typeSearch } } = useContext(ReciperContext);
 
   const [category, setCategory] = useState('All');
-
-  const categories = useCategories(getMeals, pathname);
+  const fetchApi = (typeRecipes === 'comidas') ? getMeals : getDrinks;
+  const categories = useCategories(fetchApi, typeRecipes);
   const url = useUrlSearch(text, typeSearch);
-  const { recipes } = useRecipesSrcBarFil(getMeals, url, pathname);
-  const data = useRecipesCtgFil(recipes, category, getMeals, text, pathname);
+  const recipes = useRecipesSrcBarFil(fetchApi, url, typeRecipes);
+  const data = useRecipesCtgFil(recipes, category, getMeals, text, typeRecipes);
 
   return (
     <div>
-      <Header location={location} />
+      <Header title={pathname.slice(1)} />
       <CategoryButton key="All" title="All" changeCategory={setCategory} />
       {categories && categories.map(({ strCategory }) =>
         <CategoryButton key={strCategory} title={strCategory} changeCategory={setCategory} />)}

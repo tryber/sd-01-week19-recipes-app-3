@@ -5,17 +5,15 @@ import ProfileLink from './ProfileLink';
 import SearchButton from './SearchButton';
 import SearchBar from './SearchBar';
 
-const Header = ({ location }) => {
+const Header = ({ title }) => {
   const [showSearch, setShowSearch] = useState(false);
 
   const { setSearch } = useContext(ReciperContext);
 
-  const title = location.pathname;
-
   return (
     <div>
       <ProfileLink />
-      <h2>{title.slice(1)}</h2>
+      <h2>{title}</h2>
       <SearchButton changeShowSearch={() => setShowSearch(!showSearch)} />
       {showSearch && <SearchBar changeSearch={setSearch} />}
     </div>

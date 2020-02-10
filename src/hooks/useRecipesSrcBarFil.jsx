@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-const fetch12Recipes = async (fetchingAPI, url, setRecipes, node, idRecipes) => {
+const fetch12Recipes = async (fetchingAPI, url, setRecipes, keyData, idRecipes) => {
   const recipes = [];
   const recipesID = [];
   const promisses = [];
@@ -10,11 +10,11 @@ const fetch12Recipes = async (fetchingAPI, url, setRecipes, node, idRecipes) => 
       fetchingAPI(url)
         .then(
           (resolve) => {
-            if (recipesID.includes(resolve[node][0][idRecipes])) {
+            if (recipesID.includes(resolve[keyData][0][idRecipes])) {
               i -= 1;
             } else {
-              recipes.push(resolve[node][0]);
-              recipesID.push(resolve[node][0][idRecipes]);
+              recipes.push(resolve[keyData][0]);
+              recipesID.push(resolve[keyData][0][idRecipes]);
             }
           },
         ),
@@ -23,39 +23,31 @@ const fetch12Recipes = async (fetchingAPI, url, setRecipes, node, idRecipes) => 
 
   await Promise.all(promisses);
 
-  setRecipes({ recipes, recipesID });
+  setRecipes(recipes);
 };
 
-const fetchRecipes = async (fetchingAPI, url, setRecipes, node, idRecipes) => {
+const fetchRecipes = async (fetchingAPI, url, setRecipes, keyData) => {
   const recipes = [];
-  const recipesID = [];
   await fetchingAPI(url)
     .then((resolve) => {
-      if (resolve[node]) {
-        resolve[node]
-          .forEach((eachRecipe) => recipesID
-            .push(eachRecipe[idRecipes]));
+      if (resolve[keyData]) {
+        recipes = [...resolve[keyData]]
       }
     });
-
-  await Promise.all(recipesID.map(async (eachRecipeID) =>
-    fetchingAPI(`lookup.php?i=${eachRecipeID}`).then((resolve) => recipes.push(resolve[node][0])),
-  ));
-
-  setRecipes({ recipes, recipesID });
+  setRecipes(recipes);
 };
 
 const useRecipesSrcBarFil = (fetchingAPI, url, pathname) => {
   const [recipes, setRecipes] = useState([]);
 
-  const node = pathname === 'comidas' ? 'meals' : 'drinks';
-  const idRecipes = node === 'meals' ? 'idMeal' : 'idDrink';
+  const keyData = pathname === 'comidas' ? 'meals' : 'drinks';
+  const idRecipes = keyData === 'meals' ? 'idMeal' : 'idDrink';
 
   useEffect(() => {
     if (url.includes('random.php')) {
-      fetch12Recipes(fetchingAPI, url, setRecipes, node, idRecipes);
+      fetch12Recipes(fetchingAPI, url, setRecipes, keyData, idRecipes);
     } else {
-      fetchRecipes(fetchingAPI, url, setRecipes, node, idRecipes);
+      fetchRecipes(fetchingAPI, url, setRecipes, keyData);
     }
   }, [url]);
 

@@ -1,17 +1,17 @@
 import { useEffect, useState } from 'react';
 
-const fetch5Categories = async (fetchingAPI, url, setCategories, node) => {
+const fetch5Categories = async (fetchingAPI, url, setCategories, keyData) => {
   const categories = [];
-  await fetchingAPI(url).then((resolve) => categories.push(...resolve[node]));
+  await fetchingAPI(url).then((resolve) => categories.push(...resolve[keyData]));
   setCategories(categories.slice(0, 5));
 };
 
 const useCategories = (fetchingAPI, pathname) => {
   const [categories, setCategories] = useState([]);
-  const node = pathname === 'comidas' ? 'meals' : 'drinks';
+  const keyData = pathname === 'comidas' ? 'meals' : 'drinks';
 
   useEffect(() => {
-    fetch5Categories(fetchingAPI, 'list.php?c=list', setCategories, node);
+    fetch5Categories(fetchingAPI, 'list.php?c=list', setCategories, keyData);
   }, []);
 
   return categories;
