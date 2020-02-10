@@ -19,7 +19,7 @@ const Foods = () => {
 
   const [category, setCategory] = useState('All');
 
-  const categories = useCategories(getMeals);
+  const categories = useCategories(getMeals, pathname);
   const url = useUrlSearch(text, typeSearch);
   const { recipes } = useRecipesSrcBarFil(getMeals, url, pathname);
   const data = useRecipesCtgFil(recipes, category, getMeals, text, pathname);
