@@ -24,8 +24,12 @@ export default CardRecipe;
 
 CardRecipe.propTypes = {
   image: PropTypes.string.isRequired,
-  category: PropTypes.string.isRequired,
+  category: PropTypes.string,
   title: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
 };
+
+CardRecipe.defaultProp = {
+  category: null,
+}

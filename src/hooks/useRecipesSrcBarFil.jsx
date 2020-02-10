@@ -3,19 +3,26 @@ import { useEffect, useState } from 'react';
 const fetch12Recipes = async (fetchingAPI, url, setRecipes, node, idRecipes) => {
   const recipes = [];
   const recipesID = [];
+  const promisses = [];
+
   for (let i = 0; i < 12; i += 1) {
-    await fetchingAPI(url)
-      .then(
-        (resolve) => {
-          if (recipesID.includes(resolve[node][0][idRecipes])) {
-            i -= 1;
-          } else {
-            recipes.push(resolve[node][0]);
-            recipesID.push(resolve[node][0][idRecipes]);
-          }
-        },
-      );
+    promisses.push(
+      fetchingAPI(url)
+        .then(
+          (resolve) => {
+            if (recipesID.includes(resolve[node][0][idRecipes])) {
+              i -= 1;
+            } else {
+              recipes.push(resolve[node][0]);
+              recipesID.push(resolve[node][0][idRecipes]);
+            }
+          },
+        )
+    )
   }
+
+  await Promise.all(promisses)
+
   setRecipes({ recipes, recipesID });
 };
 
@@ -30,11 +37,11 @@ const fetchRecipes = async (fetchingAPI, url, setRecipes, node, idRecipes) => {
             .push(eachRecipe[idRecipes]));
       }
     });
-    
+
   await Promise.all(recipesID.map(async (eachRecipeID) =>
-    fetchingAPI(`lookup.php?i=${eachRecipeID}`).then((resolve) => recipes.push(resolve[node][0]))
-  ))
-  
+    fetchingAPI(`lookup.php?i=${eachRecipeID}`).then((resolve) => recipes.push(resolve[node][0])),
+  ));
+
   setRecipes({ recipes, recipesID });
 };
 

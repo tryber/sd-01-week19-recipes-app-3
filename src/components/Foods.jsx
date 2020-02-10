@@ -22,7 +22,7 @@ const Foods = () => {
   const url = useUrlSearch(text, typeSearch);
   const { recipes } = useRecipesSrcBarFil(getMeals, url, pathname);
   const data = useRecipesCtgFil(recipes, category, getMeals, text, pathname);
-
+console.log(data)
   return (
     <div>
       <Header location={location} />
