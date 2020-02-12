@@ -2,23 +2,37 @@ import React, { createContext, useState } from 'react';
 import PropTypes from 'prop-types';
 
 const ReciperContext = createContext();
+
 const ReciperProvider = ({ children }) => {
   const [userData, setUserData] = useState({ email: '', password: '' });
-  const [search, setSearch] = useState({ typeSearch: 'ingredient', text: '' });
+  const [filter, setFilter] = useState('');
+  const [isFoodOrDrink, setIsFoodOrDrink] = useState('Comidas');
+  const [endPoint, setEndPoint] = useState('random.php');
+  const [recipe, setRecipe] = useState();
+  const [category, setCategory] = useState('All')
 
   const context = {
     userData,
     setUserData,
-    search,
-    setSearch,
+    isFoodOrDrink,
+    setIsFoodOrDrink,
+    filter,
+    setFilter,
+    endPoint,
+    setEndPoint,
+    recipe,
+    setRecipe,
+    category,
+    setCategory,
   };
-
+  console.log(context)
   return (
     <ReciperContext.Provider value={context}>
       {children}
     </ReciperContext.Provider>
   );
 };
+
 export { ReciperContext, ReciperProvider as Provider };
 
 ReciperProvider.propTypes = {

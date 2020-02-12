@@ -1,17 +1,20 @@
 import { useEffect, useState } from 'react';
+import { getCategories } from '../service/FetchingAPI';
 
-const fetch5Categories = async (fetchingAPI, url, setCategories, keyData) => {
+const fetch5Categories = async ( setCategories, keyData, isFoodOrDrink) => {
   const categories = [];
-  await fetchingAPI(url).then((resolve) => categories.push(...resolve[keyData]));
-  setCategories(categories.slice(0, 5));
+  await getCategories(isFoodOrDrink).then((resolve) => {
+  categories.push(...resolve[keyData])});
+  if(isFoodOrDrink==='Comidas') return setCategories(categories.slice(0, 5));
+  return setCategories(categories.slice(0, 2));
 };
 
-const useCategories = (fetchingAPI, pathname) => {
+const useCategories = ( isFoodOrDrink) => {
   const [categories, setCategories] = useState([]);
-  const keyData = pathname === 'comidas' ? 'meals' : 'drinks';
+  const keyData = isFoodOrDrink === 'Comidas' ? 'meals' : 'drinks';
 
   useEffect(() => {
-    fetch5Categories(fetchingAPI, 'list.php?c=list', setCategories, keyData);
+    fetch5Categories(setCategories, keyData, isFoodOrDrink);
   }, []);
 
   return categories;

@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
+import React, { useState, useEffect, useContext } from 'react';
 import { DebounceInput } from 'react-debounce-input';
+import { ReciperContext } from '../context/ReciperContext';
 
 const renderRadioButton = (typeSearch, changeSearch) => (
   <div>
@@ -34,11 +34,27 @@ const renderRadioButton = (typeSearch, changeSearch) => (
     </div>
 );
 
-const SearchBar = ({ changeSearch }) => {
+const createEndPoint = (text, typeSearch, setEndPoint) => {
+  const isTextEmpty = text === '';
+  console.log(text)
+  const EndPoint = {
+    ingredient: () => setEndPoint(`filter.php?i=${text}`),
+    name: () => setEndPoint(`search.php?s=${text}`),
+    letter: () => setEndPoint(`search.php?f=${text}`)
+  }
+  if (!isTextEmpty) {
+    const result = EndPoint[typeSearch]
+    return result();
+  }
+}
+
+const SearchBar = () => {
   const [text, setText] = useState('');
   const [typeSearch, setTypeSearch] = useState('ingredient');
+  const { setEndPoint } = useContext(ReciperContext);
+
   useEffect(() => {
-    changeSearch({ text, typeSearch });
+    createEndPoint(text, typeSearch, setEndPoint);
   }, [text]);
 
   useEffect(() => {
@@ -58,7 +74,3 @@ const SearchBar = ({ changeSearch }) => {
 };
 
 export default SearchBar;
-
-SearchBar.propTypes = {
-  changeSearch: PropTypes.func.isRequired,
-};

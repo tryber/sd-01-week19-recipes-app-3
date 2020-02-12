@@ -1,30 +1,33 @@
-export const getMeals = async (request) => {
+const getMeals = async (request) => {
   const response = await fetch(`https://www.themealdb.com/api/json/v1/1/${request}`);
-  console.log(response)
   return response.json();
 };
 
-export const getIngredientMealsImage = async (request) => {
-  const response = await fetch(`https://www.themealdb.com/images/ingredients/${request}`);
-  return response;
-};
-
-export const getMealsImage = async (request) => {
-  const response = await fetch(`https://www.themealdb.com/images/media/meals/${request}/preview`);
-  return response;
-};
-
-export const getDrinks = async (request) => {
+const getDrinks = async (request) => {
   const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/${request}`);
   return response.json();
 };
 
-export const getIngredientDrinksImage = async (request) => {
-  const response = await fetch(`https://www.thecocktaildb.com/images/ingredients/${request}`);
-  return response;
+const getCategoriesMeals = async () => {
+  const response = await fetch(`https://www.themealdb.com/api/json/v1/1/list.php?c=list`);
+  return response.json();;
 };
 
-export const getDrinksImage = async (request) => {
-  const response = await fetch(`https://www.thecocktaildb.com/images/media/drink/${request}/preview`);
-  return response;
+const getCategoriesDrinks = async () => {
+  const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list`);
+  return response.json();;
 };
+
+export const getCategories = (type) => {
+  if (type === 'Comidas') {
+    return getCategoriesMeals();
+  }
+  return getCategoriesDrinks();
+}
+
+export const getRecipe = (endpoint, type) => {
+  if (type === 'Comidas') {
+    return getMeals(endpoint);
+  }
+  return getDrinks(endpoint);
+}

@@ -1,55 +1,46 @@
 import { useEffect, useState } from 'react';
+import { getRecipe } from '../service/FetchingAPI';
 
-const fetch12Recipes = async (fetchingAPI, url, setRecipes, keyData, idRecipes) => {
+const fetch12Recipes = async (setRecipes, isFoodOrDrink) => {
   const recipes = [];
-  const recipesID = [];
-  const promisses = [];
-
+  const promises = [];
+  const keyData = isFoodOrDrink === 'Comidas' ? 'meals' : 'drinks';
   for (let i = 0; i < 12; i += 1) {
-    promisses.push(
-      fetchingAPI(url)
+    promises.push(
+      getRecipe('random.php', isFoodOrDrink)
         .then(
           (resolve) => {
-            if (recipesID.includes(resolve[keyData][0][idRecipes])) {
-              i -= 1;
-            } else {
-              recipes.push(resolve[keyData][0]);
-              recipesID.push(resolve[keyData][0][idRecipes]);
-            }
-          },
-        ),
-    );
+            recipes.push(resolve[keyData][0]);
+          }
+        ))
   }
 
-  await Promise.all(promisses);
-
+  await Promise.all(promises);
   setRecipes(recipes);
 };
 
-const fetchRecipes = async (fetchingAPI, url, setRecipes, keyData) => {
-  const recipes = [];
-  await fetchingAPI(url)
+const fetchRecipes = async (endPoint, isFoodOrDrink, setRecipes) => {
+  let recipes = [];
+  const keyData = isFoodOrDrink === 'Comidas' ? 'meals' : 'drinks';
+  await getRecipe(endPoint, isFoodOrDrink)
     .then((resolve) => {
       if (resolve[keyData]) {
         recipes = [...resolve[keyData]]
       }
-    });
+    }).catch((error)=>console.log(error));
   setRecipes(recipes);
 };
 
-const useRecipesSrcBarFil = (fetchingAPI, url, pathname) => {
+const useRecipesSrcBarFil = (endPoint, isFoodOrDrink) => {
   const [recipes, setRecipes] = useState([]);
-
-  const keyData = pathname === 'comidas' ? 'meals' : 'drinks';
-  const idRecipes = keyData === 'meals' ? 'idMeal' : 'idDrink';
-
   useEffect(() => {
-    if (url.includes('random.php')) {
-      fetch12Recipes(fetchingAPI, url, setRecipes, keyData, idRecipes);
+    console.log(endPoint,'mudou')
+    if (endPoint === 'random.php') {
+      fetch12Recipes(setRecipes, isFoodOrDrink);
     } else {
-      fetchRecipes(fetchingAPI, url, setRecipes, keyData);
+      fetchRecipes(endPoint, isFoodOrDrink, setRecipes);
     }
-  }, [url]);
+  }, [endPoint]);
 
   return recipes;
 };
