@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { ReciperContext } from '../context/ReciperContext';
 import CardRecipe from './CardRecipe';
 
 const renderAllFoods = (allRecipes, isFoodOrDrink) => (
@@ -6,7 +7,7 @@ const renderAllFoods = (allRecipes, isFoodOrDrink) => (
     {allRecipes && allRecipes.map(({ strMeal, strCategory, strMealThumb, idMeal }) =>
       (<CardRecipe
         title={strMeal}
-        category={strCategory}
+        categorie={strCategory}
         image={strMealThumb}
         id={idMeal}
         type={isFoodOrDrink}
@@ -14,13 +15,13 @@ const renderAllFoods = (allRecipes, isFoodOrDrink) => (
       />))}
   </div>
 );
-
+      
 const renderAllDrinks = (allRecipes, isFoodOrDrink) => (
   <div>
     {allRecipes && allRecipes.map(({ strDrink, strCategory, strDrinkThumb, idDrink }) =>
       (<CardRecipe
         title={strDrink}
-        category={strCategory}
+        categorie={strCategory}
         image={strDrinkThumb}
         id={idDrink}
         type={isFoodOrDrink}
@@ -29,11 +30,16 @@ const renderAllDrinks = (allRecipes, isFoodOrDrink) => (
   </div>
 );
 
-const ListRecipe = ({ allRecipes, isFoodOrDrink }) => {
+// const getAllById = (recipe,isFoodOrDrink) => 
+
+const ListRecipe = () => {
+  const { recipe, isFoodOrDrink, endPoint} = useContext(ReciperContext);
   const keyData = isFoodOrDrink === 'Comidas' ? 'meal' : 'drink';
-  if (!allRecipes) return <div>Carregando</div>
-  console.log(allRecipes)
-  if (keyData === 'meal') return renderAllFoods(allRecipes, isFoodOrDrink);
-  return renderAllDrinks(allRecipes, isFoodOrDrink);
+  if (!recipe) return <div>Carregando</div>
+  // if(endPoint.includes('filter.php?i'))return getAllById(recipe, isFoodOrDrink);
+  if (keyData === 'meal') {
+    return renderAllFoods(recipe, isFoodOrDrink)
+  };
+  return renderAllDrinks(recipe, isFoodOrDrink);
 };
 export default ListRecipe;

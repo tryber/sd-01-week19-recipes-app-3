@@ -3,11 +3,9 @@ import { ReciperContext } from '../context/ReciperContext';
 import CategoryButton from './CategoryButton';
 
 const changeCategory = (value, category, setCategory) => {
-  console.log('mudou')
-  console.log(value,category)
   if (value === category) return setCategory('All');
   return setCategory(value);
-}
+};
 
 const ListCategory = ({ allCategories }) => {
   const { setEndPoint, category, setCategory } = useContext(ReciperContext);

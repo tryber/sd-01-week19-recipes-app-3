@@ -1,22 +1,22 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
+import { ReciperContext } from '../context/ReciperContext';
 import { getRecipe } from '../service/FetchingAPI';
 
-const fetch12Recipes = async (setRecipes, isFoodOrDrink) => {
-  const recipes = [];
-  const promises = [];
-  const keyData = isFoodOrDrink === 'Comidas' ? 'meals' : 'drinks';
-  for (let i = 0; i < 12; i += 1) {
-    promises.push(
-      getRecipe('random.php', isFoodOrDrink)
-        .then(
-          (resolve) => {
-            recipes.push(resolve[keyData][0]);
-          }
-        ))
-  }
+const multipleRecipes = (randomRecipes, type, setIsFetching) => {
+  const recipesArray = randomRecipes.map((recipe) => {
+    if (type === 'meal') return recipe.meals[0];
+    return recipe.drinks[0];
+  });
+  return recipesArray;
+};
 
-  await Promise.all(promises);
-  setRecipes(recipes);
+const getRandomRecipes = async (type, setRecipes) => {
+  const randomRecipes = [];
+  for (let index = 0; index < 12; index += 1) {
+    const response = fetch(`https://www.the${type}db.com/api/json/v1/1/random.php`).then((data) => data.json());
+    randomRecipes.push(response);
+  }
+  setRecipes(multipleRecipes(await Promise.all(randomRecipes), type, setRecipes));
 };
 
 const fetchRecipes = async (endPoint, isFoodOrDrink, setRecipes) => {
@@ -27,16 +27,19 @@ const fetchRecipes = async (endPoint, isFoodOrDrink, setRecipes) => {
       if (resolve[keyData]) {
         recipes = [...resolve[keyData]]
       }
-    }).catch((error)=>console.log(error));
+    })
+    .catch((error) => console.log(error));
   setRecipes(recipes);
 };
 
-const useRecipesSrcBarFil = (endPoint, isFoodOrDrink) => {
+const useRecipesSrcBarFil = () => {
   const [recipes, setRecipes] = useState([]);
+  const { endPoint, isFoodOrDrink } = useContext(ReciperContext);
+  const keyData = isFoodOrDrink === 'Comidas' ? 'meal' : 'cocktails';
   useEffect(() => {
-    console.log(endPoint,'mudou')
+    console.log('aa')
     if (endPoint === 'random.php') {
-      fetch12Recipes(setRecipes, isFoodOrDrink);
+      getRandomRecipes(keyData, setRecipes);
     } else {
       fetchRecipes(endPoint, isFoodOrDrink, setRecipes);
     }

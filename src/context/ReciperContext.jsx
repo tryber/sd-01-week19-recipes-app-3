@@ -10,7 +10,7 @@ const ReciperProvider = ({ children }) => {
   const [endPoint, setEndPoint] = useState('random.php');
   const [recipe, setRecipe] = useState();
   const [category, setCategory] = useState('All')
-
+  const [isFetching, setIsFetching] = useState(false)
   const context = {
     userData,
     setUserData,
@@ -24,8 +24,9 @@ const ReciperProvider = ({ children }) => {
     setRecipe,
     category,
     setCategory,
+    isFetching,
+    setIsFetching,
   };
-  console.log(context)
   return (
     <ReciperContext.Provider value={context}>
       {children}

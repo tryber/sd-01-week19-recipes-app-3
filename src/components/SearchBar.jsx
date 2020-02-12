@@ -36,7 +36,6 @@ const renderRadioButton = (typeSearch, changeSearch) => (
 
 const createEndPoint = (text, typeSearch, setEndPoint) => {
   const isTextEmpty = text === '';
-  console.log(text)
   const EndPoint = {
     ingredient: () => setEndPoint(`filter.php?i=${text}`),
     name: () => setEndPoint(`search.php?s=${text}`),

@@ -8,7 +8,9 @@ const CategoryButton = ({ title, changeCategory }) => (
       value={title}
       onClick={(e) => changeCategory(e.target.value)}
       data-testid={`${title}-category-filter`}
-    >{title}</button>
+    >
+      {title}
+    </button>
   </div>
 );
 
