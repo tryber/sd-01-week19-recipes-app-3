@@ -1,20 +1,17 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import LinkLogin from './LinkLogin';
-import BotaoSearch from './BotaoSearch';
+import ProfileLink from './ProfileLink';
+import SearchButton from './SearchButton';
 import SearchBar from './SearchBar';
 
-const Header = ({ location }) => {
-  const title = location.pathname;
-  const [showSearch, setShowSearch] = useState(false);
-  const [search, setSearch] = useState({ typeSearch: 'i', search: '' });
-  console.log(search);
+const Header = ({ title }) => {
+  const [isShowSearch, setIsShowSearch] = useState(false);
   return (
     <div>
-      <LinkLogin />
+      <ProfileLink />
       <h2>{title}</h2>
-      <BotaoSearch changeShowSearch={() => setShowSearch(!showSearch)} />
-      {showSearch && <SearchBar changeSearch={setSearch} />}
+      <SearchButton changeShowSearch={() => setIsShowSearch(!isShowSearch)} />
+      {isShowSearch && <SearchBar />}
     </div>
   );
 };
@@ -22,7 +19,5 @@ const Header = ({ location }) => {
 export default Header;
 
 Header.propTypes = {
-  location: PropTypes.shape({
-    pathname: PropTypes.string.isRequired,
-  }).isRequired,
+  title: PropTypes.string.isRequired,
 };

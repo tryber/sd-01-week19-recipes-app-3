@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const LinkLogin = () => (
+const ProfileLink = () => (
   <div>
     <Link to="/perfil">
       Perfil
@@ -9,4 +9,4 @@ const LinkLogin = () => (
   </div>
 );
 
-export default LinkLogin;
+export default ProfileLink;

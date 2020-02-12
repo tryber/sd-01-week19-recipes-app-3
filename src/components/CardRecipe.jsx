@@ -1,30 +1,34 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { ReciperContext } from '../context/ReciperContext';
 import './CardRecipe.css';
 
 const CardRecipe = ({
-  img = 'https://cdn.britannica.com/41/177341-050-8688C353/Chelsea-buns.jpg',
-  category = 'Dessert',
-  title = 'Chelsea Buns',
-  id = 200,
-  type = 'comida',
-}) => (
-  <div className="CardRecipe">
-    <Link className="LinkRecipe" to={`/receitas/${type}/${id}`}>
-      <img className="imgRecipe" src={img} alt="Foto Receita" />
-      <h4 className="categoryRecipe">{category}</h4>
-      <h2 className="titleRecipe">{title}</h2>
-    </Link>
-  </div>
-);
+  image,
+  categorie = '',
+  title,
+  id,
+  type,
+}) => {
+  const { category } = useContext(ReciperContext);
+  return (
+    <div className="CardRecipe" >
+      <Link className="LinkRecipe" to={`/receitas/${type}/${id}`}>
+        <img className="imgRecipe" src={image} alt="Foto Receita" data-testid={`${id}-card-img`} />
+        <h4 className="categoryRecipe" data-testid={`${id}-card-category`}>{(categorie || category)}</h4>
+        <h2 className="titleRecipe" data-testid={`${id}-card-name`} >{title}</h2>
+      </Link>
+    </div>
+  );
+};
 
 export default CardRecipe;
 
 CardRecipe.propTypes = {
-  img: PropTypes.string.isRequired,
-  category: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
+  categorie: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
-  id: PropTypes.number.isRequired,
+  id: PropTypes.string.isRequired,
 };

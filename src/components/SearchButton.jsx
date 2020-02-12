@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const BotaoSearch = ({ changeShowSearch }) => (
+const ButtonSearch = ({ changeShowSearch }) => (
   <div>
     <button type="button" onClick={() => changeShowSearch()}>
       Search
@@ -9,8 +9,8 @@ const BotaoSearch = ({ changeShowSearch }) => (
   </div>
 );
 
-export default BotaoSearch;
+export default ButtonSearch;
 
-BotaoSearch.propTypes = {
+ButtonSearch.propTypes = {
   changeShowSearch: PropTypes.func.isRequired,
 };

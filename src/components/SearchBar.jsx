@@ -1,58 +1,72 @@
-import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
+import React, { useState, useEffect, useContext } from 'react';
 import { DebounceInput } from 'react-debounce-input';
+import { ReciperContext } from '../context/ReciperContext';
 
-
-const renderRadioButton = (value, changeSearch) => (
+const renderRadioButton = (typeSearch, changeSearch) => (
   <div>
     <input
       data-testid="ingredient-search-radio"
       type="radio"
-      checked={value === 'i'}
+      defaultChecked={typeSearch === 'ingredient'}
       name="typeSearch"
-      value="i"
+      value="ingredient"
       onClick={(e) => changeSearch(e.target.value)}
     />
     Ingrediente
     <input
       data-testid="name-search-radio"
       type="radio"
-      checked={value === 's'}
+      defaultChecked={typeSearch === 'name'}
       name="typeSearch"
-      value="s"
+      value="name"
       onClick={(e) => changeSearch(e.target.value)}
     />
     Nome
     <input
       data-testid="first-letter-search-radio"
       type="radio"
-      checked={value === 'f'}
+      defaultChecked={typeSearch === 'letter'}
       name="typeSearch"
-      value="f"
+      value="letter"
       onClick={(e) => changeSearch(e.target.value)}
     />
     Primeira letra
     </div>
 );
 
-const SearchBar = ({ changeSearch }) => {
-  const [search, setSearch] = useState('');
-  const [typeSearch, setTypeSearch] = useState('i');
+const createEndPoint = (text, typeSearch, setEndPoint) => {
+  const isTextEmpty = text === '';
+  const EndPoint = {
+    ingredient: () => setEndPoint(`filter.php?i=${text}`),
+    name: () => setEndPoint(`search.php?s=${text}`),
+    letter: () => setEndPoint(`search.php?f=${text}`),
+  };
+  if (!isTextEmpty) {
+    const result = EndPoint[typeSearch];
+    return result();
+  }
+  return '';
+};
+
+const SearchBar = () => {
+  const [text, setText] = useState('');
+  const [typeSearch, setTypeSearch] = useState('ingredient');
+  const { setEndPoint } = useContext(ReciperContext);
 
   useEffect(() => {
-    changeSearch({ search, typeSearch });
-  }, [search]);
+    createEndPoint(text, typeSearch, setEndPoint);
+  }, [text]);
 
   useEffect(() => {
-    setSearch('');
+    setText('');
   }, [typeSearch]);
 
   return (
     <div>
       <DebounceInput
         debounceTimeout={600}
-        onChange={(event) => setSearch(event.target.value)}
-        value={search}
+        onChange={(event) => setText(event.target.value)}
+        value={text}
       />
       {renderRadioButton(typeSearch, setTypeSearch)}
     </div>
@@ -60,7 +74,3 @@ const SearchBar = ({ changeSearch }) => {
 };
 
 export default SearchBar;
-
-SearchBar.propTypes = {
-  changeSearch: PropTypes.func.isRequired,
-};
