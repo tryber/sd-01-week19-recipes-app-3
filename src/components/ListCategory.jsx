@@ -1,4 +1,5 @@
 import React, { useContext, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { ReciperContext } from '../context/ReciperContext';
 import CategoryButton from './CategoryButton';
 
@@ -11,8 +12,8 @@ const ListCategory = ({ allCategories }) => {
   const { setEndPoint, category, setCategory } = useContext(ReciperContext);
 
   useEffect(() => {
-    if(category === 'All')return setEndPoint('random.php')
-    return setEndPoint(`filter.php?c=${category}`)
+    if (category === 'All') return setEndPoint('random.php');
+    return setEndPoint(`filter.php?c=${category}`);
   }, [category]);
 
   return (
@@ -35,3 +36,7 @@ const ListCategory = ({ allCategories }) => {
 };
 
 export default ListCategory;
+
+ListCategory.propTypes = {
+  allCategories: PropTypes.shape.isRequired,
+};

@@ -15,7 +15,7 @@ const renderAllFoods = (allRecipes, isFoodOrDrink) => (
       />))}
   </div>
 );
-      
+
 const renderAllDrinks = (allRecipes, isFoodOrDrink) => (
   <div>
     {allRecipes && allRecipes.map(({ strDrink, strCategory, strDrinkThumb, idDrink }) =>
@@ -30,16 +30,13 @@ const renderAllDrinks = (allRecipes, isFoodOrDrink) => (
   </div>
 );
 
-// const getAllById = (recipe,isFoodOrDrink) => 
-
 const ListRecipe = () => {
-  const { recipe, isFoodOrDrink, endPoint} = useContext(ReciperContext);
+  const { recipe, isFoodOrDrink } = useContext(ReciperContext);
   const keyData = isFoodOrDrink === 'Comidas' ? 'meal' : 'drink';
-  if (!recipe) return <div>Carregando</div>
-  // if(endPoint.includes('filter.php?i'))return getAllById(recipe, isFoodOrDrink);
+  if (!recipe) return <div>Carregando</div>;
   if (keyData === 'meal') {
-    return renderAllFoods(recipe, isFoodOrDrink)
-  };
+    return renderAllFoods(recipe, isFoodOrDrink);
+  }
   return renderAllDrinks(recipe, isFoodOrDrink);
 };
 export default ListRecipe;

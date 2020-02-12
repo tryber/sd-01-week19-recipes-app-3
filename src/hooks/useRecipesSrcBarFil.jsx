@@ -2,7 +2,7 @@ import { useEffect, useState, useContext } from 'react';
 import { ReciperContext } from '../context/ReciperContext';
 import { getRecipe } from '../service/FetchingAPI';
 
-const multipleRecipes = (randomRecipes, type, setIsFetching) => {
+const multipleRecipes = (randomRecipes, type) => {
   const recipesArray = randomRecipes.map((recipe) => {
     if (type === 'meal') return recipe.meals[0];
     return recipe.drinks[0];
@@ -25,7 +25,7 @@ const fetchRecipes = async (endPoint, isFoodOrDrink, setRecipes) => {
   await getRecipe(endPoint, isFoodOrDrink)
     .then((resolve) => {
       if (resolve[keyData]) {
-        recipes = [...resolve[keyData]]
+        recipes = [...resolve[keyData]];
       }
     })
     .catch((error) => console.log(error));
@@ -35,9 +35,8 @@ const fetchRecipes = async (endPoint, isFoodOrDrink, setRecipes) => {
 const useRecipesSrcBarFil = () => {
   const [recipes, setRecipes] = useState([]);
   const { endPoint, isFoodOrDrink } = useContext(ReciperContext);
-  const keyData = isFoodOrDrink === 'Comidas' ? 'meal' : 'cocktails';
+  const keyData = isFoodOrDrink === 'Comidas' ? 'meal' : 'cocktail';
   useEffect(() => {
-    console.log('aa')
     if (endPoint === 'random.php') {
       getRandomRecipes(keyData, setRecipes);
     } else {

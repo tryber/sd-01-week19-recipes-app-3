@@ -6,11 +6,10 @@ const ReciperContext = createContext();
 const ReciperProvider = ({ children }) => {
   const [userData, setUserData] = useState({ email: '', password: '' });
   const [filter, setFilter] = useState('');
-  const [isFoodOrDrink, setIsFoodOrDrink] = useState('Comidas');
+  const [isFoodOrDrink, setIsFoodOrDrink] = useState('Bebidas');
   const [endPoint, setEndPoint] = useState('random.php');
   const [recipe, setRecipe] = useState();
-  const [category, setCategory] = useState('All')
-  const [isFetching, setIsFetching] = useState(false)
+  const [category, setCategory] = useState('All');
   const context = {
     userData,
     setUserData,
@@ -24,8 +23,6 @@ const ReciperProvider = ({ children }) => {
     setRecipe,
     category,
     setCategory,
-    isFetching,
-    setIsFetching,
   };
   return (
     <ReciperContext.Provider value={context}>

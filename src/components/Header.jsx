@@ -5,14 +5,13 @@ import SearchButton from './SearchButton';
 import SearchBar from './SearchBar';
 
 const Header = ({ title }) => {
-  const [showSearch, setShowSearch] = useState(false);
-
+  const [isShowSearch, setIsShowSearch] = useState(false);
   return (
     <div>
       <ProfileLink />
       <h2>{title}</h2>
-      <SearchButton changeShowSearch={() => setShowSearch(!showSearch)} />
-      {showSearch && <SearchBar />}
+      <SearchButton changeShowSearch={() => setIsShowSearch(!isShowSearch)} />
+      {isShowSearch && <SearchBar />}
     </div>
   );
 };
@@ -20,7 +19,5 @@ const Header = ({ title }) => {
 export default Header;
 
 Header.propTypes = {
-  location: PropTypes.shape({
-    pathname: PropTypes.string.isRequired,
-  }).isRequired,
+  title: PropTypes.string.isRequired,
 };

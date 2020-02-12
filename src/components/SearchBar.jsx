@@ -39,13 +39,14 @@ const createEndPoint = (text, typeSearch, setEndPoint) => {
   const EndPoint = {
     ingredient: () => setEndPoint(`filter.php?i=${text}`),
     name: () => setEndPoint(`search.php?s=${text}`),
-    letter: () => setEndPoint(`search.php?f=${text}`)
-  }
+    letter: () => setEndPoint(`search.php?f=${text}`),
+  };
   if (!isTextEmpty) {
-    const result = EndPoint[typeSearch]
+    const result = EndPoint[typeSearch];
     return result();
   }
-}
+  return '';
+};
 
 const SearchBar = () => {
   const [text, setText] = useState('');

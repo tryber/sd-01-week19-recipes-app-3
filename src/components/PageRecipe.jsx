@@ -6,10 +6,9 @@ import Header from './Header';
 import LowerMenu from './LowerMenu';
 import ListCategory from './ListCategory';
 import ListRecipe from './ListRecipes';
-import Loading from './Loading';
 
 const PageRecipe = () => {
-  const { endPoint, isFoodOrDrink, setRecipe, isFetching } = useContext(ReciperContext);
+  const { endPoint, isFoodOrDrink, setRecipe } = useContext(ReciperContext);
   const categories = useCategories(isFoodOrDrink);
   const recipes = useRecipesSrcBarFil(endPoint, isFoodOrDrink);
 
