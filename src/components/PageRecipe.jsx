@@ -1,30 +1,35 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { ReciperContext } from '../context/ReciperContext';
-import useCategories from '../hooks/useCategories';
-import useRecipesSrcBarFil from '../hooks/useRecipesSrcBarFil';
+import { fetch5Categories, getRecipes } from '../service/FetchingAPI';
 import Header from './Header';
 import LowerMenu from './LowerMenu';
 import ListCategory from './ListCategory';
 import ListRecipe from './ListRecipes';
 
-const PageRecipe = () => {
-  const { endPoint, isFoodOrDrink, setRecipe } = useContext(ReciperContext);
-  const categories = useCategories(isFoodOrDrink);
-  const recipes = useRecipesSrcBarFil(endPoint, isFoodOrDrink);
+const keyData = (verify) => {
+  if (verify === 'comidas') return 'meal'
+  return 'cocktail'
+};
 
+const PageRecipe = ({ match: { params: { foodordrink } } }) => {
+  const { endPoint, isFoodOrDrink, setRecipe, recipe } = useContext(ReciperContext);
+  const [categories, setCategories] = useState();
   useEffect(() => {
-    setRecipe(recipes);
-  });
-
+    fetch5Categories(keyData(foodordrink), foodordrink).then(result => setCategories(result));
+  }, []);
   useEffect(() => {
-    setRecipe(recipes);
+    fetch5Categories(keyData(foodordrink), foodordrink).then(result => setCategories(result));
+    getRecipes(endPoint, keyData(foodordrink), foodordrink).then(result => setRecipe(result));
+  }, [isFoodOrDrink]);
+  useEffect(() => {
+    getRecipes(endPoint, keyData(foodordrink), foodordrink).then(result => setRecipe(result));
   }, [endPoint]);
-
+  console.log(recipe)
   return (
     <div>
-      <Header title={isFoodOrDrink} />
+      <Header title={foodordrink} />
       <ListCategory allCategories={categories} />
-      <ListRecipe />
+      <ListRecipe type={foodordrink}/>
       <LowerMenu />
     </div>
   );

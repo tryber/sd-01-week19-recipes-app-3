@@ -9,7 +9,7 @@ const CardRecipe = ({
   categorie = '',
   title,
   id,
-  type,
+  type
 }) => {
   const { category } = useContext(ReciperContext);
   return (

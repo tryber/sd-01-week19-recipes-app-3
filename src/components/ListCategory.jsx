@@ -10,7 +10,6 @@ const changeCategory = (value, category, setCategory) => {
 
 const ListCategory = ({ allCategories }) => {
   const { setEndPoint, category, setCategory } = useContext(ReciperContext);
-
   useEffect(() => {
     if (category === 'All') return setEndPoint('random.php');
     return setEndPoint(`filter.php?c=${category}`);
@@ -23,11 +22,11 @@ const ListCategory = ({ allCategories }) => {
         title="All"
         changeCategory={() => changeCategory('All', category, setCategory)}
       />
-      {allCategories && allCategories.map(({ strCategory }) => (
+      {allCategories && allCategories.map((item) => (
         <CategoryButton
-          key={strCategory}
-          title={strCategory}
-          changeCategory={() => changeCategory(strCategory, category, setCategory)}
+          key={item}
+          title={item}
+          changeCategory={() => changeCategory(item, category, setCategory)}
         />
       ))
       }
