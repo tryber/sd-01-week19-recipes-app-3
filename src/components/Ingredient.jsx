@@ -17,7 +17,7 @@ const checkIngredient = (name, measure, done, checked) => (
       name={name}
       checked={done}
     />
-    <label className={done ? 'done' : 'notDone'} for={name}>{`${name} - ${measure}`}</label>
+    <label className={done ? 'done' : 'notDone'} htmlFor={name}>{`${name} - ${measure}`}</label>
   </div>
 );
 

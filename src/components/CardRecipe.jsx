@@ -12,6 +12,7 @@ const CardRecipe = ({
   type
 }) => {
   const { category } = useContext(ReciperContext);
+  console.log(type)
   return (
     <div className="CardRecipe" >
       <Link className="LinkRecipe" to={`/receitas/${type}/${id}`}>

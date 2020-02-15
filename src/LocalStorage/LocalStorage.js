@@ -1,13 +1,24 @@
 export const saveIngredients = (list) => {
-  localStorage.setItem('Ingredients', list);
+  const data = JSON.stringify(list)
+  localStorage.setItem('Ingredients', data);
 };
 
-export const getIngredients = (list) => {
-  localStorage.getItem('Ingredients', list);
+export const getIngredients = () => {
+  const ingredients = localStorage.getItem('Ingredients');
+  return JSON.parse(ingredients);
+};
+
+export const saveRecipe = (id, details) => {
+  const data = JSON.stringify(details)
+  localStorage.setItem(id, data);
+};
+
+export const getDetailsRecipe = (id) => {
+  const data = localStorage.getItem(id);
+  return JSON.parse(data);
 };
 
 export const saveUser = (email) => {
-  console.log(email)
   localStorage.setItem('user', JSON.stringify({ email }));
   localStorage.setItem('meals-token', '1');
   localStorage.setItem('cocktails-token', '1');

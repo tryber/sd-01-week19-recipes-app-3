@@ -66,7 +66,6 @@ const fetchRecipes = async (endPoint, isFoodOrDrink) => {
   const keyData = isFoodOrDrink === 'comidas' ? 'meals' : 'drinks';
   await getRecipe(endPoint, isFoodOrDrink)
     .then((resolve) => {
-      console.log(resolve)
       if (resolve[keyData]) {
         recipes = [...resolve[keyData]];
       }

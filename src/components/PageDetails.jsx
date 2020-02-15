@@ -1,19 +1,49 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import ListIngredients from './ListIngredients';
 import HeaderRecipe from './HeaderRecipe';
-import { ReciperContext } from '../context/ReciperContext.jsx';
 import { getRecipe } from '../service/FetchingAPI';
 import Loading from './Loading';
-// import { saveIngredients, getIngredients } from '../LocalStorage.js';
+import {
+  saveIngredients,
+  getIngredients,
+  saveRecipe,
+  getDetailsRecipe,
+} from '../LocalStorage/LocalStorage.js';
 
-const PageDetails = ({ match: { params: { id } } }) => {
-  const { isFoodOrDrink } = useContext(ReciperContext);
+const keyData = (verify) => {
+  if (verify === 'comidas') return 'meals'
+  return 'drinks'
+};
+
+const formatIngredients = (data) => {
+  const allIngredientes = [];
+  for (let i = 1; i <= 20; i++) {
+    const valueIngredient = data[`strIngredient${i}`];
+    if (valueIngredient === '') break;
+    const valueMeasure = data[`strMeasure${i}`];
+    allIngredientes.push({
+      ingredient: valueIngredient,
+      mesure: valueMeasure
+    });
+  }
+  return allIngredientes;
+}
+
+const PageDetails = ({ match: { params: { id, foodordrink } } }) => {
   const [dataRecipe, setDataRecipe] = useState(false);
   useEffect(() => {
-    setDataRecipe(getRecipe(`lookup.php?i=11007${id}`,isFoodOrDrink))
-  })
+    const details = getDetailsRecipe(id)
+    console.log(details)
+    if (!details) {
+      getRecipe(`lookup.php?i=${id}`, foodordrink)
+        .then(result =>
+          saveRecipe(id, result[keyData(foodordrink)][0]))
+    }
+    setDataRecipe(details);
 
-  if(dataRecipe) return <Loading />;
+  }, [])
+  console.log(formatIngredients(dataRecipe));
+  if (!dataRecipe) return <Loading />;
   return (
     <div>
       <HeaderRecipe />

@@ -39,8 +39,8 @@ const ListRecipe = ({ type }) => {
     setData(recipe);
   }, [recipe]);
   if (keyData === 'meal') {
-    return renderAllFoods(data, keyData);
+    return renderAllFoods(data, type);
   }
-  return renderAllDrinks(data, keyData);
+  return renderAllDrinks(data, type);
 };
 export default ListRecipe;
