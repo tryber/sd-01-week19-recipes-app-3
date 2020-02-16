@@ -4,6 +4,7 @@ import { ReciperContext } from '../context/ReciperContext';
 import Avatar from '../icons/avatar.png';
 import './TelaPerfil.css';
 import LowerMenu from './LowerMenu';
+
 const btnForComponentPerfil = (text, router) => (
   <Link to={`/${router}`}>
     <button type="button" className="btn">
