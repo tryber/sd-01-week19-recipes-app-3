@@ -1,0 +1,48 @@
+.component {
+  background: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  height: 640px;
+  justify-content: space-around;
+  position: relative;
+  width: 360px;
+}
+
+img {
+  height: 40px;
+  left: 16px;
+  margin: auto;
+  top: 591px;
+  width: 40px;
+}
+
+.conteiner {
+  background: #C4C4C4;
+  display: flex;
+  height: 58px;
+  justify-content: space-around;
+  left: 0px;
+  padding: 5px;
+  position: absolute;
+  top: 0px;
+  width: 360px;
+}
+
+.btn {
+  align-items: flex-end;
+  background: #C4C4C4;
+  border-radius: 4px;
+  color: #000000;
+  display: flex;
+  font-family: Roboto;
+  font-size: 25px;
+  font-style: normal;
+  font-weight: normal;
+  height: 53px;
+  left: 16px;
+  line-height: 29px;
+  margin-top: 20px;
+  text-align: center;
+  top: 184px;
+  width: 329px;
+}
