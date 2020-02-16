@@ -1,37 +1,30 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { DebounceInput } from 'react-debounce-input';
 import { ReciperContext } from '../context/ReciperContext';
+import './SearchBar.css';
+
+const renderInput = (type, typeSearch, changeSearch) => (
+  <input
+    id={type}
+    className="rdb-input"
+    data-testid={`${type}-search-radio`}
+    type="radio"
+    defaultChecked={typeSearch === type}
+    name="typeSearch"
+    value={type}
+    onClick={(e) => changeSearch(e.target.value)}
+  />
+);
 
 const renderRadioButton = (typeSearch, changeSearch) => (
-  <div>
-    <input
-      data-testid="ingredient-search-radio"
-      type="radio"
-      defaultChecked={typeSearch === 'ingredient'}
-      name="typeSearch"
-      value="ingredient"
-      onClick={(e) => changeSearch(e.target.value)}
-    />
-    Ingrediente
-    <input
-      data-testid="name-search-radio"
-      type="radio"
-      defaultChecked={typeSearch === 'name'}
-      name="typeSearch"
-      value="name"
-      onClick={(e) => changeSearch(e.target.value)}
-    />
-    Nome
-    <input
-      data-testid="first-letter-search-radio"
-      type="radio"
-      defaultChecked={typeSearch === 'letter'}
-      name="typeSearch"
-      value="letter"
-      onClick={(e) => changeSearch(e.target.value)}
-    />
-    Primeira letra
-    </div>
+  <div className="radio-button">
+    {renderInput('ingredient', typeSearch, changeSearch)}
+    <label htmlFor="ingredient">Ingrediente</label>
+    {renderInput('name', typeSearch, changeSearch)}
+    <label htmlFor="name">Nome</label>
+    {renderInput('letter', typeSearch, changeSearch)}
+    <label htmlFor="letter">Primeira Letra</label>
+  </div>
 );
 
 const createEndPoint = (text, typeSearch, setEndPoint) => {
@@ -62,11 +55,12 @@ const SearchBar = () => {
   }, [typeSearch]);
 
   return (
-    <div>
+    <div className="SearchBar">
       <DebounceInput
         debounceTimeout={600}
         onChange={(event) => setText(event.target.value)}
         value={text}
+        maxLength={typeSearch === 'letter' ? 1 : 20}
       />
       {renderRadioButton(typeSearch, setTypeSearch)}
     </div>

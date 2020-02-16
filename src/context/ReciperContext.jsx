@@ -5,18 +5,18 @@ const ReciperContext = createContext();
 
 const ReciperProvider = ({ children }) => {
   const [userData, setUserData] = useState({ email: '', password: '' });
-  const [filter, setFilter] = useState('');
-  const [isFoodOrDrink, setIsFoodOrDrink] = useState('Bebidas');
+  const [isFoodOrDrink, setIsFoodOrDrink] = useState('comidas');
   const [endPoint, setEndPoint] = useState('random.php');
   const [recipe, setRecipe] = useState();
   const [category, setCategory] = useState('All');
+  const [inProgress, setInProgress] = useState(false);
   const context = {
     userData,
     setUserData,
     isFoodOrDrink,
     setIsFoodOrDrink,
-    filter,
-    setFilter,
+    inProgress,
+    setInProgress,
     endPoint,
     setEndPoint,
     recipe,
