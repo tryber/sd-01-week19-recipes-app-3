@@ -1,18 +1,9 @@
-import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import React from 'react';
 
-const Explorer = () => {
-  const history = useHistory();
+const Explorer = ({ match: { url } }) => {
   return (
     <div>
-      <button
-        data-testid="explore-food"
-        onClick={() => history.push("/explorer/comidas")}
-      >Explorar Comidas</button>
-      <button
-        data-testid="explore-drinks"
-        onClick={() => history.push("/explorer/bebidas")}
-      >Explorar Bebidas</button>
+      <h1>{url}</h1>
     </div>
   );
 };
