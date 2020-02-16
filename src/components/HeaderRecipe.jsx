@@ -5,9 +5,9 @@ import ButtonFavorite from './ButtonFavorite';
 import './HeaderRecipe.css';
 
 const HeaderRecipe = ({
-  img = 'https://cdn.britannica.com/41/177341-050-8688C353/Chelsea-buns.jpg',
-  category = 'Dessert',
-  title = 'Chelsea Buns',
+  img,
+  category,
+  title,
 }) => (
   <div className="HeaderRecipe">
     <img className="imgRecipe" src={img} alt="Foto Receita" />

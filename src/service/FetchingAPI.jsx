@@ -26,6 +26,7 @@ const getCategories = (type) => {
 };
 
 export const getRecipe = (endpoint, type) => {
+  console.log(endpoint,type)
   if (type === 'comidas') {
     return getMeals(endpoint);
   }

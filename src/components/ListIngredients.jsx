@@ -3,31 +3,26 @@ import PropTypes from 'prop-types';
 import Ingredient from './Ingredient';
 import './ListIngredients.css';
 
-const mockList = [
-  { name: 'arroz', measure: '1kg' },
-  { name: 'feijoa', measure: '500kg' },
-  { name: 'ervilha', measure: '500kg' },
-];
 
 const addPropertyDone = (array) => (
   array.map((item) => ({ ...item, done: false }))
 );
 
-const ListIngredients = ({ listIngredient = mockList }) => {
+const ListIngredients = ({ listIngredient }) => {
   const [listDone, setListDone] = useState(addPropertyDone(listIngredient));
-  const changeDone = (name) => {
+  const changeDone = (ingredient) => {
     return listDone.map((item) => {
-      if (item.name === name) return { ...item, done: !item.done };
+      if (item.ingredient === ingredient) return { ...item, done: !item.done };
       return item;
     })
   }
   return (
     <div className="ListIngredient">
       <ul>
-        {listDone.map(({ name, measure, done }) => (
+        {listDone.map(({ ingredient, measure, done }) => (
           <Ingredient
-            key={name}
-            name={name}
+            key={ingredient}
+            name={ingredient}
             measure={measure}
             done={done}
             checked={(value) => setListDone(changeDone(value))}

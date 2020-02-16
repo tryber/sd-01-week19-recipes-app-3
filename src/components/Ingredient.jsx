@@ -22,13 +22,13 @@ const checkIngredient = (name, measure, done, checked) => (
 );
 
 const Ingredient = ({
-  name = 'arroz',
-  measure = '1kg',
-  inProgress = false,
+  name,
+  measure,
+  inProgress,
   done,
   checked,
 }) => {
-  if (inProgress) return itemIngredient(name, measure);
+  if (!inProgress) return itemIngredient(name, measure);
   return checkIngredient(name, measure, done, checked);
 };
 
