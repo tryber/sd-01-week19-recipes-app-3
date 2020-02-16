@@ -1,42 +1,43 @@
 import React, { useContext } from 'react';
 import { ReciperContext } from '../context/ReciperContext';
 import CardRecipe from './CardRecipe';
+import './ListRecipe.css';
 
 const renderAllFoods = (allRecipes, isFoodOrDrink) => (
-  <div>
-    {allRecipes && allRecipes.map(({ strMeal, strCategory, strMealThumb, idMeal }) =>
+  <div className="ListRecipe">
+    {allRecipes && allRecipes.map(({ strMeal, strCategory, strMealThumb, idMeal }, index) =>
       (<CardRecipe
         title={strMeal}
         categorie={strCategory}
         image={strMealThumb}
         id={idMeal}
         type={isFoodOrDrink}
-        key={idMeal}
+        key={`${index * 3}`}
       />))}
   </div>
 );
 
 const renderAllDrinks = (allRecipes, isFoodOrDrink) => (
-  <div>
-    {allRecipes && allRecipes.map(({ strDrink, strCategory, strDrinkThumb, idDrink }) =>
+  <div className="ListRecipe">
+    {allRecipes && allRecipes.map(({ strDrink, strCategory, strDrinkThumb, idDrink }, index) =>
       (<CardRecipe
         title={strDrink}
         categorie={strCategory}
         image={strDrinkThumb}
         id={idDrink}
         type={isFoodOrDrink}
-        key={idDrink}
+        key={`${index * 3}`}
       />))}
   </div>
 );
 
-const ListRecipe = () => {
-  const { recipe, isFoodOrDrink } = useContext(ReciperContext);
-  const keyData = isFoodOrDrink === 'Comidas' ? 'meal' : 'drink';
-  if (!recipe) return <div>Carregando...</div>;
+const ListRecipe = ({ type }) => {
+  const { recipe } = useContext(ReciperContext);
+  const keyData = type === 'comidas' ? 'meal' : 'drink';
+
   if (keyData === 'meal') {
-    return renderAllFoods(recipe, isFoodOrDrink);
+    return renderAllFoods(recipe, type);
   }
-  return renderAllDrinks(recipe, isFoodOrDrink);
+  return renderAllDrinks(recipe, type);
 };
 export default ListRecipe;

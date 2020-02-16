@@ -1,0 +1,14 @@
+.LowerMenu {
+  background: salmon;
+  bottom: 0;
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  width: 100vw;
+}
+
+.LowerMenu > a > button {
+  background: salmon;
+  border: none;
+}
+

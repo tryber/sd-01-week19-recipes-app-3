@@ -1,13 +1,15 @@
 import React, { useContext, useState } from 'react';
 import Form from 'react-bootstrap/Form';
+import { Redirect } from 'react-router-dom';
 import { ReciperContext } from '../context/ReciperContext';
 import EmailField from './EmailField';
 import PasswordField from './PasswordField';
 import SubmitButton from '../components/SubmitButton';
 import { useHistory } from 'react-router-dom';
+import { saveUser } from '../LocalStorage/LocalStorage';
 
 const Login = () => {
-  const { setUserData } = useContext(ReciperContext);
+  const { setUserData, userData } = useContext(ReciperContext);
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -19,12 +21,9 @@ const Login = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     setUserData({ email, password });
-    localStorage.setItem('user', JSON.stringify({ email }));
-    localStorage.setItem('meals-token', '1');
-    localStorage.setItem('cocktails-token', '1');
-    history.push('/comidas');
+    saveUser(email);
   };
-
+  if (userData.email) return <Redirect to="/receitas/comidas" />;
   return (
     <div>
       <h1>Login</h1>

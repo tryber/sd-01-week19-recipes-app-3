@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './CategoryButton.css';
 
 const CategoryButton = ({ title, changeCategory }) => (
-  <div className="ButtonShare">
+  <div className="CategoryButton">
     <button
       type="button"
       value={title}

@@ -1,33 +1,53 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import { ReciperContext } from '../context/ReciperContext';
-import useCategories from '../hooks/useCategories';
-import useRecipesSrcBarFil from '../hooks/useRecipesSrcBarFil';
+import { fetch5Categories, getRecipes } from '../service/FetchingAPI';
 import Header from './Header';
 import LowerMenu from './LowerMenu';
 import ListCategory from './ListCategory';
 import ListRecipe from './ListRecipes';
+import './PageRecipe.css';
 
-const PageRecipe = () => {
+const keyData = (verify) => {
+  if (verify === 'comidas') return 'meal';
+  return 'cocktail';
+};
+
+const PageRecipe = ({ match: { params: { foodordrink } } }) => {
   const { endPoint, isFoodOrDrink, setRecipe } = useContext(ReciperContext);
-  const categories = useCategories(isFoodOrDrink);
-  const recipes = useRecipesSrcBarFil(endPoint, isFoodOrDrink);
-
+  const [categories, setCategories] = useState();
   useEffect(() => {
-    setRecipe(recipes);
-  });
-
+    fetch5Categories(keyData(foodordrink), foodordrink)
+      .then((result) => setCategories(result));
+  }, []);
   useEffect(() => {
-    setRecipe(recipes);
+    fetch5Categories(keyData(foodordrink), foodordrink)
+      .then((result) => setCategories(result));
+    getRecipes(endPoint, keyData(foodordrink), foodordrink)
+      .then((result) => setRecipe(result));
+  }, [isFoodOrDrink]);
+  useEffect(() => {
+    getRecipes(endPoint, keyData(foodordrink), foodordrink)
+    .then((result) => setRecipe(result));
   }, [endPoint]);
-
   return (
-    <div>
-      <Header title={isFoodOrDrink} />
+    <div className="PageRecipe">
+      <Header title={foodordrink} />
       <ListCategory allCategories={categories} />
-      <ListRecipe />
+      <ListRecipe type={foodordrink} />
       <LowerMenu />
     </div>
   );
 };
 
 export default PageRecipe;
+
+PageRecipe.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      foodordrink: PropTypes.string.isRequired,
+    }),
+  }).isRequired,
+};
+

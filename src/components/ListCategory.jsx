@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { ReciperContext } from '../context/ReciperContext';
 import CategoryButton from './CategoryButton';
+import './ListCategory.css';
 
 const changeCategory = (value, category, setCategory) => {
   if (value === category) return setCategory('All');
@@ -10,24 +11,23 @@ const changeCategory = (value, category, setCategory) => {
 
 const ListCategory = ({ allCategories }) => {
   const { setEndPoint, category, setCategory } = useContext(ReciperContext);
-
   useEffect(() => {
     if (category === 'All') return setEndPoint('random.php');
     return setEndPoint(`filter.php?c=${category}`);
   }, [category]);
 
   return (
-    <div>
+    <div className="ListCategory">
       <CategoryButton
         key="All"
         title="All"
         changeCategory={() => changeCategory('All', category, setCategory)}
       />
-      {allCategories && allCategories.map(({ strCategory }) => (
+      {allCategories && allCategories.map((item) => (
         <CategoryButton
-          key={strCategory}
-          title={strCategory}
-          changeCategory={() => changeCategory(strCategory, category, setCategory)}
+          key={item}
+          title={item}
+          changeCategory={() => changeCategory(item, category, setCategory)}
         />
       ))
       }

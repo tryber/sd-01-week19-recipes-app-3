@@ -1,10 +1,9 @@
 import React from 'react';
-import Button from 'react-bootstrap/Button';
 import PropTypes from 'prop-types';
+import Button from 'react-bootstrap/Button';
 
 const SubmitButton = ({ emailValid, passwordValid }) => {
   const fieldsValid = emailValid && passwordValid;
-
   return (
     <Button
       type="submit"

@@ -1,0 +1,12 @@
+.Header {
+  background: white;
+  border: 0.4px salmon solid;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  left: 0;
+  padding: 5px;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+}
