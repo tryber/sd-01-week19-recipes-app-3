@@ -4,6 +4,8 @@ import HeaderRecipe from './HeaderRecipe';
 import { getRecipe } from '../service/FetchingAPI';
 import Loading from './Loading';
 import Instructions from './Instructions'
+import YouTube from 'react-youtube';
+
 import {
   saveIngredients,
   getIngredients,
@@ -25,6 +27,30 @@ const renderHeader = (foodordrink, data) => {
   />
 }
 
+const renderVideo = (data, foodordrink) => {
+  const opts = {
+    height: '390',
+    width: '640',
+    playerVars: {
+      autoplay: 0,
+    }
+  };
+
+  if (foodordrink === 'comidas' && data.strYoutube) {
+    console.log(data.strYoutube.slice(32));
+    return <YouTube
+      videoId={data.strYoutube.slice(32)}
+      opts={opts}
+    />
+  }
+  if (data.strVideo) {
+    return <YouTube
+      videoId={data.strVideo.slice(32)}
+      opts={opts}
+    />
+  }
+  return <div>Não possui video.</div>
+}
 
 const formatIngredients = (data) => {
   const allIngredientes = [];
@@ -61,6 +87,7 @@ const PageDetails = ({ match: { params: { id, foodordrink } } }) => {
       {renderHeader(foodordrink, dataRecipe)}
       <ListIngredients listIngredient={formatIngredients(dataRecipe)} />
       <Instructions instructions={dataRecipe.strInstructions} />
+      {renderVideo(dataRecipe, foodordrink)}
     </div>
   );
 };
