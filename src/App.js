@@ -5,6 +5,7 @@ import PageRecipe from './components/PageRecipe';
 import Login from './components/Login';
 import ExplorerMenu from './components/ExplorerMenu';
 import Explorer from './components/Explorer';
+import ExplorerIngredients from './components/ExplorerIngredients';
 
 function App() {
   return (
@@ -12,8 +13,9 @@ function App() {
       <Switch>
         <Route exact path="/" component={Login} />
         <Route exact path="/comidas" component={PageRecipe} />
-        <Route exact path="/explorer" component={ExplorerMenu} />
-        <Route exact path="/explorer/:isFoodOrDrink" render={({ match }) => <Explorer match={match} />} />
+        <Route exact path="/explorar" component={ExplorerMenu} />
+        <Route exact path="/explorar/:isFoodOrDrink" render={({ match }) => <Explorer match={match} />} />
+        <Route exact path="/explorar/:isFoodOrDrink/ingredientes" render={({ match }) => <ExplorerIngredients match={match} />} />
       </Switch>
     </Router>
   );

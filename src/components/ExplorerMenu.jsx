@@ -7,11 +7,11 @@ const ExplorerMenu = () => {
     <div>
       <button
         data-testid="explore-food"
-        onClick={() => history.push("/explorer/comidas")}
+        onClick={() => history.push("/explorar/comidas")}
       >Explorar Comidas</button>
       <button
         data-testid="explore-drinks"
-        onClick={() => history.push("/explorer/bebidas")}
+        onClick={() => history.push("/explorar/bebidas")}
       >Explorar Bebidas</button>
     </div>
   );
