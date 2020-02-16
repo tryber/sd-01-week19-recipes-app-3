@@ -9,7 +9,7 @@ const LowerMenu = () => (
     <Link to="/comidas">
       <img className="img-garfo" src={Garfo} alt="Garfo de comida" height="42" />
     </Link>
-    <Link to="/">
+    <Link to="/explorer">
       <img
         className="img-bussola"
         src={Bussola}
