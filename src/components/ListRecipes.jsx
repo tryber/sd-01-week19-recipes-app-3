@@ -33,7 +33,7 @@ const renderAllDrinks = (allRecipes, isFoodOrDrink) => (
 const ListRecipe = () => {
   const { recipe, isFoodOrDrink } = useContext(ReciperContext);
   const keyData = isFoodOrDrink === 'Comidas' ? 'meal' : 'drink';
-  if (!recipe) return <div>Carregando</div>;
+  if (!recipe) return <div>Carregando...</div>;
   if (keyData === 'meal') {
     return renderAllFoods(recipe, isFoodOrDrink);
   }

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 const SubmitButton = ({ emailValid, passwordValid }) => {
   const fieldsValid = emailValid && passwordValid;
-  
+
   return (
     <Button
       type="submit"
