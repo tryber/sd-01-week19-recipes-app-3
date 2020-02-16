@@ -62,6 +62,7 @@ const getRandomRecipes = async (type) => {
 };
 
 const fetchRecipes = async (endPoint, isFoodOrDrink) => {
+  console.log('aaaaa')
   let recipes = [];
   const keyData = isFoodOrDrink === 'comidas' ? 'meals' : 'drinks';
   await getRecipe(endPoint, isFoodOrDrink)

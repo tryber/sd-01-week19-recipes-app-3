@@ -26,8 +26,10 @@ const PageRecipe = ({ match: { params: { foodordrink } } }) => {
     getRecipes(endPoint, keyData(foodordrink), foodordrink)
       .then((result) => setRecipe(result));
   }, [isFoodOrDrink]);
-  useEffect(() => getRecipes(endPoint, keyData(foodordrink), foodordrink)
-    .then((result) => setRecipe(result)), [endPoint]);
+  useEffect(() => {
+    getRecipes(endPoint, keyData(foodordrink), foodordrink)
+    .then((result) => setRecipe(result));
+  }, [endPoint]);
   return (
     <div className="PageRecipe">
       <Header title={foodordrink} />
