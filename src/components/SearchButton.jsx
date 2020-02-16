@@ -1,16 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './SearchButton.css';
+import Search from '../icons/lupa.png'
 
-const ButtonSearch = ({ changeShowSearch }) => (
-  <div>
-    <button type="button" onClick={() => changeShowSearch()}>
-      Search
-      </button>
+const SearchButton = ({ changeShowSearch }) => (
+  <div className="SearchButton">
+    <button className="btn-search" type="button" onClick={() => changeShowSearch()}>
+    <img src={Search} alt="Search item" />
+    </button>
   </div>
 );
 
-export default ButtonSearch;
+export default SearchButton;
 
-ButtonSearch.propTypes = {
+SearchButton.propTypes = {
   changeShowSearch: PropTypes.func.isRequired,
 };

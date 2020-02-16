@@ -5,6 +5,7 @@ import Header from './Header';
 import LowerMenu from './LowerMenu';
 import ListCategory from './ListCategory';
 import ListRecipe from './ListRecipes';
+import './PageRecipe.css';
 
 const keyData = (verify) => {
   if (verify === 'comidas') return 'meal'
@@ -26,7 +27,7 @@ const PageRecipe = ({ match: { params: { foodordrink } } }) => {
   }, [endPoint]);
   console.log(recipe)
   return (
-    <div>
+    <div className="PageRecipe">
       <Header title={foodordrink} />
       <ListCategory allCategories={categories} />
       <ListRecipe type={foodordrink}/>

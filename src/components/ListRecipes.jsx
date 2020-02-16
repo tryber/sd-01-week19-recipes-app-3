@@ -1,9 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { ReciperContext } from '../context/ReciperContext';
 import CardRecipe from './CardRecipe';
+import './ListRecipe.css'
 
 const renderAllFoods = (allRecipes, isFoodOrDrink) => (
-  <div>
+  <div className="ListRecipe">
     {allRecipes && allRecipes.map(({ strMeal, strCategory, strMealThumb, idMeal }, index) =>
       (<CardRecipe
         title={strMeal}
@@ -17,7 +18,7 @@ const renderAllFoods = (allRecipes, isFoodOrDrink) => (
 );
 
 const renderAllDrinks = (allRecipes, isFoodOrDrink) => (
-  <div>
+  <div className="ListRecipe">
     {allRecipes && allRecipes.map(({ strDrink, strCategory, strDrinkThumb, idDrink }, index) =>
       (<CardRecipe
         title={strDrink}
@@ -32,15 +33,11 @@ const renderAllDrinks = (allRecipes, isFoodOrDrink) => (
 
 const ListRecipe = ({ type }) => {
   const { recipe } = useContext(ReciperContext);
-  const [data, setData] = useState();
   const keyData = type === 'comidas' ? 'meal' : 'drink';
-  console.log(type, 'type listrecipe')
-  useEffect(() => {
-    setData(recipe);
-  }, [recipe]);
+
   if (keyData === 'meal') {
-    return renderAllFoods(data, type);
+    return renderAllFoods(recipe, type);
   }
-  return renderAllDrinks(data, type);
+  return renderAllDrinks(recipe, type);
 };
 export default ListRecipe;

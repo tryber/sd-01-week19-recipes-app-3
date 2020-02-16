@@ -1,0 +1,7 @@
+.ListRecipe {
+  display: flex;
+  flex-flow: row wrap;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin: 0 0 40px 0;
+}

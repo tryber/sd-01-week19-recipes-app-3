@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { ReciperContext } from '../context/ReciperContext';
 import CategoryButton from './CategoryButton';
+import './ListCategory.css';
 
 const changeCategory = (value, category, setCategory) => {
   if (value === category) return setCategory('All');
@@ -16,7 +17,7 @@ const ListCategory = ({ allCategories }) => {
   }, [category]);
 
   return (
-    <div>
+    <div className="ListCategory">
       <CategoryButton
         key="All"
         title="All"

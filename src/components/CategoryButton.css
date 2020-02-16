@@ -1,0 +1,22 @@
+.CategoryButton {
+  align-items: center;
+  display: flex;
+  width: auto;
+}
+
+.CategoryButton > button {
+  text-align: center;
+  background:white;
+  margin: 3px 0;
+  font-weight: 700;
+  border:1px salmon solid;
+  width: 100%;
+}
+
+.CategoryButton > button:focus {
+  border:none;
+  font-weight: 700;
+  outline:2.5px orange solid;
+  text-align: center;
+  width: 100%;
+}

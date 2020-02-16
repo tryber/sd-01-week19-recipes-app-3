@@ -1,0 +1,9 @@
+.SearchButton > button > img {
+  width: 40px;
+}
+
+.SearchButton > button {
+  background: white;
+  border: 0;
+  outline: none; 
+}
