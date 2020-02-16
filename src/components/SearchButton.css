@@ -1,0 +1,12 @@
+.SearchButton > button > img {
+  width: 40px;
+}
+
+.SearchButton > button {
+  background: white;
+  border: 0;
+}
+
+.SearchButton > button:focus {
+  outline: hidden;
+}
