@@ -6,6 +6,7 @@ import './SearchBar.css';
 const renderInput = (type, typeSearch, changeSearch) => (
   <input
     id={type}
+    className="rdb-input"
     data-testid={`${type}-search-radio`}
     type="radio"
     defaultChecked={typeSearch === type}
@@ -13,7 +14,7 @@ const renderInput = (type, typeSearch, changeSearch) => (
     value={type}
     onClick={(e) => changeSearch(e.target.value)}
   />
-)
+);
 
 const renderRadioButton = (typeSearch, changeSearch) => (
   <div className="radio-button">

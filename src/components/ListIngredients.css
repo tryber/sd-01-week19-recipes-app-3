@@ -1,8 +1,8 @@
 .ListIngredient {
-  background:#ececec;
+  background: #ececec;
   border-radius: 4px;
-  width: 341px;
   margin: 10px;
+  width: 341px;
 }
 
 .ListIngredient > ul {

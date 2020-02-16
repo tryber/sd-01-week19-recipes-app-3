@@ -34,13 +34,13 @@ export const getRecipe = (endpoint, type) => {
 
 export const fetch5Categories = async (keyData, isFoodOrDrink) => {
   if (keyData === 'meal') {
-    const { meals } = await getCategories(isFoodOrDrink)
-    const values = meals.slice(0, 5).map(({ strCategory }) => strCategory)
+    const { meals } = await getCategories(isFoodOrDrink);
+    const values = meals.slice(0, 5).map(({ strCategory }) => strCategory);
     return values;
   }
-  const { drinks } = await getCategories(isFoodOrDrink)
-  const values = drinks.slice(0, 5).map(({strCategory})=>strCategory)
-  return values
+  const { drinks } = await getCategories(isFoodOrDrink);
+  const values = drinks.slice(0, 5).map(({ strCategory }) => strCategory);
+  return values;
 };
 
 
@@ -79,5 +79,4 @@ export const getRecipes = (endPoint, keyData, isFoodOrDrink) => {
     return getRandomRecipes(keyData);
   }
   return fetchRecipes(endPoint, isFoodOrDrink);
-
-}
+};

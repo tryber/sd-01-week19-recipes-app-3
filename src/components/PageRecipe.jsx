@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import { ReciperContext } from '../context/ReciperContext';
 import { fetch5Categories, getRecipes } from '../service/FetchingAPI';
 import Header from './Header';
@@ -8,32 +9,43 @@ import ListRecipe from './ListRecipes';
 import './PageRecipe.css';
 
 const keyData = (verify) => {
-  if (verify === 'comidas') return 'meal'
-  return 'cocktail'
+  if (verify === 'comidas') return 'meal';
+  return 'cocktail';
 };
 
 const PageRecipe = ({ match: { params: { foodordrink } } }) => {
-  const { endPoint, isFoodOrDrink, setRecipe, recipe } = useContext(ReciperContext);
+  const { endPoint, isFoodOrDrink, setRecipe } = useContext(ReciperContext);
   const [categories, setCategories] = useState();
   useEffect(() => {
-    fetch5Categories(keyData(foodordrink), foodordrink).then(result => setCategories(result));
+    fetch5Categories(keyData(foodordrink), foodordrink)
+      .then((result) => setCategories(result));
   }, []);
   useEffect(() => {
-    fetch5Categories(keyData(foodordrink), foodordrink).then(result => setCategories(result));
-    getRecipes(endPoint, keyData(foodordrink), foodordrink).then(result => setRecipe(result));
+    fetch5Categories(keyData(foodordrink), foodordrink)
+      .then((result) => setCategories(result));
+    getRecipes(endPoint, keyData(foodordrink), foodordrink)
+      .then((result) => setRecipe(result));
   }, [isFoodOrDrink]);
-  useEffect(() => {
-    getRecipes(endPoint, keyData(foodordrink), foodordrink).then(result => setRecipe(result));
-  }, [endPoint]);
-  console.log(recipe)
+  useEffect(() => getRecipes(endPoint, keyData(foodordrink), foodordrink)
+    .then((result) => setRecipe(result)), [endPoint]);
   return (
     <div className="PageRecipe">
       <Header title={foodordrink} />
       <ListCategory allCategories={categories} />
-      <ListRecipe type={foodordrink}/>
+      <ListRecipe type={foodordrink} />
       <LowerMenu />
     </div>
   );
 };
 
 export default PageRecipe;
+
+PageRecipe.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      foodordrink: PropTypes.string.isRequired,
+    }),
+  }).isRequired,
+};
+

@@ -10,12 +10,12 @@ const addPropertyDone = (array) => (
 
 const ListIngredients = ({ listIngredient }) => {
   const [listDone, setListDone] = useState(addPropertyDone(listIngredient));
-  const changeDone = (ingredient) => {
-    return listDone.map((item) => {
+  const changeDone = (ingredient) => (
+    listDone.map((item) => {
       if (item.ingredient === ingredient) return { ...item, done: !item.done };
       return item;
     })
-  }
+  );
   return (
     <div className="ListIngredient">
       <ul>
@@ -31,7 +31,7 @@ const ListIngredients = ({ listIngredient }) => {
       </ul>
     </div>
   );
-}
+};
 
 export default ListIngredients;
 

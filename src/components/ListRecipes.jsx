@@ -1,7 +1,7 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import { ReciperContext } from '../context/ReciperContext';
 import CardRecipe from './CardRecipe';
-import './ListRecipe.css'
+import './ListRecipe.css';
 
 const renderAllFoods = (allRecipes, isFoodOrDrink) => (
   <div className="ListRecipe">

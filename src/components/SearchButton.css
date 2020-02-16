@@ -5,5 +5,8 @@
 .SearchButton > button {
   background: white;
   border: 0;
-  outline: none; 
+}
+
+.SearchButton > button:focus {
+  outline: hidden;
 }

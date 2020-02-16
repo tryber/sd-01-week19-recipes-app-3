@@ -1,5 +1,5 @@
 export const saveIngredients = (list) => {
-  const data = JSON.stringify(list)
+  const data = JSON.stringify(list);
   localStorage.setItem('Ingredients', data);
 };
 
@@ -9,7 +9,7 @@ export const getIngredients = () => {
 };
 
 export const saveRecipe = (id, details) => {
-  const data = JSON.stringify(details)
+  const data = JSON.stringify(details);
   localStorage.setItem(id, data);
 };
 

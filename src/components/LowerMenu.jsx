@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
-import { ReciperContext } from '../context/ReciperContext';
 import { Link } from 'react-router-dom';
 import Garfo from '../icons/garfo.png';
 import Bussola from '../icons/bussola.png';
 import Bebida from '../icons/bebida.png';
+import { ReciperContext } from '../context/ReciperContext';
 import './LowerMenu.css';
 
 const LowerMenu = () => {
@@ -30,5 +30,5 @@ const LowerMenu = () => {
       </Link>
     </div>
   );
-}
+};
 export default LowerMenu;

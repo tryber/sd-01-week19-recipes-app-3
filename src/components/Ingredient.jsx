@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './Ingredient.css'
+import './Ingredient.css';
 
 const itemIngredient = (name, measure) => (
   <li>
