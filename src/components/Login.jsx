@@ -4,6 +4,7 @@ import { ReciperContext } from '../context/ReciperContext';
 import EmailField from './EmailField';
 import PasswordField from './PasswordField';
 import SubmitButton from '../components/SubmitButton';
+import { useHistory } from 'react-router-dom';
 
 const Login = () => {
   const { setUserData } = useContext(ReciperContext);
@@ -13,12 +14,15 @@ const Login = () => {
   const [emailValid, setEmailValid] = useState(false);
   const [passwordValid, setPasswordValid] = useState(false);
 
+  const history = useHistory();
+
   const handleSubmit = (event) => {
     event.preventDefault();
     setUserData({ email, password });
     localStorage.setItem('user', JSON.stringify({ email }));
     localStorage.setItem('meals-token', '1');
     localStorage.setItem('cocktails-token', '1');
+    history.push('/comidas');
   };
 
   return (
