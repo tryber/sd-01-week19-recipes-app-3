@@ -3,6 +3,7 @@ import { ReciperContext } from '../context/ReciperContext';
 import { Link } from 'react-router-dom';
 import Avatar from '../icons/avatar.png';
 import '../CSS/Perfil.css';
+import LowerMenu from './LowerMenu';
 
 const btnForComponentPerfil = (text, router) => (
   <Link to={`/${router}`}>
@@ -43,6 +44,7 @@ export default function Perfil() {
         </span>
         <span>{btnForComponentPerfilTypeSair('Sair', '')}</span>
       </div>
+      <LowerMenu />
     </div>
   );
 }
