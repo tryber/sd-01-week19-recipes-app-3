@@ -19,20 +19,21 @@ const oneRecipe = (recipe) => {
   return <Redirect to={`/receitas/bebidas/${recipe[0].idDrink}`} />;
 }
 
+const getData = (endPoint, foodordrink, setCategories, setRecipe) => {
+  fetch5Categories(keyData(foodordrink), foodordrink)
+    .then((result) => setCategories(result));
+  getRecipes(endPoint, keyData(foodordrink), foodordrink)
+    .then((result) => setRecipe(result));
+};
+
 const PageRecipe = ({ match: { params: { foodordrink } } }) => {
   const { endPoint, isFoodOrDrink, setRecipe, recipe } = useContext(ReciperContext);
   const [categories, setCategories] = useState();
   useEffect(() => {
-    fetch5Categories(keyData(foodordrink), foodordrink)
-      .then((result) => setCategories(result));
-    getRecipes(endPoint, keyData(foodordrink), foodordrink)
-      .then((result) => setRecipe(result));
+    getData(endPoint, foodordrink, setCategories, setRecipe);
   }, []);
   useEffect(() => {
-    fetch5Categories(keyData(foodordrink), foodordrink)
-      .then((result) => setCategories(result));
-    getRecipes(endPoint, keyData(foodordrink), foodordrink)
-      .then((result) => setRecipe(result));
+    getData(endPoint, foodordrink, setCategories, setRecipe);
   }, [isFoodOrDrink]);
   useEffect(() => {
     getRecipes(endPoint, keyData(foodordrink), foodordrink)
