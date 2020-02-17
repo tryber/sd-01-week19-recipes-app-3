@@ -2,7 +2,7 @@ import React from 'react';
 import './Loading.css';
 
 const Loading = () => (
-  <div className="conteiner">
+  <div className="container">
     <h2> Carregando...</h2>
     <div>
       <img
