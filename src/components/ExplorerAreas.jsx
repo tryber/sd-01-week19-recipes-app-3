@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getMeals, getRecipes } from '../service/FetchingAPI';
 import CardRecipe from './CardRecipe';
+import Header from './Header';
 import LowerMenu from './LowerMenu';
 
 const fetchAreas = async (setAreas) => {

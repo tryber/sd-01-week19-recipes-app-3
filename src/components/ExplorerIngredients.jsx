@@ -32,9 +32,11 @@ const ExplorerIngredients = ({ match: { params: { foodordrink } } }) => {
   return (
     <div className="ExplorerIngredients">
       <Header title="Explorar Ingredientes" />
-      {names && images &&
-        names.map((ingredient, index) =>
-          <EachIngredient name={ingredient} img={images[index]} isFoodOrDrink={foodordrink} />)}
+      <div className="ListIngredients">
+        {names && images &&
+          names.map((ingredient, index) =>
+            <EachIngredient name={ingredient} img={images[index]} isFoodOrDrink={foodordrink} />)}
+      </div>
       <LowerMenu />
     </div>
   );
