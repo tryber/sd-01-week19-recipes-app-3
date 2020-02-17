@@ -24,6 +24,7 @@ const ReciperProvider = ({ children }) => {
     category,
     setCategory,
   };
+  console.log(context)
   return (
     <ReciperContext.Provider value={context}>
       {children}

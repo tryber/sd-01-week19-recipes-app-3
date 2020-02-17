@@ -29,7 +29,7 @@ const ExplorerIngredients = ({ match: { params: { isFoodOrDrink: isFoodOrDrink }
   const { names, images } = ingredients;
   return (
     <div>
-      {names && images && names.map((ingredient, index) => <EachIngredient name={ingredient} img={images[index]} />)}
+      {names && images && names.map((ingredient, index) => <EachIngredient name={ingredient} img={images[index]} isFoodOrDrink={isFoodOrDrink} />)}
     </div>
   );
 };

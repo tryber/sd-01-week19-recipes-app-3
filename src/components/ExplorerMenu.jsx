@@ -5,6 +5,7 @@ const ExplorerMenu = () => {
   const history = useHistory();
   return (
     <div>
+      <h1>Explorer</h1>
       <button
         data-testid="explore-food"
         onClick={() => history.push("/explorar/comidas")}

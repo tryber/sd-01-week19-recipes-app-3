@@ -23,7 +23,7 @@ export const getIngredientsImage = async (request, endpoint) => {
 };
 
 export const getCategories = (type) => {
-  if (type === 'Comidas') {
+  if (type === 'comidas') {
     return getCategoriesMeals();
   }
   return getCategoriesDrinks();

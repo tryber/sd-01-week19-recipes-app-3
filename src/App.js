@@ -7,6 +7,7 @@ import Login from './components/Login';
 import ExplorerMenu from './components/ExplorerMenu';
 import Explorer from './components/Explorer';
 import ExplorerIngredients from './components/ExplorerIngredients';
+import ExplorerAreas from './components/ExplorerAreas';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route exact path="/explorar/:isFoodOrDrink" render={({ match }) => <Explorer match={match} />} />
         <Route exact path="/explorar/:isFoodOrDrink/ingredientes" render={({ match }) => <ExplorerIngredients match={match} />} />
         <Route exact path="/receitas/:foodordrink" component={PageRecipe} />
+        <Route exact path="/explorar/comidas/area" component={ExplorerAreas} />
         <Route path="/receitas/:foodordrink/:id" component={PageDetails} />
       </Switch>
     </Router>
