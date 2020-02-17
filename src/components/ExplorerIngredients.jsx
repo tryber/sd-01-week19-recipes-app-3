@@ -38,7 +38,7 @@ const ExplorerIngredients = ({ match: { params: { foodordrink } } }) => {
   );
 };
 
-ExplorerIngredients.PropTypes = {
+ExplorerIngredients.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.shape({
       foodordrink: PropTypes.string.isRequired,

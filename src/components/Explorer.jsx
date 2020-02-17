@@ -32,7 +32,7 @@ const Explorer = ({ match: { params: { foodordrink } } }) => {
   );
 };
 
-Explorer.PropTypes = {
+Explorer.propTypes = {
   match: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
