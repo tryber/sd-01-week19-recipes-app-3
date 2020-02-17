@@ -14,7 +14,6 @@ function App() {
     <Router>
       <Switch>
         <Route exact path="/" component={Login} />
-        <Route exact path="/comidas" component={PageRecipe} />
         <Route exact path="/explorar" component={ExplorerMenu} />
         <Route exact path="/explorar/:foodordrink" component={Explorer} />
         <Route exact path="/explorar/:foodordrink/ingredientes" component={ExplorerIngredients} />

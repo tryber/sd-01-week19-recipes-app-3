@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getMeals, getRecipes } from '../service/FetchingAPI';
 import CardRecipe from './CardRecipe';
+import LowerMenu from './LowerMenu';
 
 const fetchAreas = async (setAreas) => {
   const area = await getMeals('list.php?a=list');
@@ -17,7 +18,8 @@ const fetchMeals = async (setMeals, area) => {
 };
 
 const renderExplorer = (areas, meals, setArea) => (
-  <div>
+  <div className="">
+    <Header title="Explorar Ingredientes" />
     {areas &&
       <select
         key="area"
@@ -39,6 +41,7 @@ const renderExplorer = (areas, meals, setArea) => (
           key={`${index * 3}`}
         />))}
     </div>
+    <LowerMenu />
   </div>
 );
 const ExplorerAreas = () => {

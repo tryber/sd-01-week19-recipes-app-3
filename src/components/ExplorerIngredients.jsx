@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { getMeals, getDrinks, getIngredientsImage } from '../service/FetchingAPI';
 import EachIngredient from './EachIngredient';
 import LowerMenu from './LowerMenu';
+import Header from './Header';
 
 const fetchIngredients = async (match, setIngredients) => {
   if (match === 'comidas') {
@@ -30,6 +31,7 @@ const ExplorerIngredients = ({ match: { params: { foodordrink } } }) => {
   const { names, images } = ingredients;
   return (
     <div className="ExplorerIngredients">
+      <Header title="Explorar Ingredientes" />
       {names && images &&
         names.map((ingredient, index) =>
           <EachIngredient name={ingredient} img={images[index]} isFoodOrDrink={foodordrink} />)}

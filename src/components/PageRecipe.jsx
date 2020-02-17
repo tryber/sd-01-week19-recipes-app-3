@@ -17,7 +17,7 @@ const keyData = (verify) => {
 const oneRecipe = (recipe) => {
   if (recipe[0].idMeal) return <Redirect to={`/receitas/comidas/${recipe[0].idMeal}`} />;
   return <Redirect to={`/receitas/bebidas/${recipe[0].idDrink}`} />;
-}
+};
 
 const getData = (endPoint, foodordrink, setCategories, setRecipe) => {
   fetch5Categories(keyData(foodordrink), foodordrink)
