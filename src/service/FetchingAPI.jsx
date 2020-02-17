@@ -1,9 +1,9 @@
-const getMeals = async (request) => {
+export const getMeals = async (request) => {
   const response = await fetch(`https://www.themealdb.com/api/json/v1/1/${request}`);
   return response.json();
 };
 
-const getDrinks = async (request) => {
+export const getDrinks = async (request) => {
   const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/${request}`);
   return response.json();
 };
@@ -18,7 +18,12 @@ const getCategoriesDrinks = async () => {
   return response.json();
 };
 
-const getCategories = (type) => {
+export const getIngredientsImage = async (request, endpoint) => {
+  const response = await fetch(`https://www.${request}.com/images/ingredients/${endpoint}.png`);
+  return response;
+};
+
+export const getCategories = (type) => {
   if (type === 'comidas') {
     return getCategoriesMeals();
   }
