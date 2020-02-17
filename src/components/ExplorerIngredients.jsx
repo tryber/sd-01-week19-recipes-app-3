@@ -39,7 +39,11 @@ const ExplorerIngredients = ({ match: { params: { foodordrink } } }) => {
 };
 
 ExplorerIngredients.PropTypes = {
-  match: PropTypes.arrayOf(PropTypes.object).isRequired,
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      foodordrink: PropTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
 };
 
 export default ExplorerIngredients;

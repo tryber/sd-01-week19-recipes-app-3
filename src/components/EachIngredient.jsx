@@ -16,7 +16,6 @@ const EachIngredient = ({ name, img, isFoodOrDrink }) => {
 };
 
 EachIngredient.PropTypes = {
-  match: PropTypes.arrayOf(PropTypes.object).isRequired,
   name: PropTypes.string.isRequired,
   img: PropTypes.string.isRequired,
   isFoodOrDrink: PropTypes.string.isRequired,

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { getMeals, getDrinks } from '../service/FetchingAPI';
-import PropTypes from 'prop-types';
 
 const fetchId = async (isFoodOrDrink, setId) => {
   if (isFoodOrDrink === 'comidas') {
