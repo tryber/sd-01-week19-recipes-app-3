@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import { getMeals, getDrinks, getIngredientsImage } from '../service/FetchingAPI';
 import EachIngredient from './EachIngredient';
 import LowerMenu from './LowerMenu';
-import PropTypes from 'prop-types';
 
 const fetchIngredients = async (match, setIngredients) => {
   if (match === 'comidas') {
