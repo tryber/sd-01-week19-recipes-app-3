@@ -26,8 +26,8 @@ const getData = (endPoint, foodordrink, setCategories, setRecipe, setIsFetching)
     .then((result) => setCategories(result));
   getRecipes(endPoint, keyData(foodordrink), foodordrink)
     .then((result) => {
-      setIsFetching(false);
       setRecipe(result);
+      setIsFetching(false);
     });
 };
 
@@ -47,8 +47,9 @@ const PageRecipe = ({ match: { params: { foodordrink } } }) => {
   return (
     <div className="PageRecipe">
       <Header title={foodordrink} />
-      <ListCategory allCategories={categories} />
-      <ListRecipe type={foodordrink} />
+      {isFetching && <Loading />}
+      {!isFetching && <ListCategory allCategories={categories} />}
+      {!isFetching && <ListRecipe type={foodordrink} />}
       <LowerMenu />
     </div>
   );
