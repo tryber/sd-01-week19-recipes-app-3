@@ -19,13 +19,12 @@ const Explorer = ({ match: { params: { isFoodOrDrink: isFoodOrDrink } } }) => {
   useEffect(() => {
     fetchId(isFoodOrDrink, setId)
   }, []);
-console.log(id)
   return (
     <div>
       <h1>{isFoodOrDrink}</h1>
       <button data-testid="explore-by-ingredient" onClick={() => history.push(`/explorar/${isFoodOrDrink}/ingredientes`)}>Por ingredientes</button>
       {isFoodOrDrink === 'comidas' && <button data-testid="explore-by-area" onClick={() => history.push('/explorar/comidas/area')} >Por local de origem</button>}
-      <button data-testid="explore-surprise" onClick={() => history.push(`/explorar/${isFoodOrDrink}/${id}`)}>Me surpreenda!</button>
+      {id && <button data-testid="explore-surprise" onClick={() => history.push(`/explorar/${isFoodOrDrink}/${id}`)}>Me surpreenda!</button>}
     </div>
   );
 };
