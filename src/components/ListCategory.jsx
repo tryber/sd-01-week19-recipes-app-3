@@ -11,6 +11,7 @@ const changeCategory = (value, category, setCategory) => {
 
 const ListCategory = ({ allCategories }) => {
   const { setEndPoint, category, setCategory } = useContext(ReciperContext);
+  
   useEffect(() => {
     if (category === 'All') return setEndPoint('random.php');
     return setEndPoint(`filter.php?c=${category}`);

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getMeals, getDrinks, getIngredientsImage } from '../service/FetchingAPI';
 import EachIngredient from './EachIngredient';
+import LowerMenu from './LowerMenu';
 
 const fetchIngredients = async (match, setIngredients) => {
   if (match === 'comidas') {
@@ -20,16 +21,18 @@ const fetchIngredients = async (match, setIngredients) => {
   }
 };
 
-const ExplorerIngredients = ({ match: { params: { isFoodOrDrink: isFoodOrDrink } } }) => {
+const ExplorerIngredients = ({ match: { params: { foodordrink } } }) => {
   const [ingredients, setIngredients] = useState({ names: null, images: null });
-
   useEffect(() => {
-    fetchIngredients(isFoodOrDrink, setIngredients)
+    fetchIngredients(foodordrink, setIngredients)
   })
   const { names, images } = ingredients;
   return (
-    <div>
-      {names && images && names.map((ingredient, index) => <EachIngredient name={ingredient} img={images[index]} isFoodOrDrink={isFoodOrDrink} />)}
+    <div className="ExplorerIngredients">
+      {names && images &&
+      names.map((ingredient, index) =>
+      <EachIngredient name={ingredient} img={images[index]} isFoodOrDrink={foodordrink} />)}
+      <LowerMenu />
     </div>
   );
 };

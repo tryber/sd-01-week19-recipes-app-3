@@ -25,7 +25,6 @@ const ExplorerAreas = () => {
   useEffect(() => {
     fetchMeals(setMeals, area)
   }, [area])
-  console.log(meals)
   return (
     <div>
       {areas &&

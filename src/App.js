@@ -16,8 +16,8 @@ function App() {
         <Route exact path="/" component={Login} />
         <Route exact path="/comidas" component={PageRecipe} />
         <Route exact path="/explorar" component={ExplorerMenu} />
-        <Route exact path="/explorar/:isFoodOrDrink" render={({ match }) => <Explorer match={match} />} />
-        <Route exact path="/explorar/:isFoodOrDrink/ingredientes" render={({ match }) => <ExplorerIngredients match={match} />} />
+        <Route exact path="/explorar/:foodordrink" component={Explorer} />
+        <Route exact path="/explorar/:foodordrink/ingredientes" component={ExplorerIngredients} />
         <Route exact path="/receitas/:foodordrink" component={PageRecipe} />
         <Route exact path="/explorar/comidas/area" component={ExplorerAreas} />
         <Route path="/receitas/:foodordrink/:id" component={PageDetails} />

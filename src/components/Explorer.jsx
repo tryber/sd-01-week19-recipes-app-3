@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { getMeals, getDrinks } from '../service/FetchingAPI';
 
 const fetchId = async (isFoodOrDrink, setId) => {
@@ -12,19 +12,22 @@ const fetchId = async (isFoodOrDrink, setId) => {
   }
 };
 
-const Explorer = ({ match: { params: { isFoodOrDrink: isFoodOrDrink } } }) => {
+const Explorer = ({ match: { params: { foodordrink } } }) => {
   const [id, setId] = useState();
-  const history = useHistory();
-
   useEffect(() => {
-    fetchId(isFoodOrDrink, setId)
+    fetchId(foodordrink, setId)
   }, []);
   return (
-    <div>
-      <h1>{isFoodOrDrink}</h1>
-      <button data-testid="explore-by-ingredient" onClick={() => history.push(`/explorar/${isFoodOrDrink}/ingredientes`)}>Por ingredientes</button>
-      {isFoodOrDrink === 'comidas' && <button data-testid="explore-by-area" onClick={() => history.push('/explorar/comidas/area')} >Por local de origem</button>}
-      {id && <button data-testid="explore-surprise" onClick={() => history.push(`/explorar/${isFoodOrDrink}/${id}`)}>Me surpreenda!</button>}
+    <div className="Explorer">
+      <h1>{foodordrink}</h1>
+      <Link
+        to={`/explorar/${foodordrink}/ingredientes`}
+        data-testid="explore-by-ingredient">
+        Por ingredientes
+      </Link>
+      {foodordrink === 'comidas' &&
+        <Link to="/explorar/comidas/area" data-testid="explore-by-area" >Por local de origem</Link>}
+      {id && <Link data-testid="explore-surprise" to={`/receitas/${foodordrink}/${id}`}>Me surpreenda!</Link>}
     </div>
   );
 };
