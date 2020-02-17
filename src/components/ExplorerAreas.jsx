@@ -33,8 +33,8 @@ const ExplorerAreas = () => {
           onChange={(e) => setArea(e.target.value)} data-testid="explore-by-area-dropdown"
         >
           <option value="Todos" data-testid="todos-option">Todos</option>
-          {areas.map((area) => (
-            <option key={area} value={area} data-testid={`${area}-option`}>{area}</option>
+          {areas.map((eachArea) => (
+            <option key={eachArea} value={eachArea} data-testid={`${eachArea}-option`}>{eachArea}</option>
           ))}
         </select>}
       <div className="ListRecipe">

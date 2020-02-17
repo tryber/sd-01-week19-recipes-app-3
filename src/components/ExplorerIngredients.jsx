@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { getMeals, getDrinks, getIngredientsImage } from '../service/FetchingAPI';
 import EachIngredient from './EachIngredient';
 import LowerMenu from './LowerMenu';
+import PropTypes from 'prop-types';
 
 const fetchIngredients = async (match, setIngredients) => {
   if (match === 'comidas') {
@@ -35,6 +36,10 @@ const ExplorerIngredients = ({ match: { params: { foodordrink } } }) => {
       <LowerMenu />
     </div>
   );
+};
+
+ExplorerIngredients.PropTypes = {
+  match: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default ExplorerIngredients;
