@@ -29,6 +29,7 @@ const ExplorerIngredients = ({ match: { params: { foodordrink } } }) => {
     fetchIngredients(foodordrink, setIngredients);
   });
   const { names, images } = ingredients;
+  console.log(ingredients, names, images)
   return (
     <div className="ExplorerIngredients">
       <Header title="Explorar Ingredientes" />
