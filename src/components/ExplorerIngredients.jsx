@@ -9,34 +9,35 @@ const fetchIngredients = async (match, setIngredients) => {
   if (match === 'comidas') {
     const data = await getMeals('list.php?i=list');
     const names = data.meals.map(({ strIngredient }) => strIngredient);
-    const images = [];
-    names.forEach((ingredient) => images.push(getIngredientsImage('themealdb', ingredient)));
-    const array = await Promise.all(images);
-    setIngredients({ names, images: array.map(({ url }) => url) });
+    const allIngredients = names.map((ingredient) => ({
+      ingredient, images: (getIngredientsImage('themealdb', ingredient)
+      )
+    }));
+    setIngredients(allIngredients);
   } else {
     const data = await getDrinks('list.php?i=list');
     const names = data.drinks.map(({ strIngredient1 }) => strIngredient1);
-    const images = [];
-    names.forEach((ingredient) => images.push(getIngredientsImage('thecocktaildb', ingredient)));
-    const array = await Promise.all(images);
-    setIngredients({ names, images: array.map(({ url }) => url) });
+    const allIngredients = names.map((ingredient) => ({
+      ingredient, images: (getIngredientsImage('thecocktaildb', ingredient)
+      )
+    }));
+    setIngredients(allIngredients);
   }
 };
 
 const ExplorerIngredients = ({ match: { params: { foodordrink } } }) => {
-  const [ingredients, setIngredients] = useState({ names: null, images: null });
+  const [ingredients, setIngredients] = useState();
   useEffect(() => {
     fetchIngredients(foodordrink, setIngredients);
-  });
-  const { names, images } = ingredients;
-  console.log(ingredients, names, images)
+  }, []);
+
   return (
     <div className="ExplorerIngredients">
       <Header title="Explorar Ingredientes" />
       <div className="ListIngredients">
-        {names && images &&
-          names.map((ingredient, index) =>
-            <EachIngredient name={ingredient} img={images[index]} isFoodOrDrink={foodordrink} />)}
+        {ingredients &&
+          ingredients.map(({ ingredient, images }) =>
+            <EachIngredient ingredient={ingredient} img={images} isFoodOrDrink={foodordrink} />)}
       </div>
       <LowerMenu />
     </div>
