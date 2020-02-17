@@ -8,14 +8,14 @@ const fetchIngredients = async (match, setIngredients) => {
     const data = await getMeals('list.php?i=list');
     const names = data.meals.map(({ strIngredient }) => strIngredient);
     const images = [];
-    names.forEach((ingredient) => images.push(getIngredientsImage('themealdb', ingredient)))
+    names.forEach((ingredient) => images.push(getIngredientsImage('themealdb', ingredient)));
     const array = await Promise.all(images);
     setIngredients({ names, images: array.map(({ url }) => url) });
   } else {
     const data = await getDrinks('list.php?i=list');
     const names = data.drinks.map(({ strIngredient1 }) => strIngredient1);
     const images = [];
-    names.forEach((ingredient) => images.push(getIngredientsImage('thecocktaildb', ingredient)))
+    names.forEach((ingredient) => images.push(getIngredientsImage('thecocktaildb', ingredient)));
     const array = await Promise.all(images);
     setIngredients({ names, images: array.map(({ url }) => url) });
   }
@@ -24,14 +24,14 @@ const fetchIngredients = async (match, setIngredients) => {
 const ExplorerIngredients = ({ match: { params: { foodordrink } } }) => {
   const [ingredients, setIngredients] = useState({ names: null, images: null });
   useEffect(() => {
-    fetchIngredients(foodordrink, setIngredients)
-  })
+    fetchIngredients(foodordrink, setIngredients);
+  });
   const { names, images } = ingredients;
   return (
     <div className="ExplorerIngredients">
       {names && images &&
-      names.map((ingredient, index) =>
-      <EachIngredient name={ingredient} img={images[index]} isFoodOrDrink={foodordrink} />)}
+        names.map((ingredient, index) =>
+          <EachIngredient name={ingredient} img={images[index]} isFoodOrDrink={foodordrink} />)}
       <LowerMenu />
     </div>
   );

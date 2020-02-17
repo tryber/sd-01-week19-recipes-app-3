@@ -15,16 +15,15 @@ const fetchId = async (isFoodOrDrink, setId) => {
 const Explorer = ({ match: { params: { foodordrink } } }) => {
   const [id, setId] = useState();
   useEffect(() => {
-    fetchId(foodordrink, setId)
+    fetchId(foodordrink, setId);
   }, []);
   return (
     <div className="Explorer">
       <h1>{foodordrink}</h1>
       <Link
         to={`/explorar/${foodordrink}/ingredientes`}
-        data-testid="explore-by-ingredient">
-        Por ingredientes
-      </Link>
+        data-testid="explore-by-ingredient"
+      >Por ingredientes</Link>
       {foodordrink === 'comidas' &&
         <Link to="/explorar/comidas/area" data-testid="explore-by-area" >Por local de origem</Link>}
       {id && <Link data-testid="explore-surprise" to={`/receitas/${foodordrink}/${id}`}>Me surpreenda!</Link>}

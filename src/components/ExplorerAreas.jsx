@@ -5,7 +5,7 @@ import CardRecipe from './CardRecipe';
 const fetchAreas = async (setAreas) => {
   const area = await getMeals('list.php?a=list');
   setAreas(area.meals.map(({ strArea }) => strArea));
-}
+};
 const fetchMeals = async (setMeals, area) => {
   if (area === 'Todos') {
     const meals = await getRecipes('random.php', 'meal', 'comidas');
@@ -14,21 +14,24 @@ const fetchMeals = async (setMeals, area) => {
     const meals = await getMeals(`filter.php?a=${area}`);
     setMeals(meals.meals);
   }
-}
+};
 const ExplorerAreas = () => {
   const [areas, setAreas] = useState(null);
   const [area, setArea] = useState('Todos');
   const [meals, setMeals] = useState(null);
   useEffect(() => {
-    fetchAreas(setAreas)
-  }, [])
+    fetchAreas(setAreas);
+  }, []);
   useEffect(() => {
-    fetchMeals(setMeals, area)
-  }, [area])
+    fetchMeals(setMeals, area);
+  }, [area]);
   return (
     <div>
       {areas &&
-        <select key="area" onChange={(e) => setArea(e.target.value)} data-testid="explore-by-area-dropdown">
+        <select
+          key="area"
+          onChange={(e) => setArea(e.target.value)} data-testid="explore-by-area-dropdown"
+        >
           <option value="Todos" data-testid="todos-option">Todos</option>
           {areas.map((area) => (
             <option key={area} value={area} data-testid={`${area}-option`}>{area}</option>
@@ -41,12 +44,12 @@ const ExplorerAreas = () => {
             categorie={strCategory}
             image={strMealThumb}
             id={idMeal}
-            type='comidas'
+            type="comidas"
             key={`${index * 3}`}
           />))}
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default ExplorerAreas;

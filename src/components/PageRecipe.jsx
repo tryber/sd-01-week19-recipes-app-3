@@ -17,7 +17,6 @@ const PageRecipe = ({ match: { params: { foodordrink } } }) => {
   const { endPoint, isFoodOrDrink, setRecipe } = useContext(ReciperContext);
   const [categories, setCategories] = useState();
   useEffect(() => {
-    console.log('Page recipe', endPoint)
     fetch5Categories(keyData(foodordrink), foodordrink)
       .then((result) => setCategories(result));
     getRecipes(endPoint, keyData(foodordrink), foodordrink)

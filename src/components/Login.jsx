@@ -5,7 +5,6 @@ import { ReciperContext } from '../context/ReciperContext';
 import EmailField from './EmailField';
 import PasswordField from './PasswordField';
 import SubmitButton from '../components/SubmitButton';
-import { useHistory } from 'react-router-dom';
 import { saveUser } from '../LocalStorage/LocalStorage';
 
 const Login = () => {
@@ -15,8 +14,6 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [emailValid, setEmailValid] = useState(false);
   const [passwordValid, setPasswordValid] = useState(false);
-
-  const history = useHistory();
 
   const handleSubmit = (event) => {
     event.preventDefault();
