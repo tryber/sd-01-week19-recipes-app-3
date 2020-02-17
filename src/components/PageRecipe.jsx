@@ -13,22 +13,25 @@ const keyData = (verify) => {
   return 'cocktail';
 };
 
+const getData = (endPoint, foodordrink, setCategories, setRecipe) => {
+  fetch5Categories(keyData(foodordrink), foodordrink)
+    .then((result) => setCategories(result));
+  getRecipes(endPoint, keyData(foodordrink), foodordrink)
+    .then((result) => setRecipe(result));
+};
+
 const PageRecipe = ({ match: { params: { foodordrink } } }) => {
   const { endPoint, isFoodOrDrink, setRecipe } = useContext(ReciperContext);
   const [categories, setCategories] = useState();
   useEffect(() => {
-    fetch5Categories(keyData(foodordrink), foodordrink)
-      .then((result) => setCategories(result));
+    getData(endPoint, foodordrink, setCategories, setRecipe);
   }, []);
   useEffect(() => {
-    fetch5Categories(keyData(foodordrink), foodordrink)
-      .then((result) => setCategories(result));
-    getRecipes(endPoint, keyData(foodordrink), foodordrink)
-      .then((result) => setRecipe(result));
+    getData(endPoint, foodordrink, setCategories, setRecipe);
   }, [isFoodOrDrink]);
   useEffect(() => {
     getRecipes(endPoint, keyData(foodordrink), foodordrink)
-    .then((result) => setRecipe(result));
+      .then((result) => setRecipe(result));
   }, [endPoint]);
   return (
     <div className="PageRecipe">

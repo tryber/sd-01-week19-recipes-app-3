@@ -86,6 +86,7 @@ const PageDetails = ({ match: { params: { id, foodordrink } } }) => {
     </div>
   );
 };
+
 export default PageDetails;
 
 PageDetails.propTypes = {
