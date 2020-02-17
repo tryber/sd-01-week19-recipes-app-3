@@ -8,6 +8,7 @@ import LowerMenu from './LowerMenu';
 import ListCategory from './ListCategory';
 import ListRecipe from './ListRecipes';
 import './PageRecipe.css';
+import Loading from './Loading';
 
 const keyData = (verify) => {
   if (verify === 'comidas') return 'meal';
@@ -19,26 +20,29 @@ const oneRecipe = (recipe) => {
   return <Redirect to={`/receitas/bebidas/${recipe[0].idDrink}`} />;
 };
 
-const getData = (endPoint, foodordrink, setCategories, setRecipe) => {
+const getData = (endPoint, foodordrink, setCategories, setRecipe, setIsFetching) => {
+
   fetch5Categories(keyData(foodordrink), foodordrink)
     .then((result) => setCategories(result));
   getRecipes(endPoint, keyData(foodordrink), foodordrink)
-    .then((result) => setRecipe(result));
+    .then((result) => {
+      setIsFetching(false);
+      setRecipe(result);
+    });
 };
 
 const PageRecipe = ({ match: { params: { foodordrink } } }) => {
   const { endPoint, isFoodOrDrink, setRecipe, recipe } = useContext(ReciperContext);
   const [categories, setCategories] = useState();
+  const [isFetching, setIsFetching] = useState(false);
+
   useEffect(() => {
-    getData(endPoint, foodordrink, setCategories, setRecipe);
-  }, []);
-  useEffect(() => {
-    getData(endPoint, foodordrink, setCategories, setRecipe);
-  }, [isFoodOrDrink]);
-  useEffect(() => {
-    getRecipes(endPoint, keyData(foodordrink), foodordrink)
-      .then((result) => setRecipe(result));
-  }, [endPoint]);
+    if (!isFetching) {
+      setIsFetching(true);
+      getData(endPoint, foodordrink, setCategories, setRecipe, setIsFetching);
+    }
+  }, [isFoodOrDrink, endPoint]);
+
   if (recipe && recipe.length === 1) return oneRecipe(recipe);
   return (
     <div className="PageRecipe">
