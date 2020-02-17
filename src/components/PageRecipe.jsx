@@ -25,6 +25,8 @@ const PageRecipe = ({ match: { params: { foodordrink } } }) => {
   useEffect(() => {
     fetch5Categories(keyData(foodordrink), foodordrink)
       .then((result) => setCategories(result));
+    getRecipes(endPoint, keyData(foodordrink), foodordrink)
+      .then((result) => setRecipe(result));
   }, []);
   useEffect(() => {
     fetch5Categories(keyData(foodordrink), foodordrink)
