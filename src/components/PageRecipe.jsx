@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import { Redirect } from 'react-router-dom';
 import { ReciperContext } from '../context/ReciperContext';
 import { fetch5Categories, getRecipes } from '../service/FetchingAPI';
 import Header from './Header';
@@ -13,8 +14,13 @@ const keyData = (verify) => {
   return 'cocktail';
 };
 
+const oneRecipe = (recipe) => {
+  if (recipe[0].idMeal) return <Redirect to={`/receitas/comidas/${recipe[0].idMeal}`} />;
+  return <Redirect to={`/receitas/bebidas/${recipe[0].idDrink}`} />;
+}
+
 const PageRecipe = ({ match: { params: { foodordrink } } }) => {
-  const { endPoint, isFoodOrDrink, setRecipe } = useContext(ReciperContext);
+  const { endPoint, isFoodOrDrink, setRecipe, recipe } = useContext(ReciperContext);
   const [categories, setCategories] = useState();
   useEffect(() => {
     fetch5Categories(keyData(foodordrink), foodordrink)
@@ -28,8 +34,9 @@ const PageRecipe = ({ match: { params: { foodordrink } } }) => {
   }, [isFoodOrDrink]);
   useEffect(() => {
     getRecipes(endPoint, keyData(foodordrink), foodordrink)
-    .then((result) => setRecipe(result));
+      .then((result) => setRecipe(result));
   }, [endPoint]);
+  if (recipe && recipe.length === 1) return oneRecipe(recipe);
   return (
     <div className="PageRecipe">
       <Header title={foodordrink} />
