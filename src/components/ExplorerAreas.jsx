@@ -15,6 +15,32 @@ const fetchMeals = async (setMeals, area) => {
     setMeals(meals.meals);
   }
 };
+
+const renderExplorer = (areas, meals, setArea) => (
+  <div>
+    {areas &&
+      <select
+        key="area"
+        onChange={(e) => setArea(e.target.value)} data-testid="explore-by-area-dropdown"
+      >
+        <option value="Todos" data-testid="todos-option">Todos</option>
+        {areas.map((eachArea) => (
+          <option key={eachArea} value={eachArea} data-testid={`${eachArea}-option`}>{eachArea}</option>
+        ))}
+      </select>}
+    <div className="ListRecipe">
+      {meals && meals.map(({ strMeal, strCategory, strMealThumb, idMeal }, index) =>
+        (<CardRecipe
+          title={strMeal}
+          categorie={strCategory}
+          image={strMealThumb}
+          id={idMeal}
+          type="comidas"
+          key={`${index * 3}`}
+        />))}
+    </div>
+  </div>
+);
 const ExplorerAreas = () => {
   const [areas, setAreas] = useState(null);
   const [area, setArea] = useState('Todos');
@@ -25,31 +51,7 @@ const ExplorerAreas = () => {
   useEffect(() => {
     fetchMeals(setMeals, area);
   }, [area]);
-  return (
-    <div>
-      {areas &&
-        <select
-          key="area"
-          onChange={(e) => setArea(e.target.value)} data-testid="explore-by-area-dropdown"
-        >
-          <option value="Todos" data-testid="todos-option">Todos</option>
-          {areas.map((eachArea) => (
-            <option key={eachArea} value={eachArea} data-testid={`${eachArea}-option`}>{eachArea}</option>
-          ))}
-        </select>}
-      <div className="ListRecipe">
-        {meals && meals.map(({ strMeal, strCategory, strMealThumb, idMeal }, index) =>
-          (<CardRecipe
-            title={strMeal}
-            categorie={strCategory}
-            image={strMealThumb}
-            id={idMeal}
-            type="comidas"
-            key={`${index * 3}`}
-          />))}
-      </div>
-    </div>
-  );
+  return renderExplorer(areas, meals, setArea);
 };
 
 export default ExplorerAreas;
