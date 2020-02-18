@@ -18,7 +18,6 @@ const ListIngredients = ({ listIngredient }) => {
   );
   return (
     <div className="ListIngredient">
-      <ul>
         {listDone.map(({ ingredient, measure, done }) => (
           <Ingredient
             key={ingredient}
@@ -28,7 +27,6 @@ const ListIngredients = ({ listIngredient }) => {
             checked={(value) => setListDone(changeDone(value))}
           />
         ))}
-      </ul>
     </div>
   );
 };

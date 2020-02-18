@@ -2,10 +2,10 @@ import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { ReciperContext } from '../context/ReciperContext';
+import './EachIngredient.css';
 
 const EachIngredient = ({ ingredient, img, isFoodOrDrink }) => {
   const { setEndPoint } = useContext(ReciperContext);
-  console.log(ingredient)
   return (
     <div className="EachIngredient">
       <Link className="LinkRecipe" to={`/receitas/${isFoodOrDrink}`} onClick={() => setEndPoint(`filter.php?i=${ingredient}`)} >

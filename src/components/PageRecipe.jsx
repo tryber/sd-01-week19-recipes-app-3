@@ -46,7 +46,7 @@ const PageRecipe = ({ match: { params: { foodordrink } } }) => {
   if (recipe && recipe.length === 1) return oneRecipe(recipe);
   return (
     <div className="PageRecipe">
-      <Header title={foodordrink} />
+      <Header title={foodordrink} isDisabled={false} />
       {isFetching && <Loading />}
       {!isFetching && <ListCategory allCategories={categories} />}
       {!isFetching && <ListRecipe type={foodordrink} />}

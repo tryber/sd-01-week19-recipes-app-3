@@ -1,10 +1,9 @@
-.ListIngredient {
-  background: #ececec;
+.ListIngredients {
   border-radius: 4px;
-  margin: 10px;
-  width: 341px;
-}
-
-.ListIngredient > ul {
-  padding-left: 10px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-top: 40px;
+  width: 100%;
 }

@@ -4,6 +4,7 @@ import { getMeals, getDrinks, getIngredientsImage } from '../service/FetchingAPI
 import EachIngredient from './EachIngredient';
 import LowerMenu from './LowerMenu';
 import Header from './Header';
+import './ExplorerIngredients.css';
 
 const fetchIngredients = async (match, setIngredients) => {
   if (match === 'comidas') {
