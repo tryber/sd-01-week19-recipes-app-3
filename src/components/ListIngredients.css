@@ -1,8 +1,7 @@
 .ListIngredients {
   border-radius: 4px;
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  flex-flow: row wrap;
   justify-content: space-around;
   margin-top: 40px;
   width: 100%;

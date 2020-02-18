@@ -5,13 +5,16 @@ import SearchButton from './SearchButton';
 import SearchBar from './SearchBar';
 import './Header.css';
 
-const Header = ({ title, isDisabled=true }) => {
+const Header = ({ title, isDisabled = true }) => {
   const [isShowSearch, setIsShowSearch] = useState(false);
   return (
     <div className="Header">
       <ProfileLink />
       <h2>{title}</h2>
-      <SearchButton isDisabled={isDisabled} changeShowSearch={() => setIsShowSearch(!isShowSearch)} />
+      <SearchButton
+        isDisabled={isDisabled}
+        changeShowSearch={() => setIsShowSearch(!isShowSearch)}
+      />
       {isShowSearch && <SearchBar />}
     </div>
   );
@@ -20,5 +23,6 @@ const Header = ({ title, isDisabled=true }) => {
 export default Header;
 
 Header.propTypes = {
+  isDisabled: PropTypes.bool.isRequired,
   title: PropTypes.string.isRequired,
 };

@@ -5,7 +5,7 @@ import LowerMenu from './LowerMenu';
 
 const ExplorerMenu = () => (
   <div>
-    <Header title="Explorar"/>
+    <Header title="Explorar" />
     <h1>Explorer</h1>
     <Link
       data-testid="explore-food"

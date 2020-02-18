@@ -5,7 +5,12 @@ import Search from '../icons/lupa.png';
 
 const SearchButton = ({ changeShowSearch, isDisabled }) => (
   <div className="SearchButton">
-    <button disabled={isDisabled} className="btn-search" type="button" onClick={() => changeShowSearch()}>
+    <button
+      disabled={isDisabled}
+      className="btn-search"
+      type="button"
+      onClick={() => changeShowSearch()}
+    >
       <img src={Search} alt="Search item" />
     </button>
   </div>
@@ -14,5 +19,6 @@ const SearchButton = ({ changeShowSearch, isDisabled }) => (
 export default SearchButton;
 
 SearchButton.propTypes = {
+  isDisabled: PropTypes.bool.isRequired,
   changeShowSearch: PropTypes.func.isRequired,
 };

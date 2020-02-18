@@ -17,7 +17,7 @@ const EachIngredient = ({ ingredient, img, isFoodOrDrink }) => {
 };
 
 EachIngredient.propTypes = {
-  name: PropTypes.string.isRequired,
+  ingredient: PropTypes.string.isRequired,
   img: PropTypes.string.isRequired,
   isFoodOrDrink: PropTypes.string.isRequired,
 };

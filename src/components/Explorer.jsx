@@ -18,7 +18,7 @@ const fetchId = async (isFoodOrDrink, setId) => {
 const returnName = (foodordrink) => {
   if (foodordrink === 'comidas') return 'Comidas';
   return 'Bebidas';
-}
+};
 
 const Explorer = ({ match: { params: { foodordrink } } }) => {
   const [id, setId] = useState();

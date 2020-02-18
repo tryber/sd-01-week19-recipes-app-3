@@ -21,7 +21,6 @@ const oneRecipe = (recipe) => {
 };
 
 const getData = (endPoint, foodordrink, setCategories, setRecipe, setIsFetching) => {
-
   fetch5Categories(keyData(foodordrink), foodordrink)
     .then((result) => setCategories(result));
   getRecipes(endPoint, keyData(foodordrink), foodordrink)

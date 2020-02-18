@@ -10,18 +10,14 @@ const fetchIngredients = async (match, setIngredients) => {
   if (match === 'comidas') {
     const data = await getMeals('list.php?i=list');
     const names = data.meals.map(({ strIngredient }) => strIngredient);
-    const allIngredients = names.map((ingredient) => ({
-      ingredient, images: (getIngredientsImage('themealdb', ingredient)
-      )
-    }));
+    const allIngredients = names.map((ingredient) => (
+      { ingredient, images: (getIngredientsImage('themealdb', ingredient)) }));
     setIngredients(allIngredients);
   } else {
     const data = await getDrinks('list.php?i=list');
     const names = data.drinks.map(({ strIngredient1 }) => strIngredient1);
-    const allIngredients = names.map((ingredient) => ({
-      ingredient, images: (getIngredientsImage('thecocktaildb', ingredient)
-      )
-    }));
+    const allIngredients = names.map((ingredient) => (
+      { ingredient, images: (getIngredientsImage('thecocktaildb', ingredient)) }));
     setIngredients(allIngredients);
   }
 };
