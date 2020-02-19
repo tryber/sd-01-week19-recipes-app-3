@@ -18,10 +18,9 @@ const getCategoriesDrinks = async () => {
   return response.json();
 };
 
-export const getIngredientsImage = async (request, endpoint) => {
-  const response = await fetch(`https://www.${request}.com/images/ingredients/${endpoint}.png`);
-  return response;
-};
+export const getIngredientsImage = (request, endpoint) => (
+  `https://www.${request}.com/images/ingredients/${endpoint}.png`
+);
 
 export const getCategories = (type) => {
   if (type === 'comidas') {

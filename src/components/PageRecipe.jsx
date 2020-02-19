@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import { Redirect } from 'react-router-dom';
 import { ReciperContext } from '../context/ReciperContext';
 import { fetch5Categories, getRecipes } from '../service/FetchingAPI';
 import Header from './Header';
@@ -7,37 +8,47 @@ import LowerMenu from './LowerMenu';
 import ListCategory from './ListCategory';
 import ListRecipe from './ListRecipes';
 import './PageRecipe.css';
+import Loading from './Loading';
 
 const keyData = (verify) => {
   if (verify === 'comidas') return 'meal';
   return 'cocktail';
 };
 
-const getData = (endPoint, foodordrink, setCategories, setRecipe) => {
+const oneRecipe = (recipe) => {
+  if (recipe[0].idMeal) return <Redirect to={`/receitas/comidas/${recipe[0].idMeal}`} />;
+  return <Redirect to={`/receitas/bebidas/${recipe[0].idDrink}`} />;
+};
+
+const getData = (endPoint, foodordrink, setCategories, setRecipe, setIsFetching) => {
   fetch5Categories(keyData(foodordrink), foodordrink)
     .then((result) => setCategories(result));
   getRecipes(endPoint, keyData(foodordrink), foodordrink)
-    .then((result) => setRecipe(result));
+    .then((result) => {
+      setRecipe(result);
+      setIsFetching(false);
+    });
 };
 
 const PageRecipe = ({ match: { params: { foodordrink } } }) => {
-  const { endPoint, isFoodOrDrink, setRecipe } = useContext(ReciperContext);
+  const { endPoint, isFoodOrDrink, setRecipe, recipe } = useContext(ReciperContext);
   const [categories, setCategories] = useState();
+  const [isFetching, setIsFetching] = useState(false);
+
   useEffect(() => {
-    getData(endPoint, foodordrink, setCategories, setRecipe);
-  }, []);
-  useEffect(() => {
-    getData(endPoint, foodordrink, setCategories, setRecipe);
-  }, [isFoodOrDrink]);
-  useEffect(() => {
-    getRecipes(endPoint, keyData(foodordrink), foodordrink)
-      .then((result) => setRecipe(result));
-  }, [endPoint]);
+    if (!isFetching) {
+      setIsFetching(true);
+      getData(endPoint, foodordrink, setCategories, setRecipe, setIsFetching);
+    }
+  }, [isFoodOrDrink, endPoint]);
+
+  if (recipe && recipe.length === 1) return oneRecipe(recipe);
   return (
     <div className="PageRecipe">
-      <Header title={foodordrink} />
-      <ListCategory allCategories={categories} />
-      <ListRecipe type={foodordrink} />
+      <Header title={foodordrink} isDisabled={false} />
+      {isFetching && <Loading />}
+      {!isFetching && <ListCategory allCategories={categories} />}
+      {!isFetching && <ListRecipe type={foodordrink} />}
       <LowerMenu />
     </div>
   );

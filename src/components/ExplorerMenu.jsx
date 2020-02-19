@@ -1,8 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Header from './Header';
+import LowerMenu from './LowerMenu';
 
 const ExplorerMenu = () => (
   <div>
+    <Header title="Explorar" />
     <h1>Explorer</h1>
     <Link
       data-testid="explore-food"
@@ -12,6 +15,7 @@ const ExplorerMenu = () => (
       data-testid="explore-drinks"
       to="/explorar/bebidas"
     >Explorar Bebidas</Link>
+    <LowerMenu />
   </div>
 );
 
