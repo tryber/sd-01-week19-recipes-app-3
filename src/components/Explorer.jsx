@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { getMeals, getDrinks } from '../service/FetchingAPI';
+import Header from './Header';
+import LowerMenu from './LowerMenu';
 
 const fetchId = async (isFoodOrDrink, setId) => {
   if (isFoodOrDrink === 'comidas') {
@@ -13,6 +15,11 @@ const fetchId = async (isFoodOrDrink, setId) => {
   }
 };
 
+const returnName = (foodordrink) => {
+  if (foodordrink === 'comidas') return 'Comidas';
+  return 'Bebidas';
+};
+
 const Explorer = ({ match: { params: { foodordrink } } }) => {
   const [id, setId] = useState();
   useEffect(() => {
@@ -20,6 +27,7 @@ const Explorer = ({ match: { params: { foodordrink } } }) => {
   }, []);
   return (
     <div className="Explorer">
+      <Header title={`Explorar ${returnName(foodordrink)}`} />
       <h1>{foodordrink}</h1>
       <Link
         to={`/explorar/${foodordrink}/ingredientes`}
@@ -28,6 +36,7 @@ const Explorer = ({ match: { params: { foodordrink } } }) => {
       {foodordrink === 'comidas' &&
         <Link to="/explorar/comidas/area" data-testid="explore-by-area" >Por local de origem</Link>}
       {id && <Link data-testid="explore-surprise" to={`/receitas/${foodordrink}/${id}`}>Me surpreenda!</Link>}
+      <LowerMenu />
     </div>
   );
 };

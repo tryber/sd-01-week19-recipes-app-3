@@ -18,17 +18,15 @@ const ListIngredients = ({ listIngredient }) => {
   );
   return (
     <div className="ListIngredient">
-      <ul>
-        {listDone.map(({ ingredient, measure, done }) => (
-          <Ingredient
-            key={ingredient}
-            name={ingredient}
-            measure={measure}
-            done={done}
-            checked={(value) => setListDone(changeDone(value))}
-          />
-        ))}
-      </ul>
+      {listDone.map(({ ingredient, measure, done }) => (
+        <Ingredient
+          key={ingredient}
+          name={ingredient}
+          measure={measure}
+          done={done}
+          checked={(value) => setListDone(changeDone(value))}
+        />
+      ))}
     </div>
   );
 };
