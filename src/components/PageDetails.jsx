@@ -11,6 +11,7 @@ import {
   saveRecipe,
   getDetailsRecipe,
 } from '../LocalStorage/LocalStorage.js';
+import Recommendation from './Recommendation';
 
 const keyData = (verify) => {
   if (verify === 'comidas') return 'meals';
@@ -74,7 +75,7 @@ const PageDetails = ({ match: { params: { id, foodordrink } } }) => {
         });
     }
     if (details) setDataRecipe(details);
-  }, []);
+  }, [id]);
 
   if (!dataRecipe) return <Loading />;
   return (
@@ -83,6 +84,7 @@ const PageDetails = ({ match: { params: { id, foodordrink } } }) => {
       <ListIngredients listIngredient={formatIngredients(dataRecipe)} />
       <Instructions instructions={dataRecipe.strInstructions} />
       {renderVideo(dataRecipe)}
+      <Recommendation id={id} foodordrink={foodordrink} />
     </div>
   );
 };
