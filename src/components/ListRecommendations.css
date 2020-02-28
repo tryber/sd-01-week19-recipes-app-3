@@ -1,0 +1,19 @@
+.Recommendation {
+  overflow: auto;
+  width: 100vw;
+}
+
+.recommendation {
+  box-sizing: border-box;
+  display: flex;
+  flex-shrink: 1;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.recommendation > .CardRecipe {
+  flex-shrink: 0;
+  margin: 0 4%;
+  width: 40%;
+}

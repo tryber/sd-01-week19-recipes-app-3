@@ -47,7 +47,6 @@ export const fetch5Categories = async (keyData, isFoodOrDrink) => {
   return values;
 };
 
-
 const multipleRecipes = (randomRecipes, type) => {
   const recipesArray = randomRecipes.map((recipe) => {
     if (type === 'meal') return recipe.meals[0];
@@ -56,7 +55,7 @@ const multipleRecipes = (randomRecipes, type) => {
   return recipesArray;
 };
 
-const getRandomRecipes = async (type) => {
+export const getRandomRecipes = async (type) => {
   const randomRecipes = [];
   for (let index = 0; index < 12; index += 1) {
     const response = fetch(`https://www.the${type}db.com/api/json/v1/1/random.php`).then((data) => data.json());

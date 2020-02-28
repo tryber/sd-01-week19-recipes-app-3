@@ -1,8 +1,9 @@
 .PageDetails {
-  align-items: center;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 30px;
+  margin: 0;
+  padding: 10px;
+  width: 100vw;
 }
