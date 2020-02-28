@@ -8,6 +8,8 @@ import ExplorerMenu from './components/ExplorerMenu';
 import Explorer from './components/Explorer';
 import ExplorerIngredients from './components/ExplorerIngredients';
 import ExplorerAreas from './components/ExplorerAreas';
+import FavoriteRecipes from './components/FavoriteRecipes';
+import RecipesMade from './components/RecipesMade';
 
 function App() {
   return (
@@ -16,9 +18,27 @@ function App() {
         <Route exact path="/" component={Login} />
         <Route exact path="/explorar" component={ExplorerMenu} />
         <Route exact path="/explorar/:foodordrink" component={Explorer} />
-        <Route exact path="/explorar/:foodordrink/ingredientes" component={ExplorerIngredients} />
+        <Route
+          exact
+          path="/explorar/:foodordrink/ingredientes"
+          component={ExplorerIngredients}
+        />
         <Route exact path="/receitas/:foodordrink" component={PageRecipe} />
-        <Route exact path="/receitas/:foodordrink/:id" component={PageDetails} />
+        <Route
+          exact
+          path="/receitas/:foodordrink/:id"
+          component={PageDetails}
+        />
+        <Route
+          exact
+          path="/receitas/:foodordrink/receitas_favoritas"
+          component={FavoriteRecipes}
+        />
+        <Route
+          exact
+          path="/receitas/:foodordrink/receitas_feitas"
+          component={RecipesMade}
+        />
         <Route exact path="/explorar/comidas/area" component={ExplorerAreas} />
       </Switch>
     </Router>
