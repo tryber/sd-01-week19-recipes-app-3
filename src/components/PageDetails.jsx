@@ -97,7 +97,8 @@ const PageDetails = ({ match: { params: { id, foodordrink } } }) => {
       <ListIngredients
         inProgress={isStart}
         setIsDone={(value) => setIsDone(value)}
-        listIngredient={formatIngredients(dataRecipe)} />
+        listIngredient={formatIngredients(dataRecipe)}
+      />
       <Instructions instructions={dataRecipe.strInstructions} />
       {isStart || renderVideo(dataRecipe)}
       {isStart || <Recommendation id={id} foodordrink={foodordrink} />}

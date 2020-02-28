@@ -25,7 +25,7 @@ const ListIngredients = ({ listIngredient, inProgress, setIsDone }) => {
 
   useEffect(() => {
     if (!verifyDone(listDone)) {
-      setListDone(addPropertyDone(listIngredient))
+      setListDone(addPropertyDone(listIngredient));
     }
   }, [listIngredient]);
 
@@ -47,7 +47,7 @@ const ListIngredients = ({ listIngredient, inProgress, setIsDone }) => {
       {listDone.map(({ ingredient, measure, done }, index) => (
         <Ingredient
           inProgress={inProgress}
-          key={index * 3}
+          key={`${index * 3}`}
           name={ingredient}
           measure={measure}
           done={done}
@@ -66,4 +66,6 @@ ListIngredients.propTypes = {
     name: PropTypes.string.isRequired,
     measure: PropTypes.string.isRequired,
   })).isRequired,
+  inProgress: PropTypes.bool.isRequired,
+  setIsDone: PropTypes.func.isRequired,
 };
