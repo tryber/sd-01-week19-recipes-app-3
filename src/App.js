@@ -21,9 +21,9 @@ function App() {
         <Route exact path="/explorar/:foodordrink/ingredientes" component={ExplorerIngredients} />
         <Route exact path="/receitas/:foodordrink" component={PageRecipe} />
         <Route exact path="/receitas/:foodordrink/:id" component={PageDetails} />
+        <Route exact path="/explorar/comidas/area" component={ExplorerAreas} />
         <Route exact path="/receitas_favoritas" component={FavoriteRecipes} />
         <Route exact path="/receitas_feitas" component={RecipesMade} />
-        <Route exact path="/explorar/comidas/area" component={ExplorerAreas} />
       </Switch>
     </Router>
   );
