@@ -1,5 +1,4 @@
 import React from 'react';
-
 import './FavoriteRecipes.css';
 import Header from './Header';
 

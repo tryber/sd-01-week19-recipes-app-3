@@ -4,7 +4,7 @@ body {
 
 .container {
   margin: 0 auto;
-  width: 50%; /* Valor da Largura */
+  width: 50%;
   margin-top: 5em;
   display: flex;
   justify-content: space-around;
