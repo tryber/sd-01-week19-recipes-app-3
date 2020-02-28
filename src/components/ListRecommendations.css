@@ -13,8 +13,7 @@
 }
 
 .recommendation > .CardRecipe {
-  border: 2px solid black;
   flex-shrink: 0;
-  margin: 4%;
+  margin: 0 4%;
   width: 40%;
 }

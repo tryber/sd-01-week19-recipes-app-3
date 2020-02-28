@@ -12,6 +12,7 @@ import {
   getDetailsRecipe,
 } from '../LocalStorage/LocalStorage.js';
 import Recommendation from './Recommendation';
+import ButtonStart from './ButtonStart';
 
 const keyData = (verify) => {
   if (verify === 'comidas') return 'meals';
@@ -26,6 +27,16 @@ const renderHeader = (foodordrink, data) => {
     title={data.strDrink}
   />);
 };
+
+const renderButton = (isStart, setIsStart, isDone, data, type) => (
+  <ButtonStart
+    data={data}
+    isStart={isStart}
+    setIsStart={() => setIsStart(!isStart)}
+    isDone={isDone}
+    type={type}
+  />
+);
 
 const renderVideo = (data) => {
   const opts = {
@@ -65,6 +76,8 @@ const formatIngredients = (data) => {
 
 const PageDetails = ({ match: { params: { id, foodordrink } } }) => {
   const [dataRecipe, setDataRecipe] = useState();
+  const [isStart, setIsStart] = useState(false);
+  const [isDone, setIsDone] = useState(false);
   useEffect(() => {
     const details = getDetailsRecipe(id);
     if (!details) {
@@ -81,10 +94,14 @@ const PageDetails = ({ match: { params: { id, foodordrink } } }) => {
   return (
     <div className="PageDetails">
       {renderHeader(foodordrink, dataRecipe)}
-      <ListIngredients listIngredient={formatIngredients(dataRecipe)} />
+      <ListIngredients
+        inProgress={isStart}
+        setIsDone={(value) => setIsDone(value)}
+        listIngredient={formatIngredients(dataRecipe)} />
       <Instructions instructions={dataRecipe.strInstructions} />
-      {renderVideo(dataRecipe)}
-      <Recommendation id={id} foodordrink={foodordrink} />
+      {isStart || renderVideo(dataRecipe)}
+      {isStart || <Recommendation id={id} foodordrink={foodordrink} />}
+      {renderButton(isStart, setIsStart, isDone, dataRecipe, foodordrink)}
     </div>
   );
 };

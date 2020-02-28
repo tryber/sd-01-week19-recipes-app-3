@@ -30,6 +30,7 @@ const Recommendation = ({ foodordrink, id }) => {
   if (isFetching) return <Loading />;
   return (
     <div className="Recommendation">
+      <h3>Recomendados</h3>
       <ListRecommendations recipes={recommendations} type={getType(foodordrink)} />
     </div>
   );
